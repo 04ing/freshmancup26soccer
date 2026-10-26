@@ -1,0 +1,50 @@
+{
+  "goals": [
+    {
+      "team": "国家网络安全学院",
+      "player": "王梓仁",
+      "number": "12",
+      "minute": "63",
+      "type": "penalty"
+    },
+    {
+      "team": "国家网络安全学院",
+      "player": "刘子骞",
+      "number": "20",
+      "minute": "8"
+    },
+    {
+      "team": "国家网络安全学院",
+      "player": "花成璋",
+      "number": "22",
+      "minute": "23"
+    },
+    {
+      "team": "计科新生队",
+      "player": "赵万梓琛",
+      "number": "10",
+      "minute": "30"
+    },
+    {
+      "team": "计科新生队",
+      "player": "黄智博",
+      "number": "18",
+      "minute": "40"
+    },
+    {
+      "team": "计科新生队",
+      "player": "王子涵",
+      "number": "23",
+      "minute": "49"
+    }
+  ],
+  "cards": [
+    {
+      "team": "国家网络安全学院",
+      "player": "祝恒悦",
+      "number": "99",
+      "type": "yellow",
+      "minute": "60"
+    }
+  ]
+}

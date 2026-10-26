@@ -1,0 +1,36 @@
+{
+  "goals": [
+    {
+      "team": "水利水电学院",
+      "player": "叶德力",
+      "number": "10",
+      "type": "normal",
+      "minute": "5"
+    },
+    {
+      "team": "电子信息队",
+      "player": "李竞择",
+      "number": "8",
+      "type": "normal",
+      "minute": "18"
+    }
+  ],
+  "cards": [
+    {
+      "role": "player",
+      "team": "水利水电学院",
+      "player": "叶德力",
+      "number": "10",
+      "type": "yellow",
+      "minute": "31"
+    },
+    {
+      "role": "player",
+      "team": "电子信息队",
+      "player": "吴业祖",
+      "number": "7",
+      "type": "yellow",
+      "minute": "25"
+    }
+  ]
+}

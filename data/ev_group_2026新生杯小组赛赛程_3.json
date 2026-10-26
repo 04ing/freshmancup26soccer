@@ -1,0 +1,42 @@
+{
+  "goals": [
+    {
+      "team": "电子信息队",
+      "player": "吴业祖",
+      "number": "7",
+      "type": "normal",
+      "minute": "20"
+    },
+    {
+      "team": "经管新生队",
+      "player": "Mahad(尼日利亚)",
+      "number": "20",
+      "type": "normal",
+      "minute": "10"
+    },
+    {
+      "team": "经管新生队",
+      "player": "Mahad(尼日利亚)",
+      "number": "20",
+      "type": "normal",
+      "minute": "18"
+    },
+    {
+      "team": "经管新生队",
+      "player": "Mahad(尼日利亚)",
+      "number": "20",
+      "type": "normal",
+      "minute": "23"
+    }
+  ],
+  "cards": [
+    {
+      "role": "player",
+      "team": "电子信息队",
+      "player": "董柏同",
+      "number": "18",
+      "type": "yellow",
+      "minute": "58"
+    }
+  ]
+}

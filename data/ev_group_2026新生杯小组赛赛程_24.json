@@ -1,0 +1,36 @@
+{
+  "goals": [
+    {
+      "team": "集成电路",
+      "player": "詹文睿",
+      "number": "8",
+      "type": "own",
+      "minute": "6"
+    },
+    {
+      "team": "弘毅学堂",
+      "player": "王校",
+      "number": "15",
+      "type": "normal",
+      "minute": "33"
+    }
+  ],
+  "cards": [
+    {
+      "role": "player",
+      "team": "集成电路",
+      "player": "楼佳骏",
+      "number": "30",
+      "type": "yellow",
+      "minute": "12"
+    },
+    {
+      "role": "player",
+      "team": "弘毅学堂",
+      "player": "苏浩洋",
+      "number": "28",
+      "type": "yellow",
+      "minute": "33"
+    }
+  ]
+}

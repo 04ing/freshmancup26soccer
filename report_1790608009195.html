@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>战报详情 - 2026新生杯</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+/* 静态导出版：隐藏依赖服务器的录入/上传/AI 入口 */
+.entry-section, .upload-section, .ai-trigger, .ai-panel { display: none !important; }
+.team-edit { pointer-events: none; appearance: none; -webkit-appearance: none; border-color: transparent !important; background: transparent !important; }
+</style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo"><span class="logo-icon">⚽</span><span class="logo-text">2026新生杯</span></div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="schedule.html" class="nav-link">赛程</a>
+                <a href="standings.html" class="nav-link">积分榜</a>
+                <a href="scorers.html" class="nav-link">射手榜</a>
+                <a href="cards.html" class="nav-link">红黄牌</a>
+                <a href="rosters.html" class="nav-link">大名单</a>
+                <a href="reports.html" class="nav-link active">战报</a>
+                <a href="referees.html" class="nav-link">裁判</a>
+            </nav>
+            <button class="ai-trigger" id="aiTrigger"><span class="ai-icon">AI</span><span>助手</span></button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">首页</a>
+        <a href="schedule.html" class="nav-link">赛程</a>
+        <a href="/matches" class="nav-link">比赛管理</a>
+        <a href="standings.html" class="nav-link">积分榜</a>
+        <a href="scorers.html" class="nav-link">射手榜</a>
+        <a href="cards.html" class="nav-link">红黄牌</a>
+        <a href="rosters.html" class="nav-link">大名单</a>
+        <a href="reports.html" class="nav-link">战报</a>
+        <a href="referees.html" class="nav-link">裁判</a>
+    </nav>
+    
+    <main class="main-content">
+        <article class="report-detail" id="reportDetail">
+            <div class="loading"><div class="loading-spinner"></div><p>正在加载战报数据...</p></div>
+        </article>
+    </main>
+
+    <footer class="footer"><div class="footer-inner"><p>2026武汉大学新生杯足球赛</p></div></footer>
+
+    <div class="ai-panel" id="aiPanel">
+        <div class="ai-panel-header"><span class="ai-panel-title">AI助手</span><button class="ai-close" id="aiClose">X</button></div>
+        <div class="ai-panel-body">
+            <div class="ai-messages" id="aiMessages"><div class="ai-message ai-system"><p>可以问关于这场比赛的问题！</p></div></div>
+            <div class="ai-input-area"><input type="text" class="ai-input" id="aiInput"><button class="ai-send" id="aiSend">发送</button></div>
+        </div>
+    </div>
+
+    <script src="static/js/api-shim.js"></script>
+    <script src="static/js/main.js"></script>
+    <script>
+        var currentMatchData = null;
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            initAIAssistant();
+            loadReportDetail();
+        });
+
+        async function loadReportDetail() {
+            const container = document.getElementById('reportDetail');
+            
+            const path = window.location.pathname;
+            const reportId = path.split('/').pop().replace(/\.html$/, '');
+            
+            let report = null;
+            let matchInfo = null;
+            let refereeAssignment = {};
+            
+            try {
+                // 获取战报内容
+                const reportRes = await fetch(`/api/reports/${reportId}?_=${Date.now()}`, { cache: 'no-cache' });
+                if (reportRes.ok) {
+                    report = await reportRes.json();
+                }
+                
+                // 如果有关联比赛，获取比赛信息
+                if (report && report.matchId) {
+                    const matchesRes = await fetch('/api/matches/all?_=' + Date.now(), { cache: 'no-cache' });
+                    if (matchesRes.ok) {
+                        const matches = await matchesRes.json();
+                        matchInfo = matches.find(m => m.id === report.matchId);
+                        
+                        // 获取裁判选派
+                        if (matchInfo) {
+                            const refRes = await fetch(`/api/referees/${matchInfo.id}?_=${Date.now()}`, { cache: 'no-cache' });
+                            if (refRes.ok) {
+                                refereeAssignment = await refRes.json();
+                            }
+                        }
+                    }
+                }
+
+                // 获取比赛事件（进球/红黄牌）
+                let matchEvents = { goals: [], cards: [] };
+                if (report && report.matchId) {
+                    try {
+                        const evRes = await fetch(`/api/match-events/${report.matchId}?_=${Date.now()}`, { cache: 'no-cache' });
+                        if (evRes.ok) {
+                            const evData = await evRes.json();
+                            if (evData && (evData.goals || evData.cards)) {
+                                matchEvents = evData;
+                            }
+                        }
+                    } catch(e) { console.error(e); }
+                }
+                
+                currentMatchData = {
+                    homeTeam: matchInfo ? matchInfo.home : (report ? report.title : ''),
+                    awayTeam: matchInfo ? matchInfo.away : '',
+                    groupRound: matchInfo ? matchInfo.group : ''
+                };
+                
+                renderReport(matchInfo, refereeAssignment, report, matchEvents);
+            } catch(e) {
+                console.error('加载战报详情失败:', e);
+                container.innerHTML = '<div class="report-header"><a href="reports.html" class="back-link">← 返回战报列表</a><h1 class="report-title">加载失败</h1><p style="color:#4a4a5a;">抱歉，战报加载失败。</p></div>';
+            }
+        }
+
+        function renderReport(match, referee, report, matchEvents) {
+            const container = document.getElementById('reportDetail');
+            matchEvents = matchEvents || { goals: [], cards: [] };
+            
+            if (!report) {
+                container.innerHTML = '<div class="report-header"><a href="reports.html" class="back-link">← 返回战报列表</a><h1 class="report-title">战报未找到</h1><p style="color:#4a4a5a;">抱歉，未找到对应的战报。</p></div>';
+                return;
+            }
+            
+            const homeTeam = match ? match.home : (report.homeTeam || '');
+            const awayTeam = match ? match.away : (report.awayTeam || '');
+
+            // 解析比分：优先从 match.score，其次从 report.homeScore/awayScore，最后从标题解析
+            let homeScore = '--', awayScore = '--';
+            if (match && match.score && match.score.includes(':')) {
+                const parts = match.score.split(':');
+                homeScore = parts[0].trim();
+                awayScore = parts[1].trim();
+            } else if (report.homeScore && report.awayScore) {
+                homeScore = report.homeScore;
+                awayScore = report.awayScore;
+            } else {
+                // 从标题中解析（如 "动机联3-0测绘"）
+                const m = (report.title || '').match(/(\d+)\s*[-:：]\s*(\d+)/);
+                if (m) { homeScore = m[1]; awayScore = m[2]; }
+            }
+
+            // 无关联比赛时从标题提取队名（如 "动机联3-0测绘" → 动机联 / 测绘）
+            let displayHome = homeTeam;
+            let displayAway = awayTeam;
+            if (!match && !displayHome) {
+                const tm = (report.title || '').match(/^(.+?)(\d+\s*[-:：]\s*\d+)(.+)$/);
+                if (tm) {
+                    displayHome = tm[1].trim();
+                    displayAway = tm[3].trim();
+                }
+            }
+            const hasScore = homeScore !== '--' && awayScore !== '--';
+            
+            const refereeGrid = `
+                <div class="info-section"><h3>裁判信息</h3>
+                <div class="referee-grid">
+                    <div class="referee-item"><span class="ref-role">主裁判</span><span class="ref-name">${referee.referee || '--'}</span></div>
+                    <div class="referee-item"><span class="ref-role">第一助理</span><span class="ref-name">${referee.assistant1 || '--'}</span></div>
+                    <div class="referee-item"><span class="ref-role">第二助理</span><span class="ref-name">${referee.assistant2 || '--'}</span></div>
+                    <div class="referee-item"><span class="ref-role">第四官员</span><span class="ref-name">${referee.fourth || '--'}</span></div>
+                </div></div>
+            `;
+            
+            const contentHtml = (report.content || '').split('\n').map(function(p) {
+                return p ? '<p>' + p + '</p>' : '';
+            }).join('');
+
+            // 渲染某队的详细事件列表（乌龙球显示在对方球队下方）
+            // 进球按时间先后排列，红黄牌显示在所有进球下方
+            const renderTeamEvents = (teamName, opponentName) => {
+                const tGoals = (matchEvents.goals || []).filter(g => g.team === teamName);
+                const oppGoals = (matchEvents.goals || []).filter(g => g.team === opponentName);
+                const tCards = (matchEvents.cards || []).filter(c => c.team === teamName);
+
+                // 收集所有进球（本方普通/点球 + 对方乌龙），按分钟排序
+                const allGoals = [
+                    ...tGoals.filter(g => !g.type || g.type === 'normal').map(g => ({...g, _kind: 'goal'})),
+                    ...tGoals.filter(g => g.type === 'penalty').map(g => ({...g, _kind: 'penalty'})),
+                    ...oppGoals.filter(g => g.type === 'own').map(g => ({...g, _kind: 'own'}))
+                ];
+                allGoals.sort((a, b) => parseInt(a.minute || 0, 10) - parseInt(b.minute || 0, 10));
+
+                // 红黄牌按分钟排序
+                const allCards = [...tCards];
+                allCards.sort((a, b) => parseInt(a.minute || 0, 10) - parseInt(b.minute || 0, 10));
+
+                const items = [];
+                allGoals.forEach(g => {
+                    if (g._kind === 'goal') {
+                        items.push(`<span class="ev-item">⚽ ${escapeHtml(g.player || '')} ${g.minute ? '('+g.minute+"')" : ''}</span>`);
+                    } else if (g._kind === 'penalty') {
+                        items.push(`<span class="ev-item">⚽<em class="ev-tag">点</em> ${escapeHtml(g.player || '')} ${g.minute ? '('+g.minute+"')" : ''}</span>`);
+                    } else {
+                        items.push(`<span class="ev-item">⚽<em class="ev-tag">乌龙</em> ${escapeHtml(g.player || '')} ${g.minute ? '('+g.minute+"')" : ''}</span>`);
+                    }
+                });
+                allCards.forEach(c => {
+                    if (c.type === 'yellow') {
+                        items.push(`<span class="ev-item">🟨 ${escapeHtml(c.player || '')} ${c.minute ? '('+c.minute+"')" : ''}</span>`);
+                    } else if (c.type === 'two_yellow') {
+                        items.push(`<span class="ev-item">🟨🟥两黄变一红 ${escapeHtml(c.player || '')} ${c.minute ? '('+c.minute+"')" : ''}</span>`);
+                    } else {
+                        items.push(`<span class="ev-item">🟥 ${escapeHtml(c.player || '')} ${c.minute ? '('+c.minute+"')" : ''}</span>`);
+                    }
+                });
+                return items.join('');
+            };
+
+            const hasEvents = (matchEvents.goals && matchEvents.goals.length) || (matchEvents.cards && matchEvents.cards.length);
+            const eventsHtml = hasEvents ? `
+                <div class="match-events-detail">
+                    <div class="events-col">${renderTeamEvents(displayHome || homeTeam, displayAway || awayTeam)}</div>
+                    <div class="events-col events-right">${renderTeamEvents(displayAway || awayTeam, displayHome || homeTeam)}</div>
+                </div>
+            ` : '';
+
+            container.innerHTML = `
+                <div class="report-header">
+                    <a href="reports.html" class="back-link">← 返回战报列表</a>
+                    <h1 class="report-title">${escapeHtml(report.title)}</h1>
+                    <div class="report-meta">
+                        ${match ? '<span>📅 ' + escapeHtml(match.date || '') + '</span>' : ''}
+                        ${match ? '<span>🕐 ' + escapeHtml(match.time || '') + '</span>' : ''}
+                        ${match ? '<span>📍 ' + escapeHtml(match.venue || '') + '</span>' : ''}
+                        ${match ? '<span>🏆 ' + escapeHtml(match.group || '') + '</span>' : ''}
+                    </div>
+                </div>
+                ${(match || hasScore) ? `
+                <div class="match-score-display">
+                    <div class="team-side"><span class="team-name">${escapeHtml(displayHome || '主队')}</span></div>
+                    <div class="score-center">
+                        <span class="score-large">${homeScore}</span>
+                        <span class="score-divider">-</span>
+                        <span class="score-large">${awayScore}</span>
+                    </div>
+                    <div class="team-side"><span class="team-name">${escapeHtml(displayAway || '客队')}</span></div>
+                </div>
+                ` : ''}
+                ${eventsHtml}
+                <div class="match-info">
+                    ${match ? refereeGrid : ''}
+                    <div class="info-section">
+                        <h3>📝 战报内容</h3>
+                        <div class="report-content">${contentHtml}</div>
+                    </div>
+                    <div class="info-section">
+                        <h3>AI战报分析</h3>
+                        <div class="ai-analysis" id="aiAnalysis"><p>点击下方按钮生成AI战报分析...</p></div>
+                        <button class="ai-analyze-btn" id="aiAnalyzeBtn">生成AI分析</button>
+                    </div>
+                </div>
+            `;
+            
+            setTimeout(function() {
+                const btn = document.getElementById('aiAnalyzeBtn');
+                if (btn && currentMatchData) {
+                    btn.onclick = function() {
+                        generateAIAnalysis(currentMatchData.homeTeam, currentMatchData.awayTeam, currentMatchData.groupRound);
+                    };
+                }
+            }, 100);
+        }
+
+        function formatMarkdown(text) {
+            if (!text) return '';
+            
+            text = text.replace(/```[\s\S]*?```/g, function(match) {
+                return '<pre><code>' + match.replace(/```/g, '') + '</code></pre>';
+            });
+            
+            text = text.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+            text = text.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+            text = text.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+            
+            text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            
+            text = text.replace(/^[-*+] (.*$)/gim, '<li>$1</li>');
+            text = text.replace(/(<li>.*<\/li>)/gim, function(match) {
+                if (!match.includes('</ul>')) {
+                    return '<ul>' + match + '</ul>';
+                }
+                return match;
+            });
+            
+            text = text.replace(/\n\n/g, '</p><p>');
+            text = text.replace(/\n/g, '<br>');
+            
+            return '<p>' + text + '</p>';
+        }
+
+        async function generateAIAnalysis(homeTeam, awayTeam, group) {
+            const container = document.getElementById('aiAnalysis');
+            container.innerHTML = '<div class="loading"><div class="loading-spinner"></div><p>AI分析中...</p></div>';
+            
+            const reportContent = document.querySelector('.report-content') ? document.querySelector('.report-content').innerText : '';
+            
+            try {
+                const response = await fetch('/api/ai/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: '请分析2026新生杯比赛：' + homeTeam + ' vs ' + awayTeam + '，' + group + '。战报内容：' + reportContent + '。请提供比赛亮点总结、双方战术分析、关键球员表现评价、比赛结果分析和后续展望。请直接输出分析内容，不要使用Markdown格式。'
+                    })
+                });
+                const data = await response.json();
+                container.innerHTML = formatMarkdown(data.reply);
+            } catch(e) {
+                console.error('AI分析失败:', e);
+                container.innerHTML = '<p>AI分析生成失败，请稍后重试。</p>';
+            }
+        }
+    </script>
+
+    <style>
+        .report-detail { max-width: 800px; margin: 0 auto; padding: 24px; }
+        .report-header { margin-bottom: 24px; }
+        .back-link { color: #1a8a3a; text-decoration: none; font-weight: 500; }
+        .report-title { font-size: 28px; margin: 16px 0; }
+        .report-meta { display: flex; gap: 16px; color: #4a4a5a; flex-wrap: wrap; }
+        .match-score-display { display: flex; align-items: center; justify-content: center; gap: 32px; padding: 32px; background: linear-gradient(135deg, #0f5d27 0%, #1a8a3a 100%); border-radius: 12px; margin: 24px 0; }
+        .team-side { text-align: center; }
+        .team-name { font-size: 20px; font-weight: 700; color: #fff; }
+        .score-center { display: flex; align-items: center; gap: 16px; }
+        .score-large { font-size: 48px; font-weight: 900; font-family: monospace; color: #ffd700; }
+        .score-divider { font-size: 32px; color: rgba(255,255,255,0.5); }
+        .match-events-detail {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+            margin: 16px 0; padding: 16px 20px; background: #f8f9fa; border-radius: 8px;
+        }
+        .events-col { display: flex; flex-direction: column; gap: 6px; }
+        .events-right { text-align: right; }
+        .ev-item { font-size: 14px; color: #333; line-height: 1.6; }
+        .ev-tag {
+            font-style: normal; font-size: 11px; color: #fff; background: #ff6b35;
+            padding: 1px 5px; border-radius: 3px; margin: 0 2px;
+        }
+        .penalty-score { display: block; font-size: 16px; color: rgba(255,215,0,0.8); margin-top: 8px; }
+        .match-info { margin-top: 24px; }
+        .info-section { margin-bottom: 24px; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+        .info-section h3 { margin-bottom: 16px; color: #1a8a3a; font-size: 18px; }
+        .referee-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .referee-item { display: flex; justify-content: space-between; padding: 8px; background: #fff; border-radius: 6px; }
+        .ref-role { color: #666; font-size: 14px; }
+        .ref-name { font-weight: 600; color: #333; }
+        .report-content p { margin-bottom: 12px; line-height: 1.8; color: #333; }
+        .ai-analysis { min-height: 100px; padding: 16px; background: #fff; border-radius: 6px; margin-bottom: 12px; }
+        .ai-analyze-btn { padding: 12px 24px; background: linear-gradient(135deg, #1a8a3a, #0f5d27); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; transition: opacity 0.3s; }
+        .ai-analyze-btn:hover { opacity: 0.9; }
+        .loading { display: flex; align-items: center; gap: 12px; justify-content: center; }
+        .loading-spinner { width: 24px; height: 24px; border: 3px solid #f3f3f3; border-top: 3px solid #1a8a3a; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .ai-analysis h2 { font-size: 20px; margin-bottom: 12px; color: #1a8a3a; }
+        .ai-analysis h3 { font-size: 16px; margin-bottom: 8px; color: #333; }
+        .ai-analysis ul { padding-left: 20px; margin-bottom: 12px; }
+        .ai-analysis li { margin-bottom: 4px; }
+        .ai-analysis strong { color: #1a8a3a; font-weight: 700; }
+        .ai-analysis em { font-style: italic; }
+    </style>
+</body>
+</html>

@@ -1,0 +1,59 @@
+{
+  "goals": [
+    {
+      "team": "人工智能学院",
+      "player": "杨力诚",
+      "number": "77",
+      "type": "normal",
+      "minute": "1"
+    },
+    {
+      "team": "人工智能学院",
+      "player": "杨力诚",
+      "number": "77",
+      "type": "normal",
+      "minute": "18"
+    },
+    {
+      "team": "水利水电学院",
+      "player": "阿斯哈提",
+      "number": "41",
+      "type": "normal",
+      "minute": "40"
+    }
+  ],
+  "cards": [
+    {
+      "role": "player",
+      "team": "人工智能学院",
+      "player": "成梓和",
+      "number": "88",
+      "type": "yellow",
+      "minute": "58"
+    },
+    {
+      "role": "coach",
+      "team": "人工智能学院",
+      "player": "陈子轩",
+      "number": "",
+      "type": "yellow",
+      "minute": "53"
+    },
+    {
+      "role": "coach",
+      "team": "人工智能学院",
+      "player": "陈子轩",
+      "number": "",
+      "type": "two_yellow",
+      "minute": "54"
+    },
+    {
+      "role": "player",
+      "team": "水利水电学院",
+      "player": "阿卜杜拜斯尔",
+      "number": "19",
+      "type": "yellow",
+      "minute": "54"
+    }
+  ]
+}

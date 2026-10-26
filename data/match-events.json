@@ -1,0 +1,1773 @@
+{
+  "group_2026新生杯小组赛赛程_2": {
+    "goals": [
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "6"
+      },
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "11"
+      },
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "28"
+      }
+    ],
+    "cards": [
+      {
+        "team": "医学联队",
+        "player": "温梓鑫",
+        "number": "47",
+        "type": "yellow",
+        "minute": "11"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_3": {
+    "goals": [
+      {
+        "team": "电子信息队",
+        "player": "吴业祖",
+        "number": "7",
+        "type": "normal",
+        "minute": "20"
+      },
+      {
+        "team": "经管新生队",
+        "player": "Mahad(尼日利亚)",
+        "number": "20",
+        "type": "normal",
+        "minute": "10"
+      },
+      {
+        "team": "经管新生队",
+        "player": "Mahad(尼日利亚)",
+        "number": "20",
+        "type": "normal",
+        "minute": "18"
+      },
+      {
+        "team": "经管新生队",
+        "player": "Mahad(尼日利亚)",
+        "number": "20",
+        "type": "normal",
+        "minute": "23"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "电子信息队",
+        "player": "董柏同",
+        "number": "18",
+        "type": "yellow",
+        "minute": "58"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_4": {
+    "goals": [
+      {
+        "team": "土木建筑工程学院",
+        "player": "桑钦杰",
+        "number": "17",
+        "minute": "49"
+      },
+      {
+        "team": "土木建筑工程学院",
+        "player": "多吉扎巴",
+        "number": "19",
+        "minute": "27"
+      },
+      {
+        "team": "口腔医学院",
+        "player": "Murad（土耳其）",
+        "number": "15",
+        "minute": "32"
+      },
+      {
+        "team": "土木建筑工程学院",
+        "player": "王建辉",
+        "number": "2",
+        "type": "own",
+        "minute": "58"
+      }
+    ],
+    "cards": [
+      {
+        "team": "土木建筑工程学院",
+        "player": "侯博文",
+        "number": "6",
+        "type": "yellow",
+        "minute": "32"
+      },
+      {
+        "team": "土木建筑工程学院",
+        "player": "桑钦杰",
+        "number": "17",
+        "type": "yellow",
+        "minute": "25"
+      },
+      {
+        "team": "土木建筑工程学院",
+        "player": "邓凯隆",
+        "number": "78",
+        "type": "yellow",
+        "minute": "30"
+      },
+      {
+        "team": "口腔医学院",
+        "player": "Steven（尼日利亚）",
+        "number": "47",
+        "type": "yellow",
+        "minute": "15"
+      },
+      {
+        "team": "口腔医学院",
+        "player": "Henry（尼日利亚）",
+        "number": "66",
+        "type": "yellow",
+        "minute": "58"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_5": {
+    "goals": [
+      {
+        "team": "城设新传联",
+        "player": "李柯汗",
+        "number": "10",
+        "minute": "6",
+        "type": "penalty"
+      },
+      {
+        "team": "城设新传联",
+        "player": "崔永涛",
+        "number": "11",
+        "minute": "40"
+      },
+      {
+        "team": "FC武大杜伦",
+        "player": "张泽恒",
+        "number": "9",
+        "minute": "33"
+      },
+      {
+        "team": "FC武大杜伦",
+        "player": "梁熙麟",
+        "number": "19",
+        "minute": "57"
+      },
+      {
+        "team": "FC武大杜伦",
+        "player": "唐梓渊",
+        "number": "69",
+        "minute": "11"
+      }
+    ],
+    "cards": [
+      {
+        "team": "城设新传联",
+        "player": "吴泰睿",
+        "number": "23",
+        "type": "yellow",
+        "minute": ""
+      },
+      {
+        "role": "coach",
+        "team": "城设新传联",
+        "player": "吴冠桥",
+        "number": "",
+        "type": "yellow",
+        "minute": ""
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_7": {
+    "goals": [
+      {
+        "team": "国家网络安全学院",
+        "player": "王梓仁",
+        "number": "12",
+        "minute": "63",
+        "type": "penalty"
+      },
+      {
+        "team": "国家网络安全学院",
+        "player": "刘子骞",
+        "number": "20",
+        "minute": "8"
+      },
+      {
+        "team": "国家网络安全学院",
+        "player": "花成璋",
+        "number": "22",
+        "minute": "23"
+      },
+      {
+        "team": "计科新生队",
+        "player": "赵万梓琛",
+        "number": "10",
+        "minute": "30"
+      },
+      {
+        "team": "计科新生队",
+        "player": "黄智博",
+        "number": "18",
+        "minute": "40"
+      },
+      {
+        "team": "计科新生队",
+        "player": "王子涵",
+        "number": "23",
+        "minute": "49"
+      }
+    ],
+    "cards": [
+      {
+        "team": "国家网络安全学院",
+        "player": "祝恒悦",
+        "number": "99",
+        "type": "yellow",
+        "minute": "60"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_8": {
+    "goals": [
+      {
+        "team": "集成电路",
+        "player": "汤舰勋",
+        "number": "7",
+        "minute": "38"
+      },
+      {
+        "team": "数学与统计学院队",
+        "player": "王熙尧",
+        "number": "4",
+        "minute": "60"
+      }
+    ],
+    "cards": [
+      {
+        "team": "集成电路",
+        "player": "王煜轩",
+        "number": "1",
+        "type": "yellow",
+        "minute": "60"
+      },
+      {
+        "team": "数学与统计学院队",
+        "player": "王熙尧",
+        "number": "4",
+        "type": "yellow",
+        "minute": "60"
+      },
+      {
+        "role": "coach",
+        "team": "集成电路",
+        "player": "安文捷",
+        "number": "",
+        "type": "yellow",
+        "minute": ""
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_6": {
+    "goals": [],
+    "cards": [
+      {
+        "team": "电气学院",
+        "player": "刘智宸",
+        "number": "9",
+        "type": "yellow",
+        "minute": "50"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_10": {
+    "goals": [
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "2"
+      },
+      {
+        "team": "医学联队",
+        "player": "古武",
+        "number": "12",
+        "type": "normal",
+        "minute": "9"
+      },
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "17"
+      },
+      {
+        "team": "医学联队",
+        "player": "官子傲",
+        "number": "10",
+        "type": "normal",
+        "minute": "20"
+      },
+      {
+        "team": "医学联队",
+        "player": "庞骁轩",
+        "number": "13",
+        "type": "normal",
+        "minute": "23"
+      },
+      {
+        "team": "医学联队",
+        "player": "范禹辰",
+        "number": "4",
+        "type": "penalty",
+        "minute": "25"
+      },
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "27"
+      },
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "33"
+      },
+      {
+        "team": "医学联队",
+        "player": "古武",
+        "number": "12",
+        "type": "normal",
+        "minute": "34"
+      },
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "36"
+      },
+      {
+        "team": "医学联队",
+        "player": "毕佳健",
+        "number": "7",
+        "type": "normal",
+        "minute": "40"
+      },
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "43"
+      },
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "44"
+      },
+      {
+        "team": "艺术学院",
+        "player": "林梓轩",
+        "number": "10",
+        "type": "normal",
+        "minute": "48"
+      },
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "49"
+      },
+      {
+        "team": "医学联队",
+        "player": "吴暨桐",
+        "number": "30",
+        "type": "normal",
+        "minute": "50"
+      },
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "51"
+      },
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "54"
+      },
+      {
+        "team": "艺术学院",
+        "player": "蔡曦润",
+        "number": "25",
+        "type": "own",
+        "minute": "15"
+      }
+    ],
+    "cards": [
+      {
+        "team": "医学联队",
+        "player": "吴暨桐",
+        "number": "30",
+        "type": "yellow",
+        "minute": "52"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_9": {
+    "goals": [
+      {
+        "team": "测绘学院",
+        "player": "王逸扬",
+        "number": "30",
+        "type": "normal",
+        "minute": "24"
+      },
+      {
+        "team": "人工智能学院",
+        "player": "吴明达",
+        "number": "6",
+        "type": "normal",
+        "minute": "49"
+      },
+      {
+        "team": "人工智能学院",
+        "player": "吴明达",
+        "number": "6",
+        "type": "normal",
+        "minute": "26"
+      },
+      {
+        "team": "人工智能学院",
+        "player": "成梓和",
+        "number": "88",
+        "type": "normal",
+        "minute": "3"
+      }
+    ],
+    "cards": [
+      {
+        "team": "测绘学院",
+        "player": "瞿子皓",
+        "number": "24",
+        "type": "yellow",
+        "minute": "54"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_12": {
+    "goals": [
+      {
+        "team": "水利水电学院",
+        "player": "梁珂旭",
+        "number": "16",
+        "type": "normal",
+        "minute": "1"
+      },
+      {
+        "team": "水利水电学院",
+        "player": "叶德力",
+        "number": "10",
+        "type": "normal",
+        "minute": "9"
+      },
+      {
+        "team": "水利水电学院",
+        "player": "韦宏博",
+        "number": "9",
+        "type": "normal",
+        "minute": "12"
+      },
+      {
+        "team": "水利水电学院",
+        "player": "阿卜杜拜斯尔",
+        "number": "19",
+        "type": "normal",
+        "minute": "25"
+      },
+      {
+        "team": "水利水电学院",
+        "player": "阿卜杜拜斯尔",
+        "number": "19",
+        "type": "penalty",
+        "minute": "30"
+      },
+      {
+        "team": "水利水电学院",
+        "player": "巴合别尔德",
+        "number": "3",
+        "type": "normal",
+        "minute": "35"
+      },
+      {
+        "team": "口腔医学院",
+        "player": "Steven（尼日利亚）",
+        "number": "47",
+        "type": "normal",
+        "minute": "44"
+      },
+      {
+        "team": "水利水电学院",
+        "player": "阿斯哈提",
+        "number": "41",
+        "type": "normal",
+        "minute": "56"
+      },
+      {
+        "team": "口腔医学院",
+        "player": "蔡天昕",
+        "number": "67",
+        "type": "normal",
+        "minute": "58"
+      },
+      {
+        "team": "口腔医学院",
+        "player": "蔡天昕",
+        "number": "67",
+        "type": "normal",
+        "minute": "60"
+      }
+    ],
+    "cards": []
+  },
+  "group_2026新生杯小组赛赛程_11": {
+    "goals": [
+      {
+        "team": "经管新生队",
+        "player": "林圣也",
+        "number": "10",
+        "type": "normal",
+        "minute": "6"
+      },
+      {
+        "team": "遥感后浪",
+        "player": "方玮辰",
+        "number": "7",
+        "type": "normal",
+        "minute": "12"
+      }
+    ],
+    "cards": [
+      {
+        "team": "经管新生队",
+        "player": "张世豪",
+        "number": "18",
+        "type": "yellow",
+        "minute": "54"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_13": {
+    "goals": [
+      {
+        "team": "FC武大杜伦",
+        "player": "刘乐宸",
+        "number": "7",
+        "type": "normal",
+        "minute": "21"
+      }
+    ],
+    "cards": [
+      {
+        "role": "manager",
+        "team": "FC武大杜伦",
+        "player": "崔培智",
+        "number": "",
+        "type": "yellow",
+        "minute": "50"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_14": {
+    "goals": [
+      {
+        "team": "电气学院",
+        "player": "赵博远",
+        "number": "10",
+        "type": "normal",
+        "minute": "28"
+      },
+      {
+        "team": "电气学院",
+        "player": "李帅",
+        "number": "19",
+        "type": "normal",
+        "minute": "44"
+      },
+      {
+        "team": "电气学院",
+        "player": "李帅",
+        "number": "19",
+        "type": "normal",
+        "minute": "59"
+      },
+      {
+        "team": "政法信化",
+        "player": "李振轩",
+        "number": "6",
+        "type": "normal",
+        "minute": "54"
+      },
+      {
+        "team": "政法信化",
+        "player": "张浩轩",
+        "number": "29",
+        "type": "normal",
+        "minute": "58"
+      }
+    ],
+    "cards": [
+      {
+        "team": "电气学院",
+        "player": "钱奕宸",
+        "number": "37",
+        "type": "yellow",
+        "minute": "59"
+      },
+      {
+        "team": "政法信化",
+        "player": "毛甲旺",
+        "number": "17",
+        "type": "yellow",
+        "minute": "21"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_15": {
+    "goals": [
+      {
+        "team": "社马外史联队",
+        "player": "房禄家",
+        "number": "10",
+        "type": "normal",
+        "minute": "26"
+      },
+      {
+        "team": "社马外史联队",
+        "player": "涂浩宇",
+        "number": "12",
+        "type": "normal",
+        "minute": "31"
+      }
+    ],
+    "cards": [
+      {
+        "team": "社马外史联队",
+        "player": "赖泓宇",
+        "number": "30",
+        "type": "yellow",
+        "minute": "21"
+      },
+      {
+        "role": "coach",
+        "team": "社马外史联队",
+        "player": "廖泽昀",
+        "number": "",
+        "type": "yellow",
+        "minute": "5"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_16": {
+    "goals": [
+      {
+        "team": "数学与统计学院队",
+        "player": "王熙尧",
+        "number": "4",
+        "type": "normal",
+        "minute": "23"
+      },
+      {
+        "team": "数学与统计学院队",
+        "player": "王翔宇",
+        "number": "9",
+        "type": "own",
+        "minute": "60"
+      }
+    ],
+    "cards": [
+      {
+        "team": "数学与统计学院队",
+        "player": "王熙尧",
+        "number": "4",
+        "type": "yellow",
+        "minute": "30"
+      },
+      {
+        "team": "弘毅学堂",
+        "player": "黄佳宇",
+        "number": "39",
+        "type": "red",
+        "minute": "38"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_17": {
+    "goals": [
+      {
+        "team": "人工智能学院",
+        "player": "吴明达",
+        "number": "6",
+        "type": "normal",
+        "minute": "36"
+      },
+      {
+        "team": "人工智能学院",
+        "player": "吴明达",
+        "number": "6",
+        "type": "normal",
+        "minute": "40"
+      },
+      {
+        "team": "动机联队",
+        "player": "陈本华",
+        "number": "7",
+        "type": "penalty",
+        "minute": "18"
+      },
+      {
+        "team": "动机联队",
+        "player": "陈本华",
+        "number": "7",
+        "type": "normal",
+        "minute": "30"
+      },
+      {
+        "team": "动机联队",
+        "player": "习昕泽",
+        "number": "10",
+        "type": "normal",
+        "minute": "56"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "人工智能学院",
+        "player": "郑当奥",
+        "number": "23",
+        "type": "yellow",
+        "minute": "25"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_18": {
+    "goals": [
+      {
+        "team": "地空生科联队",
+        "player": "贵晨皓",
+        "number": "11",
+        "type": "normal",
+        "minute": "2"
+      },
+      {
+        "team": "地空生科联队",
+        "player": "贵晨皓",
+        "number": "11",
+        "type": "normal",
+        "minute": "15"
+      },
+      {
+        "team": "地空生科联队",
+        "player": "贵晨皓",
+        "number": "11",
+        "type": "normal",
+        "minute": "16"
+      },
+      {
+        "team": "地空生科联队",
+        "player": "贵晨皓",
+        "number": "11",
+        "type": "normal",
+        "minute": "19"
+      },
+      {
+        "team": "地空生科联队",
+        "player": "蔺一铭",
+        "number": "6",
+        "type": "normal",
+        "minute": "20"
+      },
+      {
+        "team": "地空生科联队",
+        "player": "贵晨皓",
+        "number": "11",
+        "type": "normal",
+        "minute": "24"
+      },
+      {
+        "team": "地空生科联队",
+        "player": "杨金坤",
+        "number": "15",
+        "type": "normal",
+        "minute": "36"
+      },
+      {
+        "team": "地空生科联队",
+        "player": "邬佳轩",
+        "number": "19",
+        "type": "normal",
+        "minute": "57"
+      }
+    ],
+    "cards": []
+  },
+  "group_2026新生杯小组赛赛程_19": {
+    "goals": [
+      {
+        "team": "电子信息队",
+        "player": "张文豪",
+        "number": "3",
+        "type": "normal",
+        "minute": "25"
+      },
+      {
+        "team": "电子信息队",
+        "player": "吴业祖",
+        "number": "7",
+        "type": "normal",
+        "minute": "29"
+      },
+      {
+        "team": "电子信息队",
+        "player": "吴业祖",
+        "number": "7",
+        "type": "normal",
+        "minute": "32"
+      },
+      {
+        "team": "遥感后浪",
+        "player": "方玮辰",
+        "number": "7",
+        "type": "normal",
+        "minute": "41"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "电子信息队",
+        "player": "毛泳凡",
+        "number": "11",
+        "type": "yellow",
+        "minute": "45"
+      },
+      {
+        "role": "player",
+        "team": "电子信息队",
+        "player": "吴业祖",
+        "number": "7",
+        "type": "yellow",
+        "minute": "47"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_20": {
+    "goals": [
+      {
+        "team": "水利水电学院",
+        "player": "巴合别尔德",
+        "number": "3",
+        "type": "normal",
+        "minute": "4"
+      },
+      {
+        "team": "水利水电学院",
+        "player": "关若飞",
+        "number": "11",
+        "type": "normal",
+        "minute": "7"
+      },
+      {
+        "team": "水利水电学院",
+        "player": "韦宏博",
+        "number": "9",
+        "type": "normal",
+        "minute": "22"
+      },
+      {
+        "team": "土木建筑工程学院",
+        "player": "桑钦杰",
+        "number": "17",
+        "type": "normal",
+        "minute": "33"
+      }
+    ],
+    "cards": []
+  },
+  "group_2026新生杯小组赛赛程_21": {
+    "goals": [
+      {
+        "team": "城设新传联",
+        "player": "崔永涛",
+        "number": "11",
+        "type": "normal",
+        "minute": "9"
+      },
+      {
+        "team": "城设新传联",
+        "player": "崔永涛",
+        "number": "11",
+        "type": "normal",
+        "minute": "17"
+      },
+      {
+        "team": "城设新传联",
+        "player": "崔永涛",
+        "number": "11",
+        "type": "normal",
+        "minute": "49"
+      },
+      {
+        "team": "城设新传联",
+        "player": "彭赵铭",
+        "number": "28",
+        "type": "normal",
+        "minute": "55"
+      },
+      {
+        "team": "物理学院",
+        "player": "刘昕航",
+        "number": "8",
+        "type": "normal",
+        "minute": "24"
+      },
+      {
+        "team": "物理学院",
+        "player": "刘昕航",
+        "number": "8",
+        "type": "normal",
+        "minute": "26"
+      },
+      {
+        "team": "物理学院",
+        "player": "刘昕航",
+        "number": "8",
+        "type": "penalty",
+        "minute": "58"
+      },
+      {
+        "team": "物理学院",
+        "player": "刘昕航",
+        "number": "8",
+        "type": "normal",
+        "minute": "60"
+      },
+      {
+        "team": "物理学院",
+        "player": "肖嘉鑫",
+        "number": "5",
+        "type": "normal",
+        "minute": "21"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "物理学院",
+        "player": "苏晨翔",
+        "number": "2",
+        "type": "yellow",
+        "minute": "31"
+      },
+      {
+        "role": "player",
+        "team": "物理学院",
+        "player": "徐睿阳",
+        "number": "3",
+        "type": "yellow",
+        "minute": "36"
+      },
+      {
+        "role": "player",
+        "team": "物理学院",
+        "player": "刘昕航",
+        "number": "8",
+        "type": "yellow",
+        "minute": "47"
+      },
+      {
+        "role": "coach",
+        "team": "物理学院",
+        "player": "谭净光",
+        "number": "",
+        "type": "yellow",
+        "minute": "30"
+      },
+      {
+        "role": "player",
+        "team": "城设新传联",
+        "player": "李尚",
+        "number": "41",
+        "type": "red",
+        "minute": "30"
+      },
+      {
+        "role": "player",
+        "team": "城设新传联",
+        "player": "孙烺曦",
+        "number": "1",
+        "type": "yellow",
+        "minute": "53"
+      },
+      {
+        "role": "player",
+        "team": "城设新传联",
+        "player": "孙烺曦",
+        "number": "1",
+        "type": "red",
+        "minute": "53"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_23": {
+    "goals": [
+      {
+        "team": "国家网络安全学院",
+        "player": "王梓仁",
+        "number": "12",
+        "type": "normal",
+        "minute": "16"
+      },
+      {
+        "team": "国家网络安全学院",
+        "player": "花成璋",
+        "number": "22",
+        "type": "normal",
+        "minute": "25"
+      },
+      {
+        "team": "国家网络安全学院",
+        "player": "花成璋",
+        "number": "22",
+        "type": "normal",
+        "minute": "49"
+      },
+      {
+        "team": "国家网络安全学院",
+        "player": "刘子骞",
+        "number": "20",
+        "type": "normal",
+        "minute": "33"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "社马外史联队",
+        "player": "涂浩宇",
+        "number": "12",
+        "type": "yellow",
+        "minute": "52"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_24": {
+    "goals": [
+      {
+        "team": "集成电路",
+        "player": "詹文睿",
+        "number": "8",
+        "type": "own",
+        "minute": "6"
+      },
+      {
+        "team": "弘毅学堂",
+        "player": "王校",
+        "number": "15",
+        "type": "normal",
+        "minute": "33"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "集成电路",
+        "player": "楼佳骏",
+        "number": "30",
+        "type": "yellow",
+        "minute": "12"
+      },
+      {
+        "role": "player",
+        "team": "弘毅学堂",
+        "player": "苏浩洋",
+        "number": "28",
+        "type": "yellow",
+        "minute": "33"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_22": {
+    "goals": [
+      {
+        "team": "政法信化",
+        "player": "向思哲",
+        "number": "15",
+        "type": "normal",
+        "minute": "38"
+      }
+    ],
+    "cards": []
+  },
+  "knockout_2026新生杯淘汰赛赛程_27": {
+    "goals": [
+      {
+        "team": "FC武大杜伦",
+        "player": "刘乐宸",
+        "number": "7",
+        "type": "normal",
+        "minute": "37"
+      },
+      {
+        "team": "FC武大杜伦",
+        "player": "梁熙麟",
+        "number": "19",
+        "type": "normal",
+        "minute": "51"
+      },
+      {
+        "team": "FC武大杜伦",
+        "player": "梁熙麟",
+        "number": "19",
+        "type": "normal",
+        "minute": "53"
+      },
+      {
+        "team": "FC武大杜伦",
+        "player": "梁熙麟",
+        "number": "19",
+        "type": "normal",
+        "minute": "58"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "政法信化",
+        "player": "毛甲旺",
+        "number": "17",
+        "type": "yellow",
+        "minute": "56"
+      },
+      {
+        "role": "player",
+        "team": "政法信化",
+        "player": "李振轩",
+        "number": "6",
+        "type": "yellow",
+        "minute": "42"
+      },
+      {
+        "role": "player",
+        "team": "FC武大杜伦",
+        "player": "梁熙麟",
+        "number": "19",
+        "type": "yellow",
+        "minute": "42"
+      },
+      {
+        "role": "player",
+        "team": "FC武大杜伦",
+        "player": "张宇硕",
+        "number": "8",
+        "type": "yellow",
+        "minute": "53"
+      },
+      {
+        "role": "player",
+        "team": "FC武大杜伦",
+        "player": "杨劲愈",
+        "number": "25",
+        "type": "red",
+        "minute": "59"
+      },
+      {
+        "role": "player",
+        "team": "FC武大杜伦",
+        "player": "夏一寒",
+        "number": "4",
+        "type": "red",
+        "minute": "60"
+      },
+      {
+        "role": "player",
+        "team": "FC武大杜伦",
+        "player": "高崇岳",
+        "number": "12",
+        "type": "yellow",
+        "minute": "60"
+      },
+      {
+        "role": "coach",
+        "team": "政法信化",
+        "player": "乔琛栋",
+        "number": "",
+        "type": "yellow",
+        "minute": "35"
+      }
+    ]
+  },
+  "knockout_2026新生杯淘汰赛赛程_26": {
+    "goals": [
+      {
+        "team": "经管新生队",
+        "player": "李少康",
+        "number": "7",
+        "type": "normal",
+        "minute": "28"
+      },
+      {
+        "team": "经管新生队",
+        "player": "何承致",
+        "number": "17",
+        "type": "normal",
+        "minute": "22"
+      },
+      {
+        "team": "经管新生队",
+        "player": "何承致",
+        "number": "17",
+        "type": "own",
+        "minute": "60"
+      },
+      {
+        "team": "土木建筑工程学院",
+        "player": "马一斌",
+        "number": "8",
+        "type": "normal",
+        "minute": "56"
+      },
+      {
+        "team": "土木建筑工程学院",
+        "player": "桑钦杰",
+        "number": "17",
+        "type": "normal",
+        "minute": "30"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "经管新生队",
+        "player": "李少康",
+        "number": "7",
+        "type": "yellow",
+        "minute": "20"
+      },
+      {
+        "role": "coach",
+        "team": "经管新生队",
+        "player": "郑玺斌",
+        "number": "",
+        "type": "yellow",
+        "minute": "44"
+      }
+    ]
+  },
+  "knockout_2026新生杯淘汰赛赛程_25": {
+    "goals": [],
+    "cards": [
+      {
+        "role": "player",
+        "team": "地空生科联队",
+        "player": "马子轩",
+        "number": "16",
+        "type": "yellow",
+        "minute": "49"
+      }
+    ]
+  },
+  "knockout_2026新生杯淘汰赛赛程_29": {
+    "goals": [
+      {
+        "team": "医学联队",
+        "player": "马致远",
+        "number": "9",
+        "type": "normal",
+        "minute": "16"
+      },
+      {
+        "team": "人工智能学院",
+        "player": "吴明达",
+        "number": "6",
+        "type": "normal",
+        "minute": "21"
+      },
+      {
+        "team": "人工智能学院",
+        "player": "杨力诚",
+        "number": "77",
+        "type": "normal",
+        "minute": "25"
+      },
+      {
+        "team": "人工智能学院",
+        "player": "吴明达",
+        "number": "6",
+        "type": "normal",
+        "minute": "60"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "医学联队",
+        "player": "温梓鑫",
+        "number": "47",
+        "type": "yellow",
+        "minute": "7"
+      }
+    ]
+  },
+  "knockout_2026新生杯淘汰赛赛程_30": {
+    "goals": [
+      {
+        "team": "水利水电学院",
+        "player": "叶德力",
+        "number": "10",
+        "type": "normal",
+        "minute": "5"
+      },
+      {
+        "team": "电子信息队",
+        "player": "李竞择",
+        "number": "8",
+        "type": "normal",
+        "minute": "18"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "水利水电学院",
+        "player": "叶德力",
+        "number": "10",
+        "type": "yellow",
+        "minute": "31"
+      },
+      {
+        "role": "player",
+        "team": "电子信息队",
+        "player": "吴业祖",
+        "number": "7",
+        "type": "yellow",
+        "minute": "25"
+      }
+    ]
+  },
+  "knockout_2026新生杯淘汰赛赛程_32": {
+    "goals": [
+      {
+        "team": "弘毅学堂",
+        "player": "谢栋宇",
+        "number": "35",
+        "type": "normal",
+        "minute": "13"
+      },
+      {
+        "team": "社马外史联队",
+        "player": "许书铭",
+        "number": "9",
+        "type": "normal",
+        "minute": "34"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "弘毅学堂",
+        "player": "黎文博",
+        "number": "29",
+        "type": "yellow",
+        "minute": "60"
+      },
+      {
+        "role": "player",
+        "team": "社马外史联队",
+        "player": "羿子皓",
+        "number": "6",
+        "type": "yellow",
+        "minute": "36"
+      },
+      {
+        "role": "manager",
+        "team": "社马外史联队",
+        "player": "万秭辰",
+        "number": "",
+        "type": "yellow",
+        "minute": "点球大战"
+      }
+    ]
+  },
+  "knockout_2026新生杯淘汰赛赛程_33": {
+    "goals": [
+      {
+        "team": "动机联队",
+        "player": "刘本昱",
+        "number": "29",
+        "type": "normal",
+        "minute": "19"
+      },
+      {
+        "team": "动机联队",
+        "player": "陈本华",
+        "number": "7",
+        "type": "normal",
+        "minute": "33"
+      },
+      {
+        "team": "动机联队",
+        "player": "刘本昱",
+        "number": "29",
+        "type": "normal",
+        "minute": "48"
+      }
+    ],
+    "cards": []
+  },
+  "knockout_2026新生杯淘汰赛赛程_34": {
+    "goals": [
+      {
+        "team": "FC武大杜伦",
+        "player": "张泽恒",
+        "number": "9",
+        "type": "normal",
+        "minute": "27"
+      },
+      {
+        "team": "国家网络安全学院",
+        "player": "祝恒悦",
+        "number": "99",
+        "type": "normal",
+        "minute": "36"
+      }
+    ],
+    "cards": []
+  },
+  "knockout_2026新生杯淘汰赛赛程_35": {
+    "goals": [
+      {
+        "team": "人工智能学院",
+        "player": "杨力诚",
+        "number": "77",
+        "type": "normal",
+        "minute": "1"
+      },
+      {
+        "team": "人工智能学院",
+        "player": "杨力诚",
+        "number": "77",
+        "type": "normal",
+        "minute": "18"
+      },
+      {
+        "team": "水利水电学院",
+        "player": "阿斯哈提",
+        "number": "41",
+        "type": "normal",
+        "minute": "40"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "人工智能学院",
+        "player": "成梓和",
+        "number": "88",
+        "type": "yellow",
+        "minute": "58"
+      },
+      {
+        "role": "coach",
+        "team": "人工智能学院",
+        "player": "陈子轩",
+        "number": "",
+        "type": "yellow",
+        "minute": "53"
+      },
+      {
+        "role": "coach",
+        "team": "人工智能学院",
+        "player": "陈子轩",
+        "number": "",
+        "type": "two_yellow",
+        "minute": "54"
+      },
+      {
+        "role": "player",
+        "team": "水利水电学院",
+        "player": "阿卜杜拜斯尔",
+        "number": "19",
+        "type": "yellow",
+        "minute": "54"
+      }
+    ]
+  },
+  "knockout_2026新生杯淘汰赛赛程_36": {
+    "goals": [
+      {
+        "team": "弘毅学堂",
+        "player": "王校",
+        "number": "15",
+        "type": "normal",
+        "minute": "28"
+      },
+      {
+        "team": "电气学院",
+        "player": "赵博远",
+        "number": "10",
+        "type": "penalty",
+        "minute": "55"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "弘毅学堂",
+        "player": "杜明烨",
+        "number": "4",
+        "type": "yellow",
+        "minute": "50"
+      },
+      {
+        "role": "player",
+        "team": "电气学院",
+        "player": "薛俊锋",
+        "number": "11",
+        "type": "yellow",
+        "minute": "60+3"
+      },
+      {
+        "role": "player",
+        "team": "弘毅学堂",
+        "player": "宋炯辉",
+        "number": "12",
+        "type": "yellow",
+        "minute": "60"
+      },
+      {
+        "role": "coach",
+        "team": "弘毅学堂",
+        "player": "陶醉",
+        "number": "",
+        "type": "yellow",
+        "minute": "57"
+      },
+      {
+        "role": "coach",
+        "team": "弘毅学堂",
+        "player": "陶醉",
+        "number": "",
+        "type": "two_yellow",
+        "minute": "60+3"
+      }
+    ]
+  },
+  "knockout_2026新生杯淘汰赛赛程_37": {
+    "goals": [
+      {
+        "team": "动机联队",
+        "player": "陈本华",
+        "number": "7",
+        "type": "normal",
+        "minute": "3"
+      },
+      {
+        "team": "动机联队",
+        "player": "李明远",
+        "number": "9",
+        "type": "normal",
+        "minute": "14"
+      },
+      {
+        "team": "动机联队",
+        "player": "习昕泽",
+        "number": "10",
+        "type": "normal",
+        "minute": "25"
+      },
+      {
+        "team": "动机联队",
+        "player": "习昕泽",
+        "number": "10",
+        "type": "normal",
+        "minute": "57"
+      },
+      {
+        "team": "国家网络安全学院",
+        "player": "花成璋",
+        "number": "22",
+        "type": "penalty",
+        "minute": "21"
+      }
+    ],
+    "cards": []
+  },
+  "knockout_2026新生杯淘汰赛赛程_38": {
+    "goals": [],
+    "cards": [
+      {
+        "role": "coach",
+        "team": "弘毅学堂",
+        "player": "柳宇轩",
+        "number": "",
+        "type": "yellow",
+        "minute": "60+3"
+      },
+      {
+        "role": "coach",
+        "team": "弘毅学堂",
+        "player": "柳宇轩",
+        "number": "",
+        "type": "yellow",
+        "minute": "点球大战"
+      }
+    ]
+  },
+  "group_2026新生杯小组赛赛程_1": {
+    "goals": [
+      {
+        "team": "动机联队",
+        "player": "李明远",
+        "number": "9",
+        "type": "normal",
+        "minute": "14"
+      },
+      {
+        "team": "动机联队",
+        "player": "习昕泽",
+        "number": "10",
+        "type": "normal",
+        "minute": "40"
+      },
+      {
+        "team": "动机联队",
+        "player": "柏明扬",
+        "number": "20",
+        "type": "normal",
+        "minute": "48"
+      }
+    ],
+    "cards": [
+      {
+        "role": "player",
+        "team": "动机联队",
+        "player": "刘本昱",
+        "number": "29",
+        "type": "yellow",
+        "minute": "16"
+      },
+      {
+        "role": "player",
+        "team": "测绘学院",
+        "player": "杨传堽",
+        "number": "13",
+        "type": "yellow",
+        "minute": "11"
+      }
+    ]
+  },
+  "knockout_2026新生杯淘汰赛赛程_31": {
+    "goals": [
+      {
+        "team": "电气学院",
+        "player": "李帅",
+        "number": "19",
+        "type": "normal",
+        "minute": "24"
+      }
+    ],
+    "cards": []
+  },
+  "knockout_2026新生杯淘汰赛赛程_28": {
+    "goals": [],
+    "cards": []
+  },
+  "knockout_2026新生杯淘汰赛赛程_39": {
+    "goals": [
+      {
+        "team": "国家网络安全学院",
+        "player": "王梓仁",
+        "number": "12",
+        "type": "normal",
+        "minute": "12"
+      },
+      {
+        "team": "国家网络安全学院",
+        "player": "王昊然",
+        "number": "21",
+        "type": "normal",
+        "minute": "4"
+      },
+      {
+        "team": "人工智能学院",
+        "player": "吴明达",
+        "number": "6",
+        "type": "normal",
+        "minute": "9"
+      },
+      {
+        "team": "人工智能学院",
+        "player": "杨力诚",
+        "number": "77",
+        "type": "normal",
+        "minute": "17"
+      }
+    ],
+    "cards": []
+  },
+  "knockout_2026新生杯淘汰赛赛程_40": {
+    "goals": [
+      {
+        "team": "动机联队",
+        "player": "陈本华",
+        "number": "7",
+        "type": "normal",
+        "minute": "16"
+      },
+      {
+        "team": "动机联队",
+        "player": "习昕泽",
+        "number": "10",
+        "type": "normal",
+        "minute": "56"
+      },
+      {
+        "team": "动机联队",
+        "player": "陈本华",
+        "number": "7",
+        "type": "normal",
+        "minute": "60+1"
+      }
+    ],
+    "cards": []
+  }
+}

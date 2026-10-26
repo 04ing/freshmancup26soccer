@@ -1,0 +1,50 @@
+{
+  "goals": [
+    {
+      "team": "电子信息队",
+      "player": "张文豪",
+      "number": "3",
+      "type": "normal",
+      "minute": "25"
+    },
+    {
+      "team": "电子信息队",
+      "player": "吴业祖",
+      "number": "7",
+      "type": "normal",
+      "minute": "29"
+    },
+    {
+      "team": "电子信息队",
+      "player": "吴业祖",
+      "number": "7",
+      "type": "normal",
+      "minute": "32"
+    },
+    {
+      "team": "遥感后浪",
+      "player": "方玮辰",
+      "number": "7",
+      "type": "normal",
+      "minute": "41"
+    }
+  ],
+  "cards": [
+    {
+      "role": "player",
+      "team": "电子信息队",
+      "player": "毛泳凡",
+      "number": "11",
+      "type": "yellow",
+      "minute": "45"
+    },
+    {
+      "role": "player",
+      "team": "电子信息队",
+      "player": "吴业祖",
+      "number": "7",
+      "type": "yellow",
+      "minute": "47"
+    }
+  ]
+}

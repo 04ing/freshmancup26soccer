@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>裁判选派 - 2026新生杯</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+/* 静态导出版：隐藏依赖服务器的录入/上传/AI 入口 */
+.entry-section, .upload-section, .ai-trigger, .ai-panel { display: none !important; }
+.team-edit { pointer-events: none; appearance: none; -webkit-appearance: none; border-color: transparent !important; background: transparent !important; }
+</style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo"><span class="logo-icon">⚽</span><span class="logo-text">2026新生杯</span></div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="schedule.html" class="nav-link">赛程</a>
+                <a href="standings.html" class="nav-link">积分榜</a>
+                <a href="scorers.html" class="nav-link">射手榜</a>
+                <a href="cards.html" class="nav-link">红黄牌</a>
+                <a href="rosters.html" class="nav-link">大名单</a>
+                <a href="reports.html" class="nav-link">战报</a>
+                <a href="referees.html" class="nav-link active">裁判</a>
+            </nav>
+            <button class="ai-trigger" id="aiTrigger"><span class="ai-icon">🤖</span><span>AI助手</span></button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">首页</a>
+        <a href="schedule.html" class="nav-link">赛程</a>
+        <a href="standings.html" class="nav-link">积分榜</a>
+        <a href="scorers.html" class="nav-link">射手榜</a>
+        <a href="cards.html" class="nav-link">红黄牌</a>
+        <a href="rosters.html" class="nav-link">大名单</a>
+        <a href="reports.html" class="nav-link">战报</a>
+        <a href="referees.html" class="nav-link">裁判</a>
+    </nav>
+
+    <main class="main-content">
+        <section class="page-header">
+            <h1 class="page-title">📋 裁判选派</h1>
+            <p class="page-desc">系统内直接填报各场比赛的裁判人员</p>
+            <div class="page-actions"><button class="btn-export" onclick="exportReferees()">📊 导出 Excel</button></div>
+        </section>
+
+        <section class="section referees-page">
+            <div class="ref-controls">
+                <input type="text" class="ref-search" id="refSearch" placeholder="🔍 搜索球队、裁判...">
+                <select class="ref-filter" id="refFilter">
+                    <option value="all">全部比赛</option>
+                    <option value="group">小组赛</option>
+                    <option value="knockout">淘汰赛</option>
+                    <option value="unassigned">未选派</option>
+                    <option value="assigned">已选派</option>
+                </select>
+            </div>
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>场次</th>
+                            <th>主队</th>
+                            <th>客队</th>
+                            <th>日期/时间</th>
+                            <th>主裁判</th>
+                            <th>助理裁判1</th>
+                            <th>助理裁判2</th>
+                            <th>第四官员</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="refTableBody">
+                        <tr><td colspan="9" style="text-align:center;padding:40px;color:#999;">加载中...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer"><div class="footer-inner"><p>2026武汉大学新生杯足球赛</p></div></footer>
+
+    <div class="ai-panel" id="aiPanel">
+        <div class="ai-panel-header"><span class="ai-panel-title">🤖 AI助手</span><button class="ai-close" id="aiClose">✕</button></div>
+        <div class="ai-panel-body">
+            <div class="ai-messages" id="aiMessages"><div class="ai-message ai-system"><p>👋 可以问我任何赛事相关问题！</p></div></div>
+            <div class="ai-input-area"><input type="text" class="ai-input" id="aiInput"><button class="ai-send" id="aiSend">发送</button></div>
+        </div>
+    </div>
+
+    <!-- 编辑弹窗 -->
+    <div class="modal" id="refModal" style="display:none">
+        <div class="modal-overlay" onclick="closeRefModal()"></div>
+        <div class="modal-content ref-modal">
+            <div class="modal-header">
+                <h2 id="refModalTitle">裁判选派</h2>
+                <button class="modal-close" onclick="closeRefModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="ref-form">
+                    <div class="form-row">
+                        <label>主裁判</label>
+                        <input type="text" id="refInput" placeholder="请输入主裁判姓名">
+                    </div>
+                    <div class="form-row">
+                        <label>助理裁判1</label>
+                        <input type="text" id="asst1Input" placeholder="请输入助理裁判1姓名">
+                    </div>
+                    <div class="form-row">
+                        <label>助理裁判2</label>
+                        <input type="text" id="asst2Input" placeholder="请输入助理裁判2姓名">
+                    </div>
+                    <div class="form-row">
+                        <label>第四官员</label>
+                        <input type="text" id="fourthInput" placeholder="请输入第四官员姓名">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeRefModal()">取消</button>
+                <button class="btn-primary" onclick="saveReferee()">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/vendor/xlsx.full.min.js"></script>
+    <script src="static/js/export.js"></script>
+    <script src="static/js/api-shim.js"></script>
+    <script src="static/js/main.js"></script>
+    <script>
+        let allMatches = [];
+        let assignments = {};
+        let currentMatchId = null;
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            initAIAssistant();
+            await loadReferees();
+
+            document.getElementById('refSearch').addEventListener('input', renderTable);
+            document.getElementById('refFilter').addEventListener('change', renderTable);
+        });
+
+        async function loadReferees() {
+            try {
+                const res = await fetch('/api/referees?_=' + Date.now(), { cache: 'no-cache' });
+                const data = await res.json();
+                allMatches = data.matches || [];
+                assignments = data.assignments || {};
+                renderTable();
+            } catch(e) { console.error(e); }
+        }
+
+        function renderTable() {
+            const search = document.getElementById('refSearch').value.toLowerCase();
+            const filter = document.getElementById('refFilter').value;
+            const tbody = document.getElementById('refTableBody');
+
+            let filtered = allMatches.filter(m => {
+                const a = assignments[m.id] || {};
+                const hasAssigned = !!(a.referee || a.assistant1 || a.assistant2 || a.fourth);
+
+                if (filter === 'group' && m.type !== 'group') return false;
+                if (filter === 'knockout' && m.type !== 'knockout') return false;
+                if (filter === 'assigned' && !hasAssigned) return false;
+                if (filter === 'unassigned' && hasAssigned) return false;
+
+                if (search) {
+                    const haystack = [m.home, m.away, m.group, a.referee, a.assistant1, a.assistant2, a.fourth]
+                        .filter(Boolean).join(' ').toLowerCase();
+                    if (!haystack.includes(search)) return false;
+                }
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:40px;color:#999;">无匹配比赛</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(m => {
+                const a = assignments[m.id] || {};
+                const hasAssigned = !!(a.referee || a.assistant1 || a.assistant2 || a.fourth);
+                return `
+                    <tr>
+                        <td><span class="match-badge">${m.matchNo || ''}</span></td>
+                        <td><strong>${escapeHtml(m.home)}</strong></td>
+                        <td><strong>${escapeHtml(m.away)}</strong></td>
+                        <td><div>${escapeHtml(m.date)}</div><div class="sub">${escapeHtml(m.time || '')} ${escapeHtml(m.group)}</div></td>
+                        <td>${escapeHtml(a.referee || '<span class="empty">未选派</span>')}</td>
+                        <td>${escapeHtml(a.assistant1 || '<span class="empty">-</span>')}</td>
+                        <td>${escapeHtml(a.assistant2 || '<span class="empty">-</span>')}</td>
+                        <td>${escapeHtml(a.fourth || '<span class="empty">-</span>')}</td>
+                        <td><button class="btn-edit" onclick="openRefModal('${m.id}')">${hasAssigned ? '编辑' : '选派'}</button></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function escapeHtml(s) {
+            if (s.includes('empty')) return s;
+            const div = document.createElement('div');
+            div.textContent = s;
+            return div.innerHTML;
+        }
+
+        function openRefModal(matchId) {
+            currentMatchId = matchId;
+            const m = allMatches.find(x => x.id === matchId);
+            const a = assignments[matchId] || {};
+            document.getElementById('refModalTitle').textContent = `裁判选派 - ${m.home} vs ${m.away}`;
+            document.getElementById('refInput').value = a.referee || '';
+            document.getElementById('asst1Input').value = a.assistant1 || '';
+            document.getElementById('asst2Input').value = a.assistant2 || '';
+            document.getElementById('fourthInput').value = a.fourth || '';
+            document.getElementById('refModal').style.display = 'flex';
+        }
+
+        function closeRefModal() {
+            document.getElementById('refModal').style.display = 'none';
+            currentMatchId = null;
+        }
+
+        async function saveReferee() {
+            if (!currentMatchId) return;
+            const payload = {
+                matchId: currentMatchId,
+                referee: document.getElementById('refInput').value.trim(),
+                assistant1: document.getElementById('asst1Input').value.trim(),
+                assistant2: document.getElementById('asst2Input').value.trim(),
+                fourth: document.getElementById('fourthInput').value.trim()
+            };
+            try {
+                const res = await apiFetch('/api/referees', {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.success) {
+                    assignments[currentMatchId] = data.data;
+                    renderTable();
+                    closeRefModal();
+                } else {
+                    alert('保存失败：' + (data.error || '未知错误'));
+                }
+            } catch(e) {
+                alert('保存失败：' + e.message);
+            }
+        }
+    </script>
+
+    <style>
+        .page-header { padding: 40px 24px; background: linear-gradient(135deg, #0f5d27 0%, #1a8a3a 100%); text-align: center; }
+        .page-title { font-size: 32px; color: #fff; margin-bottom: 8px; }
+        .page-desc { color: rgba(255,255,255,0.8); }
+        .referees-page { max-width: 1200px; margin: 0 auto; }
+        .ref-controls { display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+        .ref-search, .ref-filter {
+            padding: 10px 14px; border: 1px solid #e0e0e0; border-radius: 8px;
+            font-size: 14px; outline: none; background: #fff;
+        }
+        .ref-search { flex: 1; min-width: 200px; }
+        .ref-search:focus, .ref-filter:focus { border-color: #1a8a3a; }
+
+        .table-wrapper { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th { background: #f5f7fa; padding: 12px 14px; text-align: left; font-weight: 600; font-size: 13px; color: #555; border-bottom: 2px solid #e0e0e0; }
+        .data-table td { padding: 12px 14px; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+        .data-table tr:hover td { background: #f9fafb; }
+        .match-badge { display: inline-block; padding: 2px 8px; background: #1a8a3a; color: #fff; border-radius: 4px; font-size: 12px; }
+        .sub { font-size: 12px; color: #999; margin-top: 2px; }
+        .empty { color: #ccc; }
+        .btn-edit { padding: 6px 12px; border: none; border-radius: 6px; background: #1a8a3a; color: #fff; cursor: pointer; font-size: 13px; }
+        .btn-edit:hover { background: #15702e; }
+
+        .modal { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; }
+        .modal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+        .modal-content { position: relative; background: #fff; border-radius: 12px; padding: 24px; max-width: 500px; width: 90%; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+        .modal-close { background: none; border: none; font-size: 20px; cursor: pointer; color: #999; }
+        .modal-footer { display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px; }
+        .btn-primary, .btn-secondary { padding: 8px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+        .btn-primary { background: #1a8a3a; color: #fff; }
+        .btn-primary:hover { background: #15702e; }
+        .btn-secondary { background: #f0f0f0; color: #555; }
+        .btn-secondary:hover { background: #e0e0e0; }
+
+        .ref-form { display: flex; flex-direction: column; gap: 14px; }
+        .form-row { display: flex; flex-direction: column; gap: 6px; }
+        .form-row label { font-size: 13px; color: #555; font-weight: 500; }
+        .form-row input { padding: 10px 12px; border: 1px solid #e0e0e0; border-radius: 8px; font-size: 14px; outline: none; }
+        .form-row input:focus { border-color: #1a8a3a; }
+    </style>
+    <script>
+function exportReferees() {
+    const table = document.querySelector('.data-table');
+    if (!table) { alert('暂无可导出的裁判数据'); return; }
+    WCExcel.exportAoa('2026新生杯-裁判选派.xlsx', '裁判选派', WCExcel.tableToAoa(table));
+}
+    </script>
+</body>
+</html>

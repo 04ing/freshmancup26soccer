@@ -1,0 +1,573 @@
+{
+  "scorers": [
+    {
+      "name": "马致远",
+      "number": "9",
+      "team": "医学联队",
+      "group": "B组",
+      "goals": 14,
+      "penalties": 0
+    },
+    {
+      "name": "吴明达",
+      "number": "6",
+      "team": "人工智能学院",
+      "group": "A组",
+      "goals": 7,
+      "penalties": 0
+    },
+    {
+      "name": "陈本华",
+      "number": "7",
+      "team": "动机联队",
+      "group": "A组",
+      "goals": 6,
+      "penalties": 1
+    },
+    {
+      "name": "习昕泽",
+      "number": "10",
+      "team": "动机联队",
+      "group": "A组",
+      "goals": 5,
+      "penalties": 0
+    },
+    {
+      "name": "贵晨皓",
+      "number": "11",
+      "team": "地空生科联队",
+      "group": "B组",
+      "goals": 5,
+      "penalties": 0
+    },
+    {
+      "name": "崔永涛",
+      "number": "11",
+      "team": "城设新传联",
+      "group": "E组",
+      "goals": 4,
+      "penalties": 0
+    },
+    {
+      "name": "梁熙麟",
+      "number": "19",
+      "team": "FC武大杜伦",
+      "group": "E组",
+      "goals": 4,
+      "penalties": 0
+    },
+    {
+      "name": "杨力诚",
+      "number": "77",
+      "team": "人工智能学院",
+      "group": "A组",
+      "goals": 4,
+      "penalties": 0
+    },
+    {
+      "name": "花成璋",
+      "number": "22",
+      "team": "国家网络安全学院",
+      "group": "G组",
+      "goals": 4,
+      "penalties": 1
+    },
+    {
+      "name": "刘昕航",
+      "number": "8",
+      "team": "物理学院",
+      "group": "E组",
+      "goals": 4,
+      "penalties": 1
+    },
+    {
+      "name": "吴业祖",
+      "number": "7",
+      "team": "电子信息队",
+      "group": "C组",
+      "goals": 3,
+      "penalties": 0
+    },
+    {
+      "name": "Mahad(尼日利亚)",
+      "number": "20",
+      "team": "经管新生队",
+      "group": "C组",
+      "goals": 3,
+      "penalties": 0
+    },
+    {
+      "name": "桑钦杰",
+      "number": "17",
+      "team": "土木建筑工程学院",
+      "group": "D组",
+      "goals": 3,
+      "penalties": 0
+    },
+    {
+      "name": "李帅",
+      "number": "19",
+      "team": "电气学院",
+      "group": "F组",
+      "goals": 3,
+      "penalties": 0
+    },
+    {
+      "name": "王梓仁",
+      "number": "12",
+      "team": "国家网络安全学院",
+      "group": "G组",
+      "goals": 3,
+      "penalties": 1
+    },
+    {
+      "name": "张泽恒",
+      "number": "9",
+      "team": "FC武大杜伦",
+      "group": "E组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "刘子骞",
+      "number": "20",
+      "team": "国家网络安全学院",
+      "group": "G组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "王熙尧",
+      "number": "4",
+      "team": "数学与统计学院队",
+      "group": "H组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "古武",
+      "number": "12",
+      "team": "医学联队",
+      "group": "B组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "叶德力",
+      "number": "10",
+      "team": "水利水电学院",
+      "group": "D组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "韦宏博",
+      "number": "9",
+      "team": "水利水电学院",
+      "group": "D组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "巴合别尔德",
+      "number": "3",
+      "team": "水利水电学院",
+      "group": "D组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "阿斯哈提",
+      "number": "41",
+      "team": "水利水电学院",
+      "group": "D组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "蔡天昕",
+      "number": "67",
+      "team": "口腔医学院",
+      "group": "D组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "方玮辰",
+      "number": "7",
+      "team": "遥感后浪",
+      "group": "C组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "刘乐宸",
+      "number": "7",
+      "team": "FC武大杜伦",
+      "group": "E组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "王校",
+      "number": "15",
+      "team": "弘毅学堂",
+      "group": "H组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "刘本昱",
+      "number": "29",
+      "team": "动机联队",
+      "group": "A组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "李明远",
+      "number": "9",
+      "team": "动机联队",
+      "group": "A组",
+      "goals": 2,
+      "penalties": 0
+    },
+    {
+      "name": "阿卜杜拜斯尔",
+      "number": "19",
+      "team": "水利水电学院",
+      "group": "D组",
+      "goals": 2,
+      "penalties": 1
+    },
+    {
+      "name": "赵博远",
+      "number": "10",
+      "team": "电气学院",
+      "group": "F组",
+      "goals": 2,
+      "penalties": 1
+    },
+    {
+      "name": "多吉扎巴",
+      "number": "19",
+      "team": "土木建筑工程学院",
+      "group": "D组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "Murad（土耳其）",
+      "number": "15",
+      "team": "口腔医学院",
+      "group": "D组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "唐梓渊",
+      "number": "69",
+      "team": "FC武大杜伦",
+      "group": "E组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "赵万梓琛",
+      "number": "10",
+      "team": "计科新生队",
+      "group": "G组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "黄智博",
+      "number": "18",
+      "team": "计科新生队",
+      "group": "G组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "王子涵",
+      "number": "23",
+      "team": "计科新生队",
+      "group": "G组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "汤舰勋",
+      "number": "7",
+      "team": "集成电路",
+      "group": "H组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "官子傲",
+      "number": "10",
+      "team": "医学联队",
+      "group": "B组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "庞骁轩",
+      "number": "13",
+      "team": "医学联队",
+      "group": "B组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "毕佳健",
+      "number": "7",
+      "team": "医学联队",
+      "group": "B组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "林梓轩",
+      "number": "10",
+      "team": "艺术学院",
+      "group": "B组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "吴暨桐",
+      "number": "30",
+      "team": "医学联队",
+      "group": "B组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "王逸扬",
+      "number": "30",
+      "team": "测绘学院",
+      "group": "A组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "成梓和",
+      "number": "88",
+      "team": "人工智能学院",
+      "group": "A组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "梁珂旭",
+      "number": "16",
+      "team": "水利水电学院",
+      "group": "D组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "Steven（尼日利亚）",
+      "number": "47",
+      "team": "口腔医学院",
+      "group": "D组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "林圣也",
+      "number": "10",
+      "team": "经管新生队",
+      "group": "C组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "李振轩",
+      "number": "6",
+      "team": "政法信化",
+      "group": "F组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "张浩轩",
+      "number": "29",
+      "team": "政法信化",
+      "group": "F组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "房禄家",
+      "number": "10",
+      "team": "社马外史联队",
+      "group": "G组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "涂浩宇",
+      "number": "12",
+      "team": "社马外史联队",
+      "group": "G组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "蔺一铭",
+      "number": "6",
+      "team": "地空生科联队",
+      "group": "B组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "杨金坤",
+      "number": "15",
+      "team": "地空生科联队",
+      "group": "B组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "邬佳轩",
+      "number": "19",
+      "team": "地空生科联队",
+      "group": "B组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "张文豪",
+      "number": "3",
+      "team": "电子信息队",
+      "group": "C组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "关若飞",
+      "number": "11",
+      "team": "水利水电学院",
+      "group": "D组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "彭赵铭",
+      "number": "28",
+      "team": "城设新传联",
+      "group": "E组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "肖嘉鑫",
+      "number": "5",
+      "team": "物理学院",
+      "group": "E组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "向思哲",
+      "number": "15",
+      "team": "政法信化",
+      "group": "F组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "李少康",
+      "number": "7",
+      "team": "经管新生队",
+      "group": "C组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "何承致",
+      "number": "17",
+      "team": "经管新生队",
+      "group": "C组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "马一斌",
+      "number": "8",
+      "team": "土木建筑工程学院",
+      "group": "D组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "李竞择",
+      "number": "8",
+      "team": "电子信息队",
+      "group": "C组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "谢栋宇",
+      "number": "35",
+      "team": "弘毅学堂",
+      "group": "H组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "许书铭",
+      "number": "9",
+      "team": "社马外史联队",
+      "group": "G组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "祝恒悦",
+      "number": "99",
+      "team": "国家网络安全学院",
+      "group": "G组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "柏明扬",
+      "number": "20",
+      "team": "动机联队",
+      "group": "A组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "王昊然",
+      "number": "21",
+      "team": "国家网络安全学院",
+      "group": "G组",
+      "goals": 1,
+      "penalties": 0
+    },
+    {
+      "name": "李柯汗",
+      "number": "10",
+      "team": "城设新传联",
+      "group": "E组",
+      "goals": 1,
+      "penalties": 1
+    },
+    {
+      "name": "范禹辰",
+      "number": "4",
+      "team": "医学联队",
+      "group": "B组",
+      "goals": 1,
+      "penalties": 1
+    }
+  ],
+  "matchCount": 36
+}

@@ -1,0 +1,125 @@
+{
+  "goals": [
+    {
+      "team": "城设新传联",
+      "player": "崔永涛",
+      "number": "11",
+      "type": "normal",
+      "minute": "9"
+    },
+    {
+      "team": "城设新传联",
+      "player": "崔永涛",
+      "number": "11",
+      "type": "normal",
+      "minute": "17"
+    },
+    {
+      "team": "城设新传联",
+      "player": "崔永涛",
+      "number": "11",
+      "type": "normal",
+      "minute": "49"
+    },
+    {
+      "team": "城设新传联",
+      "player": "彭赵铭",
+      "number": "28",
+      "type": "normal",
+      "minute": "55"
+    },
+    {
+      "team": "物理学院",
+      "player": "刘昕航",
+      "number": "8",
+      "type": "normal",
+      "minute": "24"
+    },
+    {
+      "team": "物理学院",
+      "player": "刘昕航",
+      "number": "8",
+      "type": "normal",
+      "minute": "26"
+    },
+    {
+      "team": "物理学院",
+      "player": "刘昕航",
+      "number": "8",
+      "type": "penalty",
+      "minute": "58"
+    },
+    {
+      "team": "物理学院",
+      "player": "刘昕航",
+      "number": "8",
+      "type": "normal",
+      "minute": "60"
+    },
+    {
+      "team": "物理学院",
+      "player": "肖嘉鑫",
+      "number": "5",
+      "type": "normal",
+      "minute": "21"
+    }
+  ],
+  "cards": [
+    {
+      "role": "player",
+      "team": "物理学院",
+      "player": "苏晨翔",
+      "number": "2",
+      "type": "yellow",
+      "minute": "31"
+    },
+    {
+      "role": "player",
+      "team": "物理学院",
+      "player": "徐睿阳",
+      "number": "3",
+      "type": "yellow",
+      "minute": "36"
+    },
+    {
+      "role": "player",
+      "team": "物理学院",
+      "player": "刘昕航",
+      "number": "8",
+      "type": "yellow",
+      "minute": "47"
+    },
+    {
+      "role": "coach",
+      "team": "物理学院",
+      "player": "谭净光",
+      "number": "",
+      "type": "yellow",
+      "minute": "30"
+    },
+    {
+      "role": "player",
+      "team": "城设新传联",
+      "player": "李尚",
+      "number": "41",
+      "type": "red",
+      "minute": "30"
+    },
+    {
+      "role": "player",
+      "team": "城设新传联",
+      "player": "孙烺曦",
+      "number": "1",
+      "type": "yellow",
+      "minute": "53"
+    },
+    {
+      "role": "player",
+      "team": "城设新传联",
+      "player": "孙烺曦",
+      "number": "1",
+      "type": "red",
+      "minute": "53"
+    }
+  ]
+}

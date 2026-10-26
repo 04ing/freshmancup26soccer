@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赛程 - 2026新生杯</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+/* 静态导出版：隐藏依赖服务器的录入/上传/AI 入口 */
+.entry-section, .upload-section, .ai-trigger, .ai-panel { display: none !important; }
+.team-edit { pointer-events: none; appearance: none; -webkit-appearance: none; border-color: transparent !important; background: transparent !important; }
+</style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo"><span class="logo-icon">⚽</span><span class="logo-text">2026新生杯</span></div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="schedule.html" class="nav-link active">赛程</a>
+                <a href="standings.html" class="nav-link">积分榜</a>
+                <a href="scorers.html" class="nav-link">射手榜</a>
+                <a href="cards.html" class="nav-link">红黄牌</a>
+                <a href="rosters.html" class="nav-link">大名单</a>
+                <a href="reports.html" class="nav-link">战报</a>
+                <a href="referees.html" class="nav-link">裁判</a>
+            </nav>
+            <button class="ai-trigger" id="aiTrigger"><span class="ai-icon">AI</span><span>助手</span></button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">首页</a>
+        <a href="schedule.html" class="nav-link">赛程</a>
+        <a href="/matches" class="nav-link">比赛管理</a>
+        <a href="standings.html" class="nav-link">积分榜</a>
+        <a href="scorers.html" class="nav-link">射手榜</a>
+        <a href="cards.html" class="nav-link">红黄牌</a>
+        <a href="rosters.html" class="nav-link">大名单</a>
+        <a href="reports.html" class="nav-link">战报</a>
+        <a href="referees.html" class="nav-link">裁判</a>
+    </nav>
+    
+    <main class="main-content">
+        <div class="content-header">
+            <h1>赛程安排</h1>
+            <div class="tabs">
+                <button class="type-tab active" data-type="all">全部</button>
+                <button class="type-tab" data-type="group">小组赛</button>
+                <button class="type-tab" data-type="knockout">淘汰赛</button>
+            </div>
+            <div class="page-actions"><button class="btn-export" onclick="exportSchedule()">📊 导出 Excel</button></div>
+        </div>
+        <div id="scheduleList" class="schedule-container">
+            <div class="loading"><div class="loading-spinner"></div><p>正在加载赛程数据...</p></div>
+        </div>
+    </main>
+
+    <footer class="footer"><div class="footer-inner"><p>2026武汉大学新生杯足球赛</p></div></footer>
+
+    <div class="ai-panel" id="aiPanel">
+        <div class="ai-panel-header"><span class="ai-panel-title">🤖 AI助手</span><button class="ai-close" id="aiClose">✕</button></div>
+        <div class="ai-panel-body">
+            <div class="ai-messages" id="aiMessages"><div class="ai-message ai-system"><p>👋 可以问我任何赛程相关问题！</p></div></div>
+            <div class="ai-input-area"><input type="text" class="ai-input" id="aiInput"><button class="ai-send" id="aiSend">发送</button></div>
+        </div>
+    </div>
+
+    <script src="static/js/vendor/xlsx.full.min.js"></script>
+    <script src="static/js/export.js"></script>
+    <script src="static/js/api-shim.js"></script>
+    <script src="static/js/main.js"></script>
+    <script>
+        let allMatches = [];
+        let allRosters = {};
+        let reportByMatch = {}; // matchId -> report
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            initAIAssistant();
+            await loadScheduleData();
+            initScheduleTabs();
+        });
+
+        async function loadScheduleData() {
+            const container = document.getElementById('scheduleList');
+            try {
+                const [matchesRes, reportsRes, rostersRes] = await Promise.all([
+                    fetch('/api/matches/all?_=' + Date.now(), { cache: 'no-cache' }),
+                    fetch('/api/reports?_=' + Date.now(), { cache: 'no-cache' }),
+                    fetch('/api/rosters?_=' + Date.now(), { cache: 'no-cache' })
+                ]);
+                const data = await matchesRes.json();
+                const reports = await reportsRes.json();
+                allRosters = await rostersRes.json();
+
+                if (Array.isArray(data)) {
+                    allMatches = data;
+                }
+                // 构建 matchId -> report 映射
+                reportByMatch = {};
+                for (const r of reports) {
+                    if (r.matchId) reportByMatch[r.matchId] = r;
+                }
+
+                renderSchedule(allMatches);
+            } catch(e) {
+                console.error('加载赛程失败:', e);
+                container.innerHTML = '<p style="text-align:center;color:#4a4a5a;">加载失败，请刷新页面</p>';
+            }
+        }
+
+        function isKnownTeam(t) {
+            return !!t && Object.prototype.hasOwnProperty.call(allRosters, t);
+        }
+
+        function schedTeamOptions(selected) {
+            return '<option value="">待定</option>' +
+                Object.keys(allRosters).sort().map(t =>
+                    `<option value="${escapeHtml(t)}" ${t === selected ? 'selected' : ''}>${escapeHtml(t)}</option>`
+                ).join('');
+        }
+
+        async function onScheduleTeamSet(matchId, side, value) {
+            const m = allMatches.find(x => x.id === matchId);
+            if (!m) return;
+            let homeVal = isKnownTeam(m.home) ? m.home : '';
+            let awayVal = isKnownTeam(m.away) ? m.away : '';
+            if (side === 'home') homeVal = value; else awayVal = value;
+            try {
+                await apiFetch('/api/knockout-teams', {
+                    method: 'POST',
+                    body: JSON.stringify({ matchId: matchId, home: homeVal, away: awayVal })
+                });
+            } catch(e) { console.error('保存球队失败:', e); }
+            m.home = homeVal || m.defaultHome || '';
+            m.away = awayVal || m.defaultAway || '';
+            filterSchedule();
+        }
+
+        function renderSchedule(matches) {
+            const container = document.getElementById('scheduleList');
+
+            const groupMatches = matches.filter(m => m.type === 'group');
+            const knockoutMatches = matches.filter(m => m.type === 'knockout');
+
+            const renderGroup = (groupMatches, title, color) => {
+                if (groupMatches.length === 0) return '';
+
+                const grouped = {};
+                groupMatches.forEach(m => {
+                    const d = m.date || '未定';
+                    if (!grouped[d]) grouped[d] = [];
+                    grouped[d].push(m);
+                });
+
+                let html = `<div class="schedule-group"><h2 class="group-title" style="color:${color};border-color:${color};">${title}</h2>`;
+
+                Object.entries(grouped).forEach(([date, games]) => {
+                    html += `<div class="schedule-day"><h3 class="day-title">${date}</h3><div class="day-matches">`;
+
+                    games.forEach(g => {
+                        const report = reportByMatch[g.id];
+                        let homeScore = '--', awayScore = '--';
+                        let finished = false;
+
+                        // 优先战报比分
+                        if (report && report.homeScore !== undefined && report.awayScore !== undefined) {
+                            homeScore = report.homeScore;
+                            awayScore = report.awayScore;
+                            finished = true;
+                        } else if (g.score && g.score.includes(':')) {
+                            const parts = g.score.split(':');
+                            homeScore = parts[0].trim();
+                            awayScore = parts[1].trim();
+                            finished = true;
+                        }
+
+                        // 已完赛且有战报 → 跳转战报详情；否则跳转战报列表
+                        const link = (finished && report) ? `${report.id}.html` : 'reports.html';
+                        const cursor = 'cursor:pointer;';
+
+                        // 淘汰赛主客队可手动选择实际球队
+                        const teamsHtml = g.type === 'knockout'
+                            ? `<select class="team-edit" onclick="event.stopPropagation()" onchange="onScheduleTeamSet('${g.id}','home',this.value)">${schedTeamOptions(g.home)}</select>
+                               <span class="match-score">${homeScore} - ${awayScore}</span>
+                               <select class="team-edit" onclick="event.stopPropagation()" onchange="onScheduleTeamSet('${g.id}','away',this.value)">${schedTeamOptions(g.away)}</select>`
+                            : `<span class="team">${escapeHtml(g.home)}</span>
+                               <span class="match-score">${homeScore} - ${awayScore}</span>
+                               <span class="team">${escapeHtml(g.away)}</span>`;
+
+                        html += `
+                            <div class="match-row${finished ? ' match-finished' : ''}" onclick="window.location.href='${link}'" style="${cursor}">
+                                <span class="match-no">#${g.matchNo || ''}</span>
+                                <span class="match-time">${g.time || '--'}</span>
+                                <span class="match-venue">${g.venue || '--'}</span>
+                                <div class="match-teams">
+                                    ${teamsHtml}
+                                </div>
+                                <span class="match-group">${g.group || ''}</span>
+                            </div>
+                        `;
+                    });
+
+                    html += `</div></div>`;
+                });
+
+                html += `</div>`;
+                return html;
+            };
+            
+            const html = renderGroup(groupMatches, '小组赛赛程', '#1a8a3a') + renderGroup(knockoutMatches, '淘汰赛赛程', '#ff6b35');
+            container.innerHTML = html || '<p style="text-align:center;color:#4a4a5a;padding:40px;">暂无赛程数据</p>';
+        }
+
+        function initScheduleTabs() {
+            document.querySelectorAll('.type-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.type-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    filterSchedule();
+                });
+            });
+        }
+
+        function filterSchedule() {
+            const activeTab = document.querySelector('.type-tab.active');
+            const type = activeTab.dataset.type;
+            
+            if (type === 'all') {
+                renderSchedule(allMatches);
+            } else if (type === 'group') {
+                renderSchedule(allMatches.filter(m => m.type === 'group'));
+            } else if (type === 'knockout') {
+                renderSchedule(allMatches.filter(m => m.type === 'knockout'));
+            }
+        }
+    </script>
+
+    <style>
+        .content-header { margin-bottom: 24px; }
+        .content-header h1 { font-size: 28px; margin-bottom: 16px; }
+        .tabs { display: flex; gap: 12px; }
+        .type-tab { padding: 10px 24px; border: 2px solid #e0e0e0; border-radius: 20px; background: #fff; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .type-tab.active { background: #1a8a3a; color: #fff; border-color: #1a8a3a; }
+        .type-tab:hover { border-color: #1a8a3a; }
+        
+        .schedule-group { margin-bottom: 32px; }
+        .group-title { font-size: 24px; font-weight: 700; padding: 16px 24px; background: #fff; border-left: 6px solid; border-radius: 8px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .schedule-day { margin-bottom: 24px; }
+        .day-title { font-size: 18px; font-weight: 700; color: #1a8a3a; margin-bottom: 12px; }
+        .day-matches { display: flex; flex-direction: column; gap: 8px; }
+        
+        .match-row { display: grid; grid-template-columns: 60px 60px 80px 1fr 80px 100px; align-items: center; padding: 12px 16px; background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); transition: box-shadow 0.2s; }
+        .match-row:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .match-row.match-finished { background: #f0faf0; }
+        
+        .match-no { font-weight: 900; color: #ff6b35; font-size: 14px; }
+        .match-time { color: #4a4a5a; font-size: 14px; }
+        .match-venue { color: #4a4a5a; font-size: 13px; }
+        .match-teams { display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .match-teams .team { font-weight: 600; font-size: 15px; }
+        .match-teams .team-edit { font-weight: 600; font-size: 13px; padding: 4px 6px; border: 1px solid #ff6b35; border-radius: 6px; background: #fff8f2; color: #333; max-width: 150px; cursor: pointer; }
+        .match-score { font-weight: 900; font-size: 16px; color: #ff6b35; font-family: monospace; }
+        .match-group { font-size: 13px; color: #666; }
+        .match-referee { font-size: 12px; color: #888; }
+        .match-report-summary { grid-column: 1 / -1; font-size: 12px; color: #5a5a6a; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #e0e0e0; line-height: 1.5; }
+        
+        @media (max-width: 768px) {
+            .match-row { grid-template-columns: 50px 1fr; grid-template-areas: "no teams" "time venue" "group referee" "report report"; gap: 8px; }
+            .match-no { grid-area: no; }
+            .match-teams { grid-area: teams; justify-content: flex-start; }
+            .match-time { grid-area: time; }
+            .match-venue { grid-area: venue; }
+            .match-group { grid-area: group; }
+            .match-referee { grid-area: referee; }
+            .match-report-summary { grid-area: report; }
+        }
+        
+        .loading { text-align: center; padding: 40px; }
+    </style>
+    <script>
+function exportSchedule() {
+    if (!allMatches || !allMatches.length) { alert('暂无可导出的赛程数据'); return; }
+    const aoa = [['场次', '日期', '时间', '场地', '阶段', '分组', '主队', '比分', '客队', '状态']];
+    allMatches.slice().sort(function (a, b) { return (a.orderNum || 0) - (b.orderNum || 0); }).forEach(function (m) {
+        const report = reportByMatch[m.id];
+        let score = m.score || '';
+        if (report && report.homeScore !== undefined && report.awayScore !== undefined) {
+            score = report.homeScore + ':' + report.awayScore;
+        }
+        aoa.push([
+            m.matchNo || '',
+            m.date || '',
+            m.time || '',
+            m.venue || '',
+            m.type === 'knockout' ? '淘汰赛' : '小组赛',
+            m.group || '',
+            m.home || '',
+            score,
+            m.away || '',
+            score ? '已完赛' : '未开始'
+        ]);
+    });
+    WCExcel.exportAoa('2026新生杯-赛程.xlsx', '赛程', aoa, [8, 14, 8, 20, 10, 10, 24, 10, 24, 10]);
+}
+    </script>
+</body>
+</html>

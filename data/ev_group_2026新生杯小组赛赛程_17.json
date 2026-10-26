@@ -1,0 +1,49 @@
+{
+  "goals": [
+    {
+      "team": "人工智能学院",
+      "player": "吴明达",
+      "number": "6",
+      "type": "normal",
+      "minute": "36"
+    },
+    {
+      "team": "人工智能学院",
+      "player": "吴明达",
+      "number": "6",
+      "type": "normal",
+      "minute": "40"
+    },
+    {
+      "team": "动机联队",
+      "player": "陈本华",
+      "number": "7",
+      "type": "penalty",
+      "minute": "18"
+    },
+    {
+      "team": "动机联队",
+      "player": "陈本华",
+      "number": "7",
+      "type": "normal",
+      "minute": "30"
+    },
+    {
+      "team": "动机联队",
+      "player": "习昕泽",
+      "number": "10",
+      "type": "normal",
+      "minute": "56"
+    }
+  ],
+  "cards": [
+    {
+      "role": "player",
+      "team": "人工智能学院",
+      "player": "郑当奥",
+      "number": "23",
+      "type": "yellow",
+      "minute": "25"
+    }
+  ]
+}

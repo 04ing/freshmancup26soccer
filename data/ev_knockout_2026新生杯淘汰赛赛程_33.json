@@ -1,0 +1,26 @@
+{
+  "goals": [
+    {
+      "team": "动机联队",
+      "player": "刘本昱",
+      "number": "29",
+      "type": "normal",
+      "minute": "19"
+    },
+    {
+      "team": "动机联队",
+      "player": "陈本华",
+      "number": "7",
+      "type": "normal",
+      "minute": "33"
+    },
+    {
+      "team": "动机联队",
+      "player": "刘本昱",
+      "number": "29",
+      "type": "normal",
+      "minute": "48"
+    }
+  ],
+  "cards": []
+}

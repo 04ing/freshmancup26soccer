@@ -1,0 +1,146 @@
+{
+  "goals": [
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "2"
+    },
+    {
+      "team": "医学联队",
+      "player": "古武",
+      "number": "12",
+      "type": "normal",
+      "minute": "9"
+    },
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "17"
+    },
+    {
+      "team": "医学联队",
+      "player": "官子傲",
+      "number": "10",
+      "type": "normal",
+      "minute": "20"
+    },
+    {
+      "team": "医学联队",
+      "player": "庞骁轩",
+      "number": "13",
+      "type": "normal",
+      "minute": "23"
+    },
+    {
+      "team": "医学联队",
+      "player": "范禹辰",
+      "number": "4",
+      "type": "penalty",
+      "minute": "25"
+    },
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "27"
+    },
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "33"
+    },
+    {
+      "team": "医学联队",
+      "player": "古武",
+      "number": "12",
+      "type": "normal",
+      "minute": "34"
+    },
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "36"
+    },
+    {
+      "team": "医学联队",
+      "player": "毕佳健",
+      "number": "7",
+      "type": "normal",
+      "minute": "40"
+    },
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "43"
+    },
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "44"
+    },
+    {
+      "team": "艺术学院",
+      "player": "林梓轩",
+      "number": "10",
+      "type": "normal",
+      "minute": "48"
+    },
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "49"
+    },
+    {
+      "team": "医学联队",
+      "player": "吴暨桐",
+      "number": "30",
+      "type": "normal",
+      "minute": "50"
+    },
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "51"
+    },
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "54"
+    },
+    {
+      "team": "艺术学院",
+      "player": "蔡曦润",
+      "number": "25",
+      "type": "own",
+      "minute": "15"
+    }
+  ],
+  "cards": [
+    {
+      "team": "医学联队",
+      "player": "吴暨桐",
+      "number": "30",
+      "type": "yellow",
+      "minute": "52"
+    }
+  ]
+}

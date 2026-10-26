@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>球队大名单 - 2026新生杯</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+/* 静态导出版：隐藏依赖服务器的录入/上传/AI 入口 */
+.entry-section, .upload-section, .ai-trigger, .ai-panel { display: none !important; }
+.team-edit { pointer-events: none; appearance: none; -webkit-appearance: none; border-color: transparent !important; background: transparent !important; }
+</style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo"><span class="logo-icon">⚽</span><span class="logo-text">2026新生杯</span></div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="schedule.html" class="nav-link">赛程</a>
+                <a href="standings.html" class="nav-link">积分榜</a>
+                <a href="scorers.html" class="nav-link">射手榜</a>
+                <a href="cards.html" class="nav-link">红黄牌</a>
+                <a href="rosters.html" class="nav-link active">大名单</a>
+                <a href="reports.html" class="nav-link">战报</a>
+                <a href="referees.html" class="nav-link">裁判</a>
+            </nav>
+            <button class="ai-trigger" id="aiTrigger"><span class="ai-icon">AI</span><span>助手</span></button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">首页</a>
+        <a href="schedule.html" class="nav-link">赛程</a>
+        <a href="/matches" class="nav-link">比赛管理</a>
+        <a href="standings.html" class="nav-link">积分榜</a>
+        <a href="scorers.html" class="nav-link">射手榜</a>
+        <a href="cards.html" class="nav-link">红黄牌</a>
+        <a href="rosters.html" class="nav-link">大名单</a>
+        <a href="reports.html" class="nav-link">战报</a>
+        <a href="referees.html" class="nav-link">裁判</a>
+    </nav>
+    
+    <main class="main-content">
+        <section class="page-header">
+            <h1 class="page-title">球队大名单</h1>
+            <p class="page-desc">各参赛队伍球员名单</p>
+            <div class="page-actions"><button class="btn-export" onclick="exportRosters()">📊 导出 Excel</button></div>
+        </section>
+
+        <section class="section rosters-page">
+            <div class="rosters-search">
+                <input type="text" id="teamSearch" placeholder="搜索球队名称..." class="team-search-input">
+            </div>
+
+            <div class="rosters-grid" id="rostersGrid">
+                <div class="loading"><div class="loading-spinner"></div><p>正在加载大名单数据...</p></div>
+            </div>
+
+            <div class="roster-detail-modal" id="rosterDetailModal">
+                <div class="roster-detail-content">
+                    <div class="roster-detail-header">
+                        <h2 id="detailTeamName">球队名称</h2>
+                        <button class="roster-detail-close" id="rosterDetailClose">×</button>
+                    </div>
+                    <div class="roster-detail-body">
+                        <div class="player-count">共 <span id="detailPlayerCount">0</span> 名球员</div>
+                        <div class="player-grid" id="detailPlayerGrid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer"><div class="footer-inner"><p>2026武汉大学新生杯足球赛</p></div></footer>
+
+    <div class="ai-panel" id="aiPanel">
+        <div class="ai-panel-header"><span class="ai-panel-title">AI助手</span><button class="ai-close" id="aiClose">X</button></div>
+        <div class="ai-panel-body">
+            <div class="ai-messages" id="aiMessages"><div class="ai-message ai-system"><p>我是新生杯智能助手，可以回答大名单相关问题！</p></div></div>
+            <div class="ai-input-area"><input type="text" class="ai-input" id="aiInput"><button class="ai-send" id="aiSend">发送</button></div>
+        </div>
+    </div>
+
+    <script src="static/js/vendor/xlsx.full.min.js"></script>
+    <script src="static/js/export.js"></script>
+    <script src="static/js/api-shim.js"></script>
+    <script src="static/js/main.js"></script>
+    <script>
+        let allRosters = {};
+        let groupMappings = {};
+        let groupOrder = [];
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            initAIAssistant();
+            await Promise.all([loadRostersData(), loadTeamsData()]);
+            renderRosters();
+            initSearch();
+            initDetailModal();
+        });
+
+        async function loadRostersData() {
+            try {
+                const response = await fetch('/api/rosters?_=' + Date.now(), { cache: 'no-cache' });
+                allRosters = await response.json();
+            } catch(e) {
+                console.error('加载大名单失败:', e);
+                document.getElementById('rostersGrid').innerHTML = '<p style="text-align:center;color:#4a4a5a;">加载失败，请刷新页面</p>';
+            }
+        }
+
+        async function loadTeamsData() {
+            try {
+                const response = await fetch('/api/teams?_=' + Date.now(), { cache: 'no-cache' });
+                groupMappings = await response.json();
+                groupOrder = Object.keys(groupMappings);
+            } catch(e) {
+                console.error('加载分组信息失败:', e);
+            }
+        }
+
+        function renderRosters(searchTerm = '') {
+            const container = document.getElementById('rostersGrid');
+
+            let html = '';
+
+            groupOrder.forEach(group => {
+                const teamsInGroup = groupMappings[group] || [];
+                const filteredTeams = searchTerm
+                    ? teamsInGroup.filter(name => name.toLowerCase().includes(searchTerm.toLowerCase()))
+                    : teamsInGroup;
+
+                if (filteredTeams.length === 0) return;
+
+                html += `
+                    <div class="group-section">
+                        <div class="group-header">
+                            <span class="group-icon">⚽</span>
+                            <span class="group-name">${group}</span>
+                            <span class="group-team-count">${filteredTeams.length}支球队</span>
+                        </div>
+                        <div class="group-teams">
+                `;
+
+                filteredTeams.forEach(team => {
+                    const players = allRosters[team] || [];
+                    html += `
+                        <div class="team-card" data-team="${team}" onclick="showRosterDetail('${team}')">
+                            <div class="team-card-header">
+                                <span class="team-icon">👕</span>
+                                <h3 class="team-name">${team}</h3>
+                            </div>
+                            <div class="team-card-footer">
+                                <span class="player-count-badge">${players.length} 人</span>
+                                <span class="view-detail">查看详情 →</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            if (html === '') {
+                container.innerHTML = '<p style="text-align:center;color:#4a4a5a;grid-column:1/-1;">未找到匹配的球队</p>';
+            } else {
+                container.innerHTML = html;
+            }
+        }
+
+        function initSearch() {
+            const searchInput = document.getElementById('teamSearch');
+            searchInput.addEventListener('input', function() {
+                renderRosters(this.value);
+            });
+        }
+
+        function showRosterDetail(team) {
+            const players = allRosters[team] || [];
+            
+            const sortedPlayers = players.sort((a, b) => {
+                const numA = parseInt(a.number) || 999;
+                const numB = parseInt(b.number) || 999;
+                return numA - numB;
+            });
+            
+            document.getElementById('detailTeamName').textContent = team;
+            document.getElementById('detailPlayerCount').textContent = sortedPlayers.length;
+            
+            document.getElementById('detailPlayerGrid').innerHTML = sortedPlayers.map((player) => {
+                const number = player.number || '';
+                const name = player.name || player;
+                return `
+                <div class="player-card">
+                    <span class="player-number">${number ? number : '—'}</span>
+                    <span class="player-name">${name}</span>
+                </div>
+                `;
+            }).join('');
+            
+            document.getElementById('rosterDetailModal').classList.add('active');
+        }
+
+        function initDetailModal() {
+            const modal = document.getElementById('rosterDetailModal');
+            const closeBtn = document.getElementById('rosterDetailClose');
+            
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+            
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        }
+    </script>
+
+    <style>
+        .page-header { padding: 40px 24px; background: linear-gradient(135deg, #ff6b35 0%, #1a8a3a 100%); text-align: center; }
+        .page-title { font-size: 32px; color: #fff; margin-bottom: 8px; }
+        .page-desc { color: rgba(255,255,255,0.8); }
+        
+        .rosters-page { max-width: 1200px; margin: 0 auto; }
+        
+        .rosters-tabs { display: flex; gap: 8px; margin-bottom: 24px; justify-content: center; }
+        .rosters-tab { padding: 12px 32px; border: none; background: #f0f2f5; color: #4a4a5a; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+        .rosters-tab.active { background: #ff6b35; color: #fff; }
+        .rosters-tab:hover { transform: translateY(-1px); }
+        
+        .rosters-search { margin-bottom: 24px; text-align: center; }
+        .team-search-input { padding: 12px 20px; border: 2px solid #e0e0e0; border-radius: 8px; width: 100%; max-width: 400px; font-size: 16px; transition: border-color 0.2s; }
+        .team-search-input:focus { outline: none; border-color: #ff6b35; }
+        
+        .rosters-grid { display: flex; flex-direction: column; gap: 24px; }
+        
+        .group-section { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        
+        .group-header { display: flex; align-items: center; gap: 12px; padding: 16px 20px; background: linear-gradient(135deg, #1a8a3a 0%, #2db84e 100%); color: #fff; }
+        .group-icon { font-size: 24px; }
+        .group-name { font-size: 20px; font-weight: 700; }
+        .group-team-count { margin-left: auto; font-size: 14px; opacity: 0.9; }
+        
+        .group-teams { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0; }
+        
+        .team-card { background: #fff; padding: 20px; cursor: pointer; transition: all 0.2s; border-bottom: 1px solid #f0f2f5; border-right: 1px solid #f0f2f5; }
+        .team-card:last-child { border-right: none; }
+        .group-teams > .team-card:nth-last-child(-n + 4) { border-bottom: none; }
+        .group-teams > .team-card:nth-child(4n) { border-right: none; }
+        .team-card:hover { background: #f8f9fa; transform: translateY(-2px); }
+        
+        .team-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .team-icon { font-size: 32px; }
+        .team-name { font-size: 18px; font-weight: 700; color: #1a1a2e; margin: 0; }
+        
+        .team-card-footer { display: flex; justify-content: space-between; align-items: center; }
+        .player-count-badge { background: #f0f2f5; padding: 6px 12px; border-radius: 20px; font-size: 14px; color: #4a4a5a; font-weight: 600; }
+        .view-detail { color: #ff6b35; font-size: 14px; font-weight: 600; }
+        
+        .loading { text-align: center; padding: 40px; grid-column: 1 / -1; }
+        .loading-spinner { width: 40px; height: 40px; border: 3px solid #f0f2f5; border-top-color: #ff6b35; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .roster-detail-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; }
+        .roster-detail-modal.active { display: flex; }
+        
+        .roster-detail-content { background: #fff; border-radius: 16px; max-width: 800px; width: 100%; max-height: 80vh; overflow: hidden; display: flex; flex-direction: column; }
+        
+        .roster-detail-header { padding: 24px; border-bottom: 1px solid #f0f2f5; display: flex; align-items: center; gap: 12px; position: relative; }
+        .roster-detail-header h2 { font-size: 24px; color: #1a1a2e; margin: 0; }
+        .roster-detail-badge { background: #ff6b35; color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 14px; font-weight: 600; }
+        .roster-detail-close { position: absolute; right: 24px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 28px; cursor: pointer; color: #4a4a5a; }
+        .roster-detail-close:hover { color: #ff6b35; }
+        
+        .roster-detail-body { padding: 24px; overflow-y: auto; }
+        .player-count { margin-bottom: 20px; color: #4a4a5a; font-weight: 600; }
+        .player-count span { color: #ff6b35; font-size: 20px; font-weight: 900; }
+        
+        .player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+        
+        .player-card { background: #f8f9fa; border-radius: 8px; padding: 12px; display: flex; align-items: center; gap: 10px; transition: background 0.2s; }
+        .player-card:hover { background: #fff0eb; }
+        
+        .player-number { width: 28px; height: 28px; background: #ff6b35; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; font-family: monospace; flex-shrink: 0; }
+        .player-name { font-weight: 600; color: #1a1a2e; font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+        @media (max-width: 768px) {
+            .group-teams { grid-template-columns: 1fr; }
+            .team-card { border-right: none; }
+            .group-teams > .team-card:nth-last-child(-n + 4) { border-bottom: 1px solid #f0f2f5; }
+            .group-teams > .team-card:last-child { border-bottom: none; }
+            .group-teams > .team-card:nth-child(4n) { border-right: none; }
+            .player-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+    <script>
+function exportRosters() {
+    const aoa = [['分组', '球队', '号码', '球员']];
+    const groups = groupOrder.length ? groupOrder : Object.keys(groupMappings);
+    groups.forEach(function (group) {
+        const teams = groupMappings[group] || [];
+        teams.forEach(function (team) {
+            const players = (allRosters[team] || []).slice().sort(function (a, b) {
+                return (parseInt(a.number) || 999) - (parseInt(b.number) || 999);
+            });
+            players.forEach(function (p) {
+                aoa.push([group, team, p.number || '', p.name || p]);
+            });
+        });
+    });
+    if (aoa.length <= 1) { alert('暂无可导出的大名单数据'); return; }
+    WCExcel.exportAoa('2026新生杯-球队大名单.xlsx', '大名单', aoa, [10, 26, 8, 18]);
+}
+    </script>
+</body>
+</html>

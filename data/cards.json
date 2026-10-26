@@ -1,0 +1,1240 @@
+{
+  "players": [
+    {
+      "name": "温梓鑫",
+      "number": "47",
+      "team": "医学联队",
+      "group": "B组",
+      "role": "player",
+      "yellows": 2,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_2",
+          "type": "yellow",
+          "minute": "11"
+        },
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_29",
+          "type": "yellow",
+          "minute": "7"
+        }
+      ]
+    },
+    {
+      "name": "王熙尧",
+      "number": "4",
+      "team": "数学与统计学院队",
+      "group": "H组",
+      "role": "player",
+      "yellows": 2,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_8",
+          "type": "yellow",
+          "minute": "60"
+        },
+        {
+          "matchId": "group_2026新生杯小组赛赛程_16",
+          "type": "yellow",
+          "minute": "30"
+        }
+      ]
+    },
+    {
+      "name": "毛甲旺",
+      "number": "17",
+      "team": "政法信化",
+      "group": "F组",
+      "role": "player",
+      "yellows": 2,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_14",
+          "type": "yellow",
+          "minute": "21"
+        },
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_27",
+          "type": "yellow",
+          "minute": "56"
+        }
+      ]
+    },
+    {
+      "name": "吴业祖",
+      "number": "7",
+      "team": "电子信息队",
+      "group": "C组",
+      "role": "player",
+      "yellows": 2,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_19",
+          "type": "yellow",
+          "minute": "47"
+        },
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_30",
+          "type": "yellow",
+          "minute": "25"
+        }
+      ]
+    },
+    {
+      "name": "孙烺曦",
+      "number": "1",
+      "team": "城设新传联",
+      "group": "E组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 1,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_21",
+          "type": "yellow",
+          "minute": "53"
+        },
+        {
+          "matchId": "group_2026新生杯小组赛赛程_21",
+          "type": "red",
+          "minute": "53"
+        }
+      ]
+    },
+    {
+      "name": "陈子轩",
+      "number": "",
+      "team": "人工智能学院",
+      "group": "A组",
+      "role": "coach",
+      "yellows": 1,
+      "reds": 1,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_35",
+          "type": "yellow",
+          "minute": "53"
+        },
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_35",
+          "type": "two_yellow",
+          "minute": "54"
+        }
+      ]
+    },
+    {
+      "name": "陶醉",
+      "number": "",
+      "team": "弘毅学堂",
+      "group": "H组",
+      "role": "coach",
+      "yellows": 1,
+      "reds": 1,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_36",
+          "type": "yellow",
+          "minute": "57"
+        },
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_36",
+          "type": "two_yellow",
+          "minute": "60+3"
+        }
+      ]
+    },
+    {
+      "name": "柳宇轩",
+      "number": "",
+      "team": "弘毅学堂",
+      "group": "H组",
+      "role": "coach",
+      "yellows": 2,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_38",
+          "type": "yellow",
+          "minute": "60+3"
+        },
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_38",
+          "type": "yellow",
+          "minute": "点球大战"
+        }
+      ]
+    },
+    {
+      "name": "董柏同",
+      "number": "18",
+      "team": "电子信息队",
+      "group": "C组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_3",
+          "type": "yellow",
+          "minute": "58"
+        }
+      ]
+    },
+    {
+      "name": "侯博文",
+      "number": "6",
+      "team": "土木建筑工程学院",
+      "group": "D组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_4",
+          "type": "yellow",
+          "minute": "32"
+        }
+      ]
+    },
+    {
+      "name": "桑钦杰",
+      "number": "17",
+      "team": "土木建筑工程学院",
+      "group": "D组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_4",
+          "type": "yellow",
+          "minute": "25"
+        }
+      ]
+    },
+    {
+      "name": "邓凯隆",
+      "number": "78",
+      "team": "土木建筑工程学院",
+      "group": "D组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_4",
+          "type": "yellow",
+          "minute": "30"
+        }
+      ]
+    },
+    {
+      "name": "Steven（尼日利亚）",
+      "number": "47",
+      "team": "口腔医学院",
+      "group": "D组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_4",
+          "type": "yellow",
+          "minute": "15"
+        }
+      ]
+    },
+    {
+      "name": "Henry（尼日利亚）",
+      "number": "66",
+      "team": "口腔医学院",
+      "group": "D组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_4",
+          "type": "yellow",
+          "minute": "58"
+        }
+      ]
+    },
+    {
+      "name": "吴泰睿",
+      "number": "23",
+      "team": "城设新传联",
+      "group": "E组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_5",
+          "type": "yellow",
+          "minute": ""
+        }
+      ]
+    },
+    {
+      "name": "吴冠桥",
+      "number": "",
+      "team": "城设新传联",
+      "group": "E组",
+      "role": "coach",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_5",
+          "type": "yellow",
+          "minute": ""
+        }
+      ]
+    },
+    {
+      "name": "祝恒悦",
+      "number": "99",
+      "team": "国家网络安全学院",
+      "group": "G组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_7",
+          "type": "yellow",
+          "minute": "60"
+        }
+      ]
+    },
+    {
+      "name": "王煜轩",
+      "number": "1",
+      "team": "集成电路",
+      "group": "H组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_8",
+          "type": "yellow",
+          "minute": "60"
+        }
+      ]
+    },
+    {
+      "name": "安文捷",
+      "number": "",
+      "team": "集成电路",
+      "group": "H组",
+      "role": "coach",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_8",
+          "type": "yellow",
+          "minute": ""
+        }
+      ]
+    },
+    {
+      "name": "刘智宸",
+      "number": "9",
+      "team": "电气学院",
+      "group": "F组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_6",
+          "type": "yellow",
+          "minute": "50"
+        }
+      ]
+    },
+    {
+      "name": "吴暨桐",
+      "number": "30",
+      "team": "医学联队",
+      "group": "B组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_10",
+          "type": "yellow",
+          "minute": "52"
+        }
+      ]
+    },
+    {
+      "name": "瞿子皓",
+      "number": "24",
+      "team": "测绘学院",
+      "group": "A组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_9",
+          "type": "yellow",
+          "minute": "54"
+        }
+      ]
+    },
+    {
+      "name": "张世豪",
+      "number": "18",
+      "team": "经管新生队",
+      "group": "C组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_11",
+          "type": "yellow",
+          "minute": "54"
+        }
+      ]
+    },
+    {
+      "name": "崔培智",
+      "number": "",
+      "team": "FC武大杜伦",
+      "group": "E组",
+      "role": "manager",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_13",
+          "type": "yellow",
+          "minute": "50"
+        }
+      ]
+    },
+    {
+      "name": "钱奕宸",
+      "number": "37",
+      "team": "电气学院",
+      "group": "F组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_14",
+          "type": "yellow",
+          "minute": "59"
+        }
+      ]
+    },
+    {
+      "name": "赖泓宇",
+      "number": "30",
+      "team": "社马外史联队",
+      "group": "G组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_15",
+          "type": "yellow",
+          "minute": "21"
+        }
+      ]
+    },
+    {
+      "name": "廖泽昀",
+      "number": "",
+      "team": "社马外史联队",
+      "group": "G组",
+      "role": "coach",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_15",
+          "type": "yellow",
+          "minute": "5"
+        }
+      ]
+    },
+    {
+      "name": "黄佳宇",
+      "number": "39",
+      "team": "弘毅学堂",
+      "group": "H组",
+      "role": "player",
+      "yellows": 0,
+      "reds": 1,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_16",
+          "type": "red",
+          "minute": "38"
+        }
+      ]
+    },
+    {
+      "name": "郑当奥",
+      "number": "23",
+      "team": "人工智能学院",
+      "group": "A组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_17",
+          "type": "yellow",
+          "minute": "25"
+        }
+      ]
+    },
+    {
+      "name": "毛泳凡",
+      "number": "11",
+      "team": "电子信息队",
+      "group": "C组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_19",
+          "type": "yellow",
+          "minute": "45"
+        }
+      ]
+    },
+    {
+      "name": "苏晨翔",
+      "number": "2",
+      "team": "物理学院",
+      "group": "E组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_21",
+          "type": "yellow",
+          "minute": "31"
+        }
+      ]
+    },
+    {
+      "name": "徐睿阳",
+      "number": "3",
+      "team": "物理学院",
+      "group": "E组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_21",
+          "type": "yellow",
+          "minute": "36"
+        }
+      ]
+    },
+    {
+      "name": "刘昕航",
+      "number": "8",
+      "team": "物理学院",
+      "group": "E组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_21",
+          "type": "yellow",
+          "minute": "47"
+        }
+      ]
+    },
+    {
+      "name": "谭净光",
+      "number": "",
+      "team": "物理学院",
+      "group": "E组",
+      "role": "coach",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_21",
+          "type": "yellow",
+          "minute": "30"
+        }
+      ]
+    },
+    {
+      "name": "李尚",
+      "number": "41",
+      "team": "城设新传联",
+      "group": "E组",
+      "role": "player",
+      "yellows": 0,
+      "reds": 1,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_21",
+          "type": "red",
+          "minute": "30"
+        }
+      ]
+    },
+    {
+      "name": "涂浩宇",
+      "number": "12",
+      "team": "社马外史联队",
+      "group": "G组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_23",
+          "type": "yellow",
+          "minute": "52"
+        }
+      ]
+    },
+    {
+      "name": "楼佳骏",
+      "number": "30",
+      "team": "集成电路",
+      "group": "H组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_24",
+          "type": "yellow",
+          "minute": "12"
+        }
+      ]
+    },
+    {
+      "name": "苏浩洋",
+      "number": "28",
+      "team": "弘毅学堂",
+      "group": "H组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_24",
+          "type": "yellow",
+          "minute": "33"
+        }
+      ]
+    },
+    {
+      "name": "李振轩",
+      "number": "6",
+      "team": "政法信化",
+      "group": "F组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_27",
+          "type": "yellow",
+          "minute": "42"
+        }
+      ]
+    },
+    {
+      "name": "梁熙麟",
+      "number": "19",
+      "team": "FC武大杜伦",
+      "group": "E组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_27",
+          "type": "yellow",
+          "minute": "42"
+        }
+      ]
+    },
+    {
+      "name": "张宇硕",
+      "number": "8",
+      "team": "FC武大杜伦",
+      "group": "E组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_27",
+          "type": "yellow",
+          "minute": "53"
+        }
+      ]
+    },
+    {
+      "name": "杨劲愈",
+      "number": "25",
+      "team": "FC武大杜伦",
+      "group": "E组",
+      "role": "player",
+      "yellows": 0,
+      "reds": 1,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_27",
+          "type": "red",
+          "minute": "59"
+        }
+      ]
+    },
+    {
+      "name": "夏一寒",
+      "number": "4",
+      "team": "FC武大杜伦",
+      "group": "E组",
+      "role": "player",
+      "yellows": 0,
+      "reds": 1,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_27",
+          "type": "red",
+          "minute": "60"
+        }
+      ]
+    },
+    {
+      "name": "高崇岳",
+      "number": "12",
+      "team": "FC武大杜伦",
+      "group": "E组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_27",
+          "type": "yellow",
+          "minute": "60"
+        }
+      ]
+    },
+    {
+      "name": "乔琛栋",
+      "number": "",
+      "team": "政法信化",
+      "group": "F组",
+      "role": "coach",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_27",
+          "type": "yellow",
+          "minute": "35"
+        }
+      ]
+    },
+    {
+      "name": "李少康",
+      "number": "7",
+      "team": "经管新生队",
+      "group": "C组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_26",
+          "type": "yellow",
+          "minute": "20"
+        }
+      ]
+    },
+    {
+      "name": "郑玺斌",
+      "number": "",
+      "team": "经管新生队",
+      "group": "C组",
+      "role": "coach",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_26",
+          "type": "yellow",
+          "minute": "44"
+        }
+      ]
+    },
+    {
+      "name": "马子轩",
+      "number": "16",
+      "team": "地空生科联队",
+      "group": "B组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_25",
+          "type": "yellow",
+          "minute": "49"
+        }
+      ]
+    },
+    {
+      "name": "叶德力",
+      "number": "10",
+      "team": "水利水电学院",
+      "group": "D组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_30",
+          "type": "yellow",
+          "minute": "31"
+        }
+      ]
+    },
+    {
+      "name": "黎文博",
+      "number": "29",
+      "team": "弘毅学堂",
+      "group": "H组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_32",
+          "type": "yellow",
+          "minute": "60"
+        }
+      ]
+    },
+    {
+      "name": "羿子皓",
+      "number": "6",
+      "team": "社马外史联队",
+      "group": "G组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_32",
+          "type": "yellow",
+          "minute": "36"
+        }
+      ]
+    },
+    {
+      "name": "万秭辰",
+      "number": "",
+      "team": "社马外史联队",
+      "group": "G组",
+      "role": "manager",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_32",
+          "type": "yellow",
+          "minute": "点球大战"
+        }
+      ]
+    },
+    {
+      "name": "成梓和",
+      "number": "88",
+      "team": "人工智能学院",
+      "group": "A组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_35",
+          "type": "yellow",
+          "minute": "58"
+        }
+      ]
+    },
+    {
+      "name": "阿卜杜拜斯尔",
+      "number": "19",
+      "team": "水利水电学院",
+      "group": "D组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_35",
+          "type": "yellow",
+          "minute": "54"
+        }
+      ]
+    },
+    {
+      "name": "杜明烨",
+      "number": "4",
+      "team": "弘毅学堂",
+      "group": "H组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_36",
+          "type": "yellow",
+          "minute": "50"
+        }
+      ]
+    },
+    {
+      "name": "薛俊锋",
+      "number": "11",
+      "team": "电气学院",
+      "group": "F组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_36",
+          "type": "yellow",
+          "minute": "60+3"
+        }
+      ]
+    },
+    {
+      "name": "宋炯辉",
+      "number": "12",
+      "team": "弘毅学堂",
+      "group": "H组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "knockout_2026新生杯淘汰赛赛程_36",
+          "type": "yellow",
+          "minute": "60"
+        }
+      ]
+    },
+    {
+      "name": "刘本昱",
+      "number": "29",
+      "team": "动机联队",
+      "group": "A组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_1",
+          "type": "yellow",
+          "minute": "16"
+        }
+      ]
+    },
+    {
+      "name": "杨传堽",
+      "number": "13",
+      "team": "测绘学院",
+      "group": "A组",
+      "role": "player",
+      "yellows": 1,
+      "reds": 0,
+      "cardRecords": [
+        {
+          "matchId": "group_2026新生杯小组赛赛程_1",
+          "type": "yellow",
+          "minute": "11"
+        }
+      ]
+    }
+  ],
+  "teams": [
+    {
+      "team": "国家网络安全学院",
+      "group": "G组",
+      "yellows": 1,
+      "reds": 0,
+      "fairPlayPoints": 1
+    },
+    {
+      "team": "地空生科联队",
+      "group": "B组",
+      "yellows": 1,
+      "reds": 0,
+      "fairPlayPoints": 1
+    },
+    {
+      "team": "动机联队",
+      "group": "A组",
+      "yellows": 1,
+      "reds": 0,
+      "fairPlayPoints": 1
+    },
+    {
+      "team": "口腔医学院",
+      "group": "D组",
+      "yellows": 2,
+      "reds": 0,
+      "fairPlayPoints": 2
+    },
+    {
+      "team": "数学与统计学院队",
+      "group": "H组",
+      "yellows": 2,
+      "reds": 0,
+      "fairPlayPoints": 2
+    },
+    {
+      "team": "测绘学院",
+      "group": "A组",
+      "yellows": 2,
+      "reds": 0,
+      "fairPlayPoints": 2
+    },
+    {
+      "team": "水利水电学院",
+      "group": "D组",
+      "yellows": 2,
+      "reds": 0,
+      "fairPlayPoints": 2
+    },
+    {
+      "team": "医学联队",
+      "group": "B组",
+      "yellows": 3,
+      "reds": 0,
+      "fairPlayPoints": 3
+    },
+    {
+      "team": "土木建筑工程学院",
+      "group": "D组",
+      "yellows": 3,
+      "reds": 0,
+      "fairPlayPoints": 3
+    },
+    {
+      "team": "集成电路",
+      "group": "H组",
+      "yellows": 3,
+      "reds": 0,
+      "fairPlayPoints": 3
+    },
+    {
+      "team": "电气学院",
+      "group": "F组",
+      "yellows": 3,
+      "reds": 0,
+      "fairPlayPoints": 3
+    },
+    {
+      "team": "经管新生队",
+      "group": "C组",
+      "yellows": 3,
+      "reds": 0,
+      "fairPlayPoints": 3
+    },
+    {
+      "team": "电子信息队",
+      "group": "C组",
+      "yellows": 4,
+      "reds": 0,
+      "fairPlayPoints": 4
+    },
+    {
+      "team": "政法信化",
+      "group": "F组",
+      "yellows": 4,
+      "reds": 0,
+      "fairPlayPoints": 4
+    },
+    {
+      "team": "物理学院",
+      "group": "E组",
+      "yellows": 4,
+      "reds": 0,
+      "fairPlayPoints": 4
+    },
+    {
+      "team": "社马外史联队",
+      "group": "G组",
+      "yellows": 5,
+      "reds": 0,
+      "fairPlayPoints": 5
+    },
+    {
+      "team": "人工智能学院",
+      "group": "A组",
+      "yellows": 3,
+      "reds": 1,
+      "fairPlayPoints": 6
+    },
+    {
+      "team": "城设新传联",
+      "group": "E组",
+      "yellows": 3,
+      "reds": 2,
+      "fairPlayPoints": 9
+    },
+    {
+      "team": "FC武大杜伦",
+      "group": "E组",
+      "yellows": 4,
+      "reds": 2,
+      "fairPlayPoints": 10
+    },
+    {
+      "team": "弘毅学堂",
+      "group": "H组",
+      "yellows": 7,
+      "reds": 2,
+      "fairPlayPoints": 13
+    }
+  ],
+  "suspensions": [
+    {
+      "player": "温梓鑫",
+      "number": "47",
+      "team": "医学联队",
+      "reason": "累计两黄",
+      "matchId": "knockout_2026新生杯淘汰赛赛程_29",
+      "suspendedMatchId": "",
+      "suspendedMatch": "下一轮淘汰赛"
+    },
+    {
+      "player": "王熙尧",
+      "number": "4",
+      "team": "数学与统计学院队",
+      "reason": "累计两黄",
+      "matchId": "group_2026新生杯小组赛赛程_16",
+      "suspendedMatchId": "knockout_2026新生杯淘汰赛赛程_28",
+      "suspendedMatch": "国家网络安全学院 vs 数学与统计学院队"
+    },
+    {
+      "player": "毛甲旺",
+      "number": "17",
+      "team": "政法信化",
+      "reason": "累计两黄",
+      "matchId": "knockout_2026新生杯淘汰赛赛程_27",
+      "suspendedMatchId": "",
+      "suspendedMatch": "下一轮淘汰赛"
+    },
+    {
+      "player": "黄佳宇",
+      "number": "39",
+      "team": "弘毅学堂",
+      "reason": "直接红牌",
+      "matchId": "group_2026新生杯小组赛赛程_16",
+      "suspendedMatchId": "group_2026新生杯小组赛赛程_24",
+      "suspendedMatch": "弘毅学堂 vs 集成电路"
+    },
+    {
+      "player": "吴业祖",
+      "number": "7",
+      "team": "电子信息队",
+      "reason": "累计两黄",
+      "matchId": "knockout_2026新生杯淘汰赛赛程_30",
+      "suspendedMatchId": "",
+      "suspendedMatch": "下一轮淘汰赛"
+    },
+    {
+      "player": "李尚",
+      "number": "41",
+      "team": "城设新传联",
+      "reason": "直接红牌",
+      "matchId": "group_2026新生杯小组赛赛程_21",
+      "suspendedMatchId": "",
+      "suspendedMatch": "下一轮淘汰赛"
+    },
+    {
+      "player": "孙烺曦",
+      "number": "1",
+      "team": "城设新传联",
+      "reason": "直接红牌",
+      "matchId": "group_2026新生杯小组赛赛程_21",
+      "suspendedMatchId": "",
+      "suspendedMatch": "下一轮淘汰赛"
+    },
+    {
+      "player": "杨劲愈",
+      "number": "25",
+      "team": "FC武大杜伦",
+      "reason": "直接红牌",
+      "matchId": "knockout_2026新生杯淘汰赛赛程_27",
+      "suspendedMatchId": "knockout_2026新生杯淘汰赛赛程_34",
+      "suspendedMatch": "FC武大杜伦 vs 国家网络安全学院"
+    },
+    {
+      "player": "夏一寒",
+      "number": "4",
+      "team": "FC武大杜伦",
+      "reason": "直接红牌",
+      "matchId": "knockout_2026新生杯淘汰赛赛程_27",
+      "suspendedMatchId": "knockout_2026新生杯淘汰赛赛程_34",
+      "suspendedMatch": "FC武大杜伦 vs 国家网络安全学院"
+    },
+    {
+      "player": "陈子轩",
+      "number": "",
+      "team": "人工智能学院",
+      "reason": "两黄变一红",
+      "matchId": "knockout_2026新生杯淘汰赛赛程_35",
+      "suspendedMatchId": "knockout_2026新生杯淘汰赛赛程_38",
+      "suspendedMatch": "人工智能学院 vs 弘毅学堂"
+    },
+    {
+      "player": "陶醉",
+      "number": "",
+      "team": "弘毅学堂",
+      "reason": "两黄变一红",
+      "matchId": "knockout_2026新生杯淘汰赛赛程_36",
+      "suspendedMatchId": "knockout_2026新生杯淘汰赛赛程_38",
+      "suspendedMatch": "人工智能学院 vs 弘毅学堂"
+    },
+    {
+      "player": "柳宇轩",
+      "number": "",
+      "team": "弘毅学堂",
+      "reason": "累计两黄",
+      "matchId": "knockout_2026新生杯淘汰赛赛程_38",
+      "suspendedMatchId": "knockout_2026新生杯淘汰赛赛程_40",
+      "suspendedMatch": "动机联队 vs 弘毅学堂"
+    }
+  ]
+}

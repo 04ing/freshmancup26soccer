@@ -1,0 +1,34 @@
+{
+  "goals": [
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "6"
+    },
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "11"
+    },
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "28"
+    }
+  ],
+  "cards": [
+    {
+      "team": "医学联队",
+      "player": "温梓鑫",
+      "number": "47",
+      "type": "yellow",
+      "minute": "11"
+    }
+  ]
+}

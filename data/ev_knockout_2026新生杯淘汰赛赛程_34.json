@@ -1,0 +1,19 @@
+{
+  "goals": [
+    {
+      "team": "FC武大杜伦",
+      "player": "张泽恒",
+      "number": "9",
+      "type": "normal",
+      "minute": "27"
+    },
+    {
+      "team": "国家网络安全学院",
+      "player": "祝恒悦",
+      "number": "99",
+      "type": "normal",
+      "minute": "36"
+    }
+  ],
+  "cards": []
+}

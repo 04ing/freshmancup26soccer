@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026武汉大学新生杯足球赛</title>
+    <link rel="stylesheet" href="static/css/style.css?v=20261025e">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+/* 静态导出版：隐藏依赖服务器的录入/上传/AI 入口 */
+.entry-section, .upload-section, .ai-trigger, .ai-panel { display: none !important; }
+.team-edit { pointer-events: none; appearance: none; -webkit-appearance: none; border-color: transparent !important; background: transparent !important; }
+</style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">⚽</span>
+                <span class="logo-text">2026新生杯</span>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">首页</a>
+                <a href="schedule.html" class="nav-link">赛程</a>
+                <a href="standings.html" class="nav-link">积分榜</a>
+                <a href="scorers.html" class="nav-link">射手榜</a>
+                <a href="cards.html" class="nav-link">红黄牌</a>
+                <a href="rosters.html" class="nav-link">大名单</a>
+                <a href="reports.html" class="nav-link">战报</a>
+                <a href="referees.html" class="nav-link">裁判</a>
+            </nav>
+            <button class="ai-trigger" id="aiTrigger">
+                <span class="ai-icon">🤖</span>
+                <span>AI助手</span>
+            </button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">首页</a>
+        <a href="schedule.html" class="nav-link">赛程</a>
+        <a href="standings.html" class="nav-link">积分榜</a>
+        <a href="scorers.html" class="nav-link">射手榜</a>
+        <a href="cards.html" class="nav-link">红黄牌</a>
+        <a href="rosters.html" class="nav-link">大名单</a>
+        <a href="reports.html" class="nav-link">战报</a>
+        <a href="referees.html" class="nav-link">裁判</a>
+        <a href="/matches" class="nav-link">比赛管理</a>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <!-- Hero Banner -->
+        <section class="hero-banner">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <div class="hero-title">
+                    <span class="hero-year">2026</span>
+                    <h1>武汉大学新生杯足球赛</h1>
+                </div>
+                <p class="hero-subtitle">激情绿茵 · 梦想启航</p>
+
+                <!-- 数据集锦 · 赛季回顾（位于原 Hero 数据条位置） -->
+                <section class="section season-highlights hero-highlights">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <span class="title-icon">📈</span>
+                            数据集锦 · 赛季回顾
+                        </h2>
+                    </div>
+                    <p class="highlights-intro">
+                        历时近一个月、跨越 13 个比赛日的激烈角逐，2026 武汉大学新生杯足球赛在珞珈山下圆满落幕。
+                        <strong>动机联队</strong>在决赛中 3:0 力克弘毅学堂，捧起象征荣耀的冠军奖杯！除了冠军，赛场上的每一个数字都值得我们铭记。
+                        让我们用数据复盘这场属于 2026 级新生的足球盛宴。
+                    </p>
+
+                    <div class="highlight-stats">
+                        <div class="hstat"><span class="hstat-num">24</span><span class="hstat-label">参赛球队</span></div>
+                        <div class="hstat"><span class="hstat-num">365</span><span class="hstat-label">参赛新生</span></div>
+                        <div class="hstat"><span class="hstat-num">40</span><span class="hstat-label">比赛场次</span></div>
+                        <div class="hstat"><span class="hstat-num">149</span><span class="hstat-label">总进球</span></div>
+                        <div class="hstat"><span class="hstat-num">75</span><span class="hstat-label">进球球员</span></div>
+                        <div class="hstat"><span class="hstat-num">3.73</span><span class="hstat-label">场均进球</span></div>
+                    </div>
+
+                    <h3 class="highlights-subtitle">🏅 荣耀时刻</h3>
+                    <div class="highlight-cards">
+                        <div class="hcard hcard-champ">
+                            <div class="hcard-icon">🏆</div>
+                            <div class="hcard-body">
+                                <div class="hcard-tag">CHAMPION</div>
+                                <h4 class="hcard-title">冠军 · 动机联队</h4>
+                                <p class="hcard-desc">决赛 3:0 力克弘毅学堂捧杯；半决赛 4:1 淘汰国家网络安全学院，攻防两端尽显统治力，加冕 2026 新生杯之巅。</p>
+                            </div>
+                        </div>
+                        <div class="hcard">
+                            <div class="hcard-icon">⚽</div>
+                            <div class="hcard-body">
+                                <div class="hcard-tag">GOLDEN BOOT</div>
+                                <h4 class="hcard-title">金靴 · 马致远</h4>
+                                <p class="hcard-desc">医学联队 9 号，本届轰入 14 球冠绝群雄，以一己之力撑起全队进攻，是赛场上最锋利的那把尖刀。</p>
+                            </div>
+                        </div>
+                        <div class="hcard">
+                            <div class="hcard-icon">🔥</div>
+                            <div class="hcard-body">
+                                <div class="hcard-tag">TOP SCORING TEAM</div>
+                                <h4 class="hcard-title">火力王 · 医学联队</h4>
+                                <p class="hcard-desc">全队 21 粒进球居各队之首，攻势如潮却止步八强，留下惊艳与遗憾交织的青春注脚。</p>
+                            </div>
+                        </div>
+                        <div class="hcard">
+                            <div class="hcard-icon">🟥</div>
+                            <div class="hcard-body">
+                                <div class="hcard-tag">DISCIPLINE</div>
+                                <h4 class="hcard-title">红黄牌 · 60+5</h4>
+                                <p class="hcard-desc">40 场比赛共 60 张黄牌、5 张直红，另有 2 次两黄变一红，场均黄牌 1.5 张，对抗的火药味写满绿茵。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="highlights-subtitle">📊 数据之最</h3>
+                    <div class="highlights-facts">
+                        <div class="fact">
+                            <span class="fact-k">⚡ 最快进球</span>
+                            <span class="fact-v">梁珂旭（水利水电学院）开场第 13 秒接队友直塞单刀破门，创下本届最快进球纪录。</span>
+                        </div>
+                        <div class="fact">
+                            <span class="fact-k">🎯 射手榜前列</span>
+                            <span class="fact-v">马致远 14 · 吴明达 7 · 陈本华 6 · 习昕泽 5 · 贵晨皓 5（同分依次比较点球数）。</span>
+                        </div>
+                        <div class="fact">
+                            <span class="fact-k">👟 团队火力榜</span>
+                            <span class="fact-v">医学联队 21 · 动机联队 16 · 人工智能学院 12 · 水利水电学院 12 · 国家网络安全学院 11。</span>
+                        </div>
+                        <div class="fact">
+                            <span class="fact-k">🤝 裁判执裁</span>
+                            <span class="fact-v">武大足协裁判部选派 36 名裁判员，公正执裁了本届全部 40 场比赛。</span>
+                        </div>
+                    </div>
+
+                    <p class="highlights-outro">
+                        硝烟散尽，情谊永存。感谢每一位在场上拼搏的运动员、在场边呐喊的观众、公正执法的裁判员，以及默默付出的工作人员。
+                        珞珈山的足球故事永不落幕——我们明年再见！
+                    </p>
+                </section>
+            </div>
+            <div class="hero-decoration">
+                <div class="ball ball-1">⚽</div>
+                <div class="ball ball-2">⚽</div>
+                <div class="ball ball-3">⚽</div>
+            </div>
+        </section>
+
+        <!-- 焦点战报 -->
+        <section class="section featured-reports">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-icon">📰</span>
+                    焦点战报
+                </h2>
+                <a href="reports.html" class="section-link">全部战报 →</a>
+            </div>
+            <div class="reports-grid" id="featuredReports">
+                <!-- 动态加载 -->
+            </div>
+        </section>
+
+        <!-- 双榜单区域 -->
+        <section class="section dual-boards">
+            <div class="board-container">
+                <!-- 积分榜 -->
+                <div class="board standings-board">
+                    <div class="board-header">
+                        <h3 class="board-title">
+                            <span class="board-icon">📊</span>
+                            积分榜
+                        </h3>
+                    </div>
+                    <div class="board-content" id="standingsPreview">
+                        <!-- 动态加载 -->
+                    </div>
+                    <a href="standings.html" class="board-link">查看完整积分榜 →</a>
+                </div>
+
+                <!-- 射手榜 -->
+                <div class="board scorers-board">
+                    <div class="board-header">
+                        <h3 class="board-title">
+                            <span class="board-icon">🎯</span>
+                            射手榜 TOP 5
+                        </h3>
+                    </div>
+                    <div class="board-content" id="scorersPreview">
+                        <!-- 动态加载 -->
+                    </div>
+                    <a href="scorers.html" class="board-link">查看完整射手榜 →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 最新赛果 -->
+        <section class="section latest-results">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-icon">🏆</span>
+                    最新赛果
+                </h2>
+                <a href="schedule.html" class="section-link">查看全部赛程 →</a>
+            </div>
+            <div class="results-slider" id="resultsSlider">
+                <div class="results-track" id="resultsTrack">
+                    <!-- 动态加载 -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-info">
+                <p>2026武汉大学新生杯足球赛官方网站</p>
+                <p>武汉大学足球协会 · 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI助手面板 -->
+    <div class="ai-panel" id="aiPanel">
+        <div class="ai-panel-header">
+            <span class="ai-panel-title">🤖 AI赛事助手</span>
+            <button class="ai-close" id="aiClose">✕</button>
+        </div>
+        <div class="ai-panel-body">
+            <div class="ai-messages" id="aiMessages">
+                <div class="ai-message ai-system">
+                    <p>👋 我是2026新生杯智能助手！您可以问我：</p>
+                    <ul class="quick-questions">
+                        <li onclick="askAI('谁是本届射手榜第一名？')">🎯 谁是射手榜第一名？</li>
+                        <li onclick="askAI('本届比赛有多少支球队参赛？')">⚽ 有多少支球队参赛？</li>
+                        <li onclick="askAI('决赛比分是多少？')">📊 决赛比分是多少？</li>
+                        <li onclick="askAI('动机联队的大名单有哪些球员？')">📋 动机联队大名单</li>
+                        <li onclick="askAI('A组有哪些球队？')">👕 A组参赛球队</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ai-input-area">
+                <input type="text" class="ai-input" id="aiInput" placeholder="输入您的问题...">
+                <button class="ai-send" id="aiSend">发送</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/js/api-shim.js"></script>
+    <script src="static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "goals": [
+    {
+      "team": "国家网络安全学院",
+      "player": "王梓仁",
+      "number": "12",
+      "type": "normal",
+      "minute": "12"
+    },
+    {
+      "team": "国家网络安全学院",
+      "player": "王昊然",
+      "number": "21",
+      "type": "normal",
+      "minute": "4"
+    },
+    {
+      "team": "人工智能学院",
+      "player": "吴明达",
+      "number": "6",
+      "type": "normal",
+      "minute": "9"
+    },
+    {
+      "team": "人工智能学院",
+      "player": "杨力诚",
+      "number": "77",
+      "type": "normal",
+      "minute": "17"
+    }
+  ],
+  "cards": []
+}

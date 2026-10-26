@@ -1,0 +1,40 @@
+{
+  "goals": [
+    {
+      "team": "动机联队",
+      "player": "陈本华",
+      "number": "7",
+      "type": "normal",
+      "minute": "3"
+    },
+    {
+      "team": "动机联队",
+      "player": "李明远",
+      "number": "9",
+      "type": "normal",
+      "minute": "14"
+    },
+    {
+      "team": "动机联队",
+      "player": "习昕泽",
+      "number": "10",
+      "type": "normal",
+      "minute": "25"
+    },
+    {
+      "team": "动机联队",
+      "player": "习昕泽",
+      "number": "10",
+      "type": "normal",
+      "minute": "57"
+    },
+    {
+      "team": "国家网络安全学院",
+      "player": "花成璋",
+      "number": "22",
+      "type": "penalty",
+      "minute": "21"
+    }
+  ],
+  "cards": []
+}

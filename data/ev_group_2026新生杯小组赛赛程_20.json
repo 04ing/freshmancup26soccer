@@ -1,0 +1,33 @@
+{
+  "goals": [
+    {
+      "team": "水利水电学院",
+      "player": "巴合别尔德",
+      "number": "3",
+      "type": "normal",
+      "minute": "4"
+    },
+    {
+      "team": "水利水电学院",
+      "player": "关若飞",
+      "number": "11",
+      "type": "normal",
+      "minute": "7"
+    },
+    {
+      "team": "水利水电学院",
+      "player": "韦宏博",
+      "number": "9",
+      "type": "normal",
+      "minute": "22"
+    },
+    {
+      "team": "土木建筑工程学院",
+      "player": "桑钦杰",
+      "number": "17",
+      "type": "normal",
+      "minute": "33"
+    }
+  ],
+  "cards": []
+}

@@ -1,0 +1,75 @@
+{
+  "goals": [
+    {
+      "team": "水利水电学院",
+      "player": "梁珂旭",
+      "number": "16",
+      "type": "normal",
+      "minute": "1"
+    },
+    {
+      "team": "水利水电学院",
+      "player": "叶德力",
+      "number": "10",
+      "type": "normal",
+      "minute": "9"
+    },
+    {
+      "team": "水利水电学院",
+      "player": "韦宏博",
+      "number": "9",
+      "type": "normal",
+      "minute": "12"
+    },
+    {
+      "team": "水利水电学院",
+      "player": "阿卜杜拜斯尔",
+      "number": "19",
+      "type": "normal",
+      "minute": "25"
+    },
+    {
+      "team": "水利水电学院",
+      "player": "阿卜杜拜斯尔",
+      "number": "19",
+      "type": "penalty",
+      "minute": "30"
+    },
+    {
+      "team": "水利水电学院",
+      "player": "巴合别尔德",
+      "number": "3",
+      "type": "normal",
+      "minute": "35"
+    },
+    {
+      "team": "口腔医学院",
+      "player": "Steven（尼日利亚）",
+      "number": "47",
+      "type": "normal",
+      "minute": "44"
+    },
+    {
+      "team": "水利水电学院",
+      "player": "阿斯哈提",
+      "number": "41",
+      "type": "normal",
+      "minute": "56"
+    },
+    {
+      "team": "口腔医学院",
+      "player": "蔡天昕",
+      "number": "67",
+      "type": "normal",
+      "minute": "58"
+    },
+    {
+      "team": "口腔医学院",
+      "player": "蔡天昕",
+      "number": "67",
+      "type": "normal",
+      "minute": "60"
+    }
+  ],
+  "cards": []
+}

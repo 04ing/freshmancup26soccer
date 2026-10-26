@@ -1,0 +1,57 @@
+{
+  "goals": [
+    {
+      "team": "经管新生队",
+      "player": "李少康",
+      "number": "7",
+      "type": "normal",
+      "minute": "28"
+    },
+    {
+      "team": "经管新生队",
+      "player": "何承致",
+      "number": "17",
+      "type": "normal",
+      "minute": "22"
+    },
+    {
+      "team": "经管新生队",
+      "player": "何承致",
+      "number": "17",
+      "type": "own",
+      "minute": "60"
+    },
+    {
+      "team": "土木建筑工程学院",
+      "player": "马一斌",
+      "number": "8",
+      "type": "normal",
+      "minute": "56"
+    },
+    {
+      "team": "土木建筑工程学院",
+      "player": "桑钦杰",
+      "number": "17",
+      "type": "normal",
+      "minute": "30"
+    }
+  ],
+  "cards": [
+    {
+      "role": "player",
+      "team": "经管新生队",
+      "player": "李少康",
+      "number": "7",
+      "type": "yellow",
+      "minute": "20"
+    },
+    {
+      "role": "coach",
+      "team": "经管新生队",
+      "player": "郑玺斌",
+      "number": "",
+      "type": "yellow",
+      "minute": "44"
+    }
+  ]
+}

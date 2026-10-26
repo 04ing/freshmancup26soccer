@@ -1,0 +1,26 @@
+{
+  "goals": [
+    {
+      "team": "动机联队",
+      "player": "陈本华",
+      "number": "7",
+      "type": "normal",
+      "minute": "16"
+    },
+    {
+      "team": "动机联队",
+      "player": "习昕泽",
+      "number": "10",
+      "type": "normal",
+      "minute": "56"
+    },
+    {
+      "team": "动机联队",
+      "player": "陈本华",
+      "number": "7",
+      "type": "normal",
+      "minute": "60+1"
+    }
+  ],
+  "cards": []
+}

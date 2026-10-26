@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>积分榜 - 2026新生杯</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+/* 静态导出版：隐藏依赖服务器的录入/上传/AI 入口 */
+.entry-section, .upload-section, .ai-trigger, .ai-panel { display: none !important; }
+.team-edit { pointer-events: none; appearance: none; -webkit-appearance: none; border-color: transparent !important; background: transparent !important; }
+</style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo"><span class="logo-icon">⚽</span><span class="logo-text">2026新生杯</span></div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="schedule.html" class="nav-link">赛程</a>
+                <a href="standings.html" class="nav-link active">积分榜</a>
+                <a href="scorers.html" class="nav-link">射手榜</a>
+                <a href="cards.html" class="nav-link">红黄牌</a>
+                <a href="rosters.html" class="nav-link">大名单</a>
+                <a href="reports.html" class="nav-link">战报</a>
+                <a href="referees.html" class="nav-link">裁判</a>
+            </nav>
+            <button class="ai-trigger" id="aiTrigger"><span class="ai-icon">AI</span><span>助手</span></button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">首页</a>
+        <a href="schedule.html" class="nav-link">赛程</a>
+        <a href="/matches" class="nav-link">比赛管理</a>
+        <a href="standings.html" class="nav-link">积分榜</a>
+        <a href="scorers.html" class="nav-link">射手榜</a>
+        <a href="cards.html" class="nav-link">红黄牌</a>
+        <a href="rosters.html" class="nav-link">大名单</a>
+        <a href="reports.html" class="nav-link">战报</a>
+        <a href="referees.html" class="nav-link">裁判</a>
+    </nav>
+    
+    <main class="main-content">
+        <section class="page-header">
+            <h1 class="page-title">积分榜</h1>
+            <p class="page-desc">各组实时排名与出线形势</p>
+            <div class="page-actions">
+                <button class="btn-export" onclick="exportStandings()">📊 导出 Excel</button>
+            </div>
+        </section>
+
+        <section class="section standings-page">
+            <div class="standings-groups" id="standingsGroups">
+                <div class="loading"><div class="loading-spinner"></div><p>正在加载积分榜数据...</p></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer"><div class="footer-inner"><p>2026武汉大学新生杯足球赛</p></div></footer>
+
+    <div class="ai-panel" id="aiPanel">
+        <div class="ai-panel-header"><span class="ai-panel-title">AI助手</span><button class="ai-close" id="aiClose">X</button></div>
+        <div class="ai-panel-body">
+            <div class="ai-messages" id="aiMessages"><div class="ai-message ai-system"><p>我是新生杯智能助手，可以回答积分榜相关问题！</p></div></div>
+            <div class="ai-input-area"><input type="text" class="ai-input" id="aiInput"><button class="ai-send" id="aiSend">发送</button></div>
+        </div>
+    </div>
+
+    <script src="static/js/vendor/xlsx.full.min.js"></script>
+    <script src="static/js/export.js"></script>
+    <script src="static/js/api-shim.js"></script>
+    <script src="static/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            initAIAssistant();
+            await loadLiveStandings();
+        });
+
+        // 导出积分榜：每组一段，汇总到一张表
+        function exportStandings() {
+            const aoa = [['小组', '排名', '球队', '场次', '胜', '平', '负', '进球', '失球', '净胜球', '积分']];
+            document.querySelectorAll('.standings-group').forEach(function (groupEl) {
+                const titleEl = groupEl.querySelector('.group-title');
+                const group = titleEl ? titleEl.textContent.trim() : '';
+                groupEl.querySelectorAll('.standings-table tbody tr').forEach(function (tr) {
+                    const cells = Array.prototype.map.call(tr.children, function (td) {
+                        return td.textContent.replace(/\s+/g, ' ').trim();
+                    });
+                    if (cells.length) aoa.push([group].concat(cells));
+                });
+            });
+            if (aoa.length <= 1) {
+                alert('暂无可导出的积分榜数据');
+                return;
+            }
+            WCExcel.exportAoa('2026新生杯-积分榜.xlsx', '积分榜', aoa, [10, 6, 22, 8, 6, 6, 6, 8, 8, 10, 8]);
+        }
+
+        async function loadLiveStandings() {
+            const container = document.getElementById('standingsGroups');
+            try {
+                const response = await fetch('/api/standings/live?_=' + Date.now(), { cache: 'no-cache' });
+                const data = await response.json();
+
+                if (!data.groups || Object.keys(data.groups).length === 0) {
+                    container.innerHTML = '<p style="text-align:center;color:#4a4a5a;padding:40px;">暂无比赛数据，比赛开始后将自动更新积分</p>';
+                    return;
+                }
+
+                container.innerHTML = Object.entries(data.groups).map(([group, teams]) => {
+                    return `
+                        <div class="standings-group">
+                            <h3 class="group-title">${group}</h3>
+                            <table class="standings-table">
+                                <thead>
+                                    <tr>
+                                        <th>排名</th>
+                                        <th class="team-col">球队</th>
+                                        <th>场次</th>
+                                        <th>胜</th>
+                                        <th>平</th>
+                                        <th>负</th>
+                                        <th>进球</th>
+                                        <th>失球</th>
+                                        <th>净胜球</th>
+                                        <th class="points-col">积分</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${teams.map((t, i) => `
+                                        <tr class="${i === 0 ? 'rank-1' : (i === 1 ? 'rank-2' : '')}">
+                                            <td>${i + 1}</td>
+                                            <td class="team-col">${t.team}</td>
+                                            <td>${t.played}</td>
+                                            <td>${t.won}</td>
+                                            <td>${t.drawn}</td>
+                                            <td>${t.lost}</td>
+                                            <td>${t.gf}</td>
+                                            <td>${t.ga}</td>
+                                            <td>${t.gd > 0 ? '+' : ''}${t.gd}</td>
+                                            <td class="points-col">${t.points}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                }).join('');
+
+                if (data.matchCount > 0) {
+                    container.innerHTML += `<p style="text-align:center;color:#888;font-size:13px;margin-top:16px;">基于已上传的 ${data.matchCount} 场战报自动计算</p>`;
+                }
+            } catch(e) {
+                console.error('加载积分榜失败:', e);
+                container.innerHTML = '<p style="text-align:center;color:#4a4a5a;padding:40px;">加载失败，请刷新页面</p>';
+            }
+        }
+    </script>
+
+    <style>
+        .page-header { padding: 40px 24px; background: linear-gradient(135deg, #0f5d27 0%, #1a8a3a 100%); text-align: center; }
+        .page-title { font-size: 32px; color: #fff; margin-bottom: 8px; }
+        .page-desc { color: rgba(255,255,255,0.8); }
+        .standings-page { max-width: 1000px; margin: 0 auto; }
+        .standings-group { margin-bottom: 24px; }
+        .group-title { font-size: 20px; color: #1a8a3a; padding: 12px 16px; background: rgba(26,138,58,0.1); border-radius: 8px; margin-bottom: 12px; }
+        .standings-table { width: 100%; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .standings-table th, .standings-table td { padding: 12px 8px; text-align: center; }
+        .standings-table th { background: #f0f2f5; color: #4a4a5a; font-weight: 600; }
+        .standings-table .team-col { text-align: left; font-weight: 600; }
+        .standings-table .points-col { font-weight: 900; font-family: monospace; color: #1a8a3a; }
+        .rank-1 { background: rgba(255,215,0,0.15); }
+        .rank-2 { background: rgba(192,192,192,0.15); }
+        .loading { text-align: center; padding: 40px; }
+    </style>
+</body>
+</html>

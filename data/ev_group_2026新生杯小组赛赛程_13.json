@@ -1,0 +1,21 @@
+{
+  "goals": [
+    {
+      "team": "FC武大杜伦",
+      "player": "刘乐宸",
+      "number": "7",
+      "type": "normal",
+      "minute": "21"
+    }
+  ],
+  "cards": [
+    {
+      "role": "manager",
+      "team": "FC武大杜伦",
+      "player": "崔培智",
+      "number": "",
+      "type": "yellow",
+      "minute": "50"
+    }
+  ]
+}

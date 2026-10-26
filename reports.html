@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>战报中心 - 2026新生杯</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+/* 静态导出版：隐藏依赖服务器的录入/上传/AI 入口 */
+.entry-section, .upload-section, .ai-trigger, .ai-panel { display: none !important; }
+.team-edit { pointer-events: none; appearance: none; -webkit-appearance: none; border-color: transparent !important; background: transparent !important; }
+</style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo"><span class="logo-icon">⚽</span><span class="logo-text">2026新生杯</span></div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="schedule.html" class="nav-link">赛程</a>
+                <a href="standings.html" class="nav-link">积分榜</a>
+                <a href="scorers.html" class="nav-link">射手榜</a>
+                <a href="cards.html" class="nav-link">红黄牌</a>
+                <a href="rosters.html" class="nav-link">大名单</a>
+                <a href="reports.html" class="nav-link active">战报</a>
+                <a href="referees.html" class="nav-link">裁判</a>
+            </nav>
+            <button class="ai-trigger" id="aiTrigger"><span class="ai-icon">🤖</span><span>AI助手</span></button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">首页</a>
+        <a href="schedule.html" class="nav-link">赛程</a>
+        <a href="standings.html" class="nav-link">积分榜</a>
+        <a href="scorers.html" class="nav-link">射手榜</a>
+        <a href="cards.html" class="nav-link">红黄牌</a>
+        <a href="rosters.html" class="nav-link">大名单</a>
+        <a href="reports.html" class="nav-link">战报</a>
+        <a href="referees.html" class="nav-link">裁判</a>
+    </nav>
+
+    <main class="main-content">
+        <section class="page-header">
+            <h1 class="page-title">📰 战报中心</h1>
+            <p class="page-desc">上传战报文件 · 自动解析内容</p>
+            <div class="page-actions"><button class="btn-export" onclick="exportReports()">📊 导出 Excel</button></div>
+        </section>
+
+        <section class="section reports-page">
+            <!-- 上传区域 -->
+            <div class="upload-section">
+                <div class="upload-card">
+                    <h3 class="upload-title">📤 上传战报</h3>
+                    <p class="upload-desc">支持 .docx 和 .pdf 文件，上传后将自动解析内容</p>
+                    <form id="uploadForm" class="upload-form">
+                        <div class="upload-fields">
+                            <div class="form-group">
+                                <label>战报标题</label>
+                                <input type="text" id="reportTitle" placeholder="请输入战报标题（可选）">
+                            </div>
+                            <div class="form-group">
+                                <label>关联比赛</label>
+                                <select id="reportMatch" onchange="onReportMatchChange()">
+                                    <option value="">不关联比赛</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="koTeamGroup" style="display:none;">
+                                <label>填入实际球队（淘汰赛）</label>
+                                <div class="ko-team-row">
+                                    <select id="koHomeTeam" onchange="onReportTeamSet('home', this.value)"></select>
+                                    <span class="ko-vs">vs</span>
+                                    <select id="koAwayTeam" onchange="onReportTeamSet('away', this.value)"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="upload-area" id="uploadArea">
+                            <input type="file" id="fileInput" accept=".docx,.pdf" style="display:none">
+                            <div class="upload-placeholder">
+                                <div class="upload-icon">📁</div>
+                                <p>点击或拖拽文件到此处上传</p>
+                                <p class="upload-hint">支持 .docx / .pdf 格式</p>
+                            </div>
+                            <div class="upload-progress" id="uploadProgress" style="display:none">
+                                <div class="progress-spinner"></div>
+                                <p id="progressText">正在解析文件...</p>
+                            </div>
+                        </div>
+                        <button type="submit" class="upload-btn" id="uploadBtn" disabled>上传并解析</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 战报列表 -->
+            <div class="reports-list" id="reportsList">
+                <p style="text-align:center;color:#999;padding:40px;">暂无战报，请上传战报文件</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer"><div class="footer-inner"><p>2026武汉大学新生杯足球赛</p></div></footer>
+
+    <div class="ai-panel" id="aiPanel">
+        <div class="ai-panel-header"><span class="ai-panel-title">🤖 AI助手</span><button class="ai-close" id="aiClose">✕</button></div>
+        <div class="ai-panel-body">
+            <div class="ai-messages" id="aiMessages"><div class="ai-message ai-system"><p>👋 可以问我任何赛事相关问题！</p></div></div>
+            <div class="ai-input-area"><input type="text" class="ai-input" id="aiInput"><button class="ai-send" id="aiSend">发送</button></div>
+        </div>
+    </div>
+
+    <!-- 战报详情弹窗 -->
+    <div class="modal" id="reportModal" style="display:none">
+        <div class="modal-overlay" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">战报详情</h2>
+                <button class="modal-close" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="static/js/vendor/xlsx.full.min.js"></script>
+    <script src="static/js/export.js"></script>
+    <script src="static/js/api-shim.js"></script>
+    <script src="static/js/main.js"></script>
+    <script>
+        let allReports = [];
+        let allMatches = [];
+        let allRosters = {};
+        let allEvents = {};
+        let selectedFile = null;
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            initAIAssistant();
+            await loadMatches();
+            await Promise.all([loadReports(), loadEvents()]);
+            initUpload();
+        });
+
+        async function loadMatches() {
+            try {
+                const [res, rostersRes] = await Promise.all([
+                    fetch('/api/matches/all?_=' + Date.now(), { cache: 'no-cache' }),
+                    fetch('/api/rosters?_=' + Date.now(), { cache: 'no-cache' })
+                ]);
+                allMatches = await res.json();
+                allRosters = await rostersRes.json();
+                const select = document.getElementById('reportMatch');
+                allMatches.forEach(m => {
+                    const opt = document.createElement('option');
+                    opt.value = m.id;
+                    opt.textContent = `${m.matchNo}. ${m.home} vs ${m.away} (${m.date || m.group})`;
+                    select.appendChild(opt);
+                });
+            } catch(e) { console.error(e); }
+        }
+
+        function isKnownTeam(t) {
+            return !!t && Object.prototype.hasOwnProperty.call(allRosters, t);
+        }
+
+        function koTeamOptions(selected) {
+            return '<option value="">待定</option>' +
+                Object.keys(allRosters).sort().map(t =>
+                    `<option value="${escapeHtml(t)}" ${t === selected ? 'selected' : ''}>${escapeHtml(t)}</option>`
+                ).join('');
+        }
+
+        function onReportMatchChange() {
+            const matchId = document.getElementById('reportMatch').value;
+            const m = allMatches.find(x => x.id === matchId);
+            const group = document.getElementById('koTeamGroup');
+            if (!m || m.type !== 'knockout') {
+                group.style.display = 'none';
+                return;
+            }
+            group.style.display = 'block';
+            document.getElementById('koHomeTeam').innerHTML = koTeamOptions(isKnownTeam(m.home) ? m.home : '');
+            document.getElementById('koAwayTeam').innerHTML = koTeamOptions(isKnownTeam(m.away) ? m.away : '');
+        }
+
+        async function onReportTeamSet(side, value) {
+            const matchId = document.getElementById('reportMatch').value;
+            const m = allMatches.find(x => x.id === matchId);
+            if (!m) return;
+            let homeVal = isKnownTeam(m.home) ? m.home : '';
+            let awayVal = isKnownTeam(m.away) ? m.away : '';
+            if (side === 'home') homeVal = value; else awayVal = value;
+            try {
+                await apiFetch('/api/knockout-teams', {
+                    method: 'POST',
+                    body: JSON.stringify({ matchId: matchId, home: homeVal, away: awayVal })
+                });
+            } catch(e) { console.error('保存球队失败:', e); }
+            m.home = homeVal || m.defaultHome || '';
+            m.away = awayVal || m.defaultAway || '';
+            document.getElementById('koHomeTeam').innerHTML = koTeamOptions(isKnownTeam(m.home) ? m.home : '');
+            document.getElementById('koAwayTeam').innerHTML = koTeamOptions(isKnownTeam(m.away) ? m.away : '');
+            // 更新下拉框中该比赛的名称显示
+            const opt = document.querySelector(`#reportMatch option[value="${matchId}"]`);
+            if (opt) opt.textContent = `${m.matchNo}. ${m.home} vs ${m.away} (${m.date || m.group})`;
+        }
+
+        async function loadReports() {
+            try {
+                const res = await fetch('/api/reports?_=' + Date.now(), { cache: 'no-cache' });
+                allReports = await res.json();
+                renderReports();
+            } catch(e) { console.error(e); }
+        }
+
+        async function loadEvents() {
+            try {
+                const res = await fetch('/api/match-events?_=' + Date.now(), { cache: 'no-cache' });
+                allEvents = await res.json();
+            } catch(e) { console.error(e); }
+        }
+
+        function renderReports() {
+            const container = document.getElementById('reportsList');
+            if (allReports.length === 0) {
+                container.innerHTML = '<p style="text-align:center;color:#999;padding:40px;">暂无战报，请上传战报文件</p>';
+                return;
+            }
+            container.innerHTML = allReports.map(r => {
+                const match = allMatches.find(m => m.id === r.matchId);
+                const ev = (r.matchId && allEvents[r.matchId]) || { goals: [], cards: [] };
+
+                // 统计各队进球和红黄牌
+                const home = match ? match.home : '';
+                const away = match ? match.away : '';
+                const homeGoals = (ev.goals || []).filter(g => g.team === home && g.type !== 'own');
+                const awayGoals = (ev.goals || []).filter(g => g.team === away && g.type !== 'own');
+                const homeYellows = (ev.cards || []).filter(c => c.team === home && c.type === 'yellow');
+                const awayYellows = (ev.cards || []).filter(c => c.team === away && c.type === 'yellow');
+                const homeReds = (ev.cards || []).filter(c => c.team === home && (c.type === 'red' || c.type === 'two_yellow'));
+                const awayReds = (ev.cards || []).filter(c => c.team === away && (c.type === 'red' || c.type === 'two_yellow'));
+
+                // 比分：优先战报比分
+                let homeScore = r.homeScore !== undefined ? r.homeScore : '--';
+                let awayScore = r.awayScore !== undefined ? r.awayScore : '--';
+
+                const eventIcons = (goals, yellows, reds) => {
+                    let s = '';
+                    if (goals.length) s += `<span class="ev-goal" title="进球">⚽${goals.length}</span>`;
+                    if (yellows.length) s += `<span class="ev-yellow" title="黄牌">🟨${yellows.length}</span>`;
+                    if (reds.length) s += `<span class="ev-red" title="红牌">🟥${reds.length}</span>`;
+                    return s;
+                };
+
+                // 渲染某队的详细事件列表（乌龙球显示在对方球队下方）
+                // 进球按时间先后排列，红黄牌显示在所有进球下方
+                const renderTeamEvents = (teamName, opponentName) => {
+                    const tGoals = (ev.goals || []).filter(g => g.team === teamName);
+                    const oppGoals = (ev.goals || []).filter(g => g.team === opponentName);
+                    const tCards = (ev.cards || []).filter(c => c.team === teamName);
+
+                    // 收集所有进球（本方普通/点球 + 对方乌龙），按分钟排序
+                    const allGoals = [
+                        ...tGoals.filter(g => !g.type || g.type === 'normal').map(g => ({...g, _kind: 'goal'})),
+                        ...tGoals.filter(g => g.type === 'penalty').map(g => ({...g, _kind: 'penalty'})),
+                        ...oppGoals.filter(g => g.type === 'own').map(g => ({...g, _kind: 'own'}))
+                    ];
+                    allGoals.sort((a, b) => parseInt(a.minute || 0, 10) - parseInt(b.minute || 0, 10));
+
+                    // 红黄牌按分钟排序
+                    const allCards = [...tCards];
+                    allCards.sort((a, b) => parseInt(a.minute || 0, 10) - parseInt(b.minute || 0, 10));
+
+                    const items = [];
+                    allGoals.forEach(g => {
+                        if (g._kind === 'goal') {
+                            items.push(`<span class="ev-item">⚽ ${escapeHtml(g.player || '')} ${g.minute ? '('+g.minute+"')" : ''}</span>`);
+                        } else if (g._kind === 'penalty') {
+                            items.push(`<span class="ev-item">⚽<em class="ev-tag">点</em> ${escapeHtml(g.player || '')} ${g.minute ? '('+g.minute+"')" : ''}</span>`);
+                        } else {
+                            items.push(`<span class="ev-item">⚽<em class="ev-tag">乌龙</em> ${escapeHtml(g.player || '')} ${g.minute ? '('+g.minute+"')" : ''}</span>`);
+                        }
+                    });
+                    allCards.forEach(c => {
+                        if (c.type === 'yellow') {
+                            items.push(`<span class="ev-item">🟨 ${escapeHtml(c.player || '')} ${c.minute ? '('+c.minute+"')" : ''}</span>`);
+                        } else if (c.type === 'two_yellow') {
+                            items.push(`<span class="ev-item">🟨🟥两黄变一红 ${escapeHtml(c.player || '')} ${c.minute ? '('+c.minute+"')" : ''}</span>`);
+                        } else {
+                            items.push(`<span class="ev-item">🟥 ${escapeHtml(c.player || '')} ${c.minute ? '('+c.minute+"')" : ''}</span>`);
+                        }
+                    });
+                    return items.join('');
+                };
+
+                return `
+                <div class="report-item" onclick="window.location.href='${r.id}.html'">
+                    <div class="report-date">${formatDate(r.uploadedAt)}</div>
+                    <div class="report-content">
+                        <h4 class="report-title">${escapeHtml(r.title)}</h4>
+                        ${match ? `
+                        <div class="report-match-summary">
+                            <div class="summary-team">
+                                <span class="team-name">${escapeHtml(home)}</span>
+                                <div class="team-events">${eventIcons(homeGoals, homeYellows, homeReds)}</div>
+                            </div>
+                            <div class="summary-score">${homeScore} - ${awayScore}</div>
+                            <div class="summary-team">
+                                <span class="team-name">${escapeHtml(away)}</span>
+                                <div class="team-events">${eventIcons(awayGoals, awayYellows, awayReds)}</div>
+                            </div>
+                        </div>
+                        ${(ev.goals && ev.goals.length) || (ev.cards && ev.cards.length) ? `
+                        <div class="match-events-detail">
+                            <div class="events-col">${renderTeamEvents(home, away)}</div>
+                            <div class="events-col events-right">${renderTeamEvents(away, home)}</div>
+                        </div>
+                        ` : ''}
+                        ` : `<p class="report-summary">${escapeHtml(r.content.substring(0, 100))}...</p>`}
+                        <span class="report-meta">${formatDate(r.uploadedAt)}</span>
+                    </div>
+                    <button class="report-delete" onclick="event.stopPropagation(); deleteReport('${r.id}')">删除</button>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function formatDate(iso) {
+            if (!iso) return '';
+            const d = new Date(iso);
+            return `${d.getMonth()+1}/${d.getDate()}`;
+        }
+
+        function escapeHtml(s) {
+            const div = document.createElement('div');
+            div.textContent = s;
+            return div.innerHTML;
+        }
+
+        function initUpload() {
+            const area = document.getElementById('uploadArea');
+            const input = document.getElementById('fileInput');
+            const btn = document.getElementById('uploadBtn');
+            const form = document.getElementById('uploadForm');
+
+            area.addEventListener('click', () => input.click());
+            area.addEventListener('dragover', e => { e.preventDefault(); area.classList.add('dragover'); });
+            area.addEventListener('dragleave', () => area.classList.remove('dragover'));
+            area.addEventListener('drop', e => {
+                e.preventDefault();
+                area.classList.remove('dragover');
+                if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+            });
+            input.addEventListener('change', e => {
+                if (e.target.files.length) handleFile(e.target.files[0]);
+            });
+
+            function handleFile(file) {
+                const ext = file.name.split('.').pop().toLowerCase();
+                if (!['docx', 'pdf'].includes(ext)) {
+                    alert('仅支持 docx 和 pdf 文件');
+                    return;
+                }
+                selectedFile = file;
+                area.querySelector('.upload-placeholder').innerHTML = `
+                    <div class="upload-icon">📄</div>
+                    <p><strong>${escapeHtml(file.name)}</strong></p>
+                    <p class="upload-hint">${(file.size/1024).toFixed(1)} KB · 点击重新选择</p>
+                `;
+                btn.disabled = false;
+            }
+
+            form.addEventListener('submit', async e => {
+                e.preventDefault();
+                if (!selectedFile) return;
+
+                const formData = new FormData();
+                formData.append('file', selectedFile);
+                formData.append('title', document.getElementById('reportTitle').value);
+                formData.append('matchId', document.getElementById('reportMatch').value);
+
+                btn.disabled = true;
+                document.getElementById('uploadProgress').style.display = 'block';
+                area.querySelector('.upload-placeholder').style.display = 'none';
+
+                try {
+                    const res = await apiFetch('/api/reports/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const contentType = res.headers.get('content-type') || '';
+                    if (!contentType.includes('application/json')) {
+                        const text = await res.text();
+                        throw new Error('服务器返回了非JSON响应（可能服务器内部错误）');
+                    }
+                    const data = await res.json();
+                    if (data.success) {
+                        alert('上传成功！');
+                        document.getElementById('uploadForm').reset();
+                        selectedFile = null;
+                        area.querySelector('.upload-placeholder').style.display = 'block';
+                        area.querySelector('.upload-placeholder').innerHTML = `
+                            <div class="upload-icon">📁</div>
+                            <p>点击或拖拽文件到此处上传</p>
+                            <p class="upload-hint">支持 .docx / .pdf 格式</p>
+                        `;
+                        btn.disabled = true;
+                        await loadReports();
+                    } else {
+                        alert('上传失败：' + (data.error || '未知错误'));
+                    }
+                } catch(err) {
+                    alert('上传失败：' + err.message);
+                } finally {
+                    document.getElementById('uploadProgress').style.display = 'none';
+                    btn.disabled = false;
+                }
+            });
+        }
+
+        async function viewReport(id) {
+            const res = await fetch(`/api/reports/${id}?_=${Date.now()}`, { cache: 'no-cache' });
+            const report = await res.json();
+            document.getElementById('modalTitle').textContent = report.title;
+            document.getElementById('modalBody').innerHTML = `
+                <div style="margin-bottom:12px;color:#888;font-size:13px;">
+                    上传时间：${formatDate(report.uploadedAt)}
+                </div>
+                <div style="white-space:pre-wrap;line-height:1.8;font-size:14px;">${escapeHtml(report.content)}</div>
+            `;
+            document.getElementById('reportModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('reportModal').style.display = 'none';
+        }
+
+        async function deleteReport(id) {
+            if (!confirm('确定删除此战报吗？')) return;
+            await apiFetch(`/api/reports/${id}`, { method: 'DELETE' });
+            await loadReports();
+        }
+    </script>
+
+    <style>
+        .page-header { padding: 40px 24px; background: linear-gradient(135deg, #0f5d27 0%, #1a8a3a 100%); text-align: center; }
+        .page-title { font-size: 32px; color: #fff; margin-bottom: 8px; }
+        .page-desc { color: rgba(255,255,255,0.8); }
+        .reports-page { max-width: 900px; margin: 0 auto; }
+
+        .upload-section { margin-bottom: 32px; }
+        .upload-card { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+        .upload-title { font-size: 20px; color: #1a8a3a; margin-bottom: 6px; }
+        .upload-desc { color: #666; font-size: 14px; margin-bottom: 20px; }
+        .upload-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 13px; color: #555; margin-bottom: 6px; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 10px 12px; border: 1px solid #e0e0e0; border-radius: 8px;
+            font-size: 14px; outline: none; transition: border-color 0.2s;
+        }
+        .form-group input:focus, .form-group select:focus { border-color: #1a8a3a; }
+        .ko-team-row { display: flex; align-items: center; gap: 8px; }
+        .ko-team-row select { flex: 1; }
+        .ko-team-row .ko-vs { color: #999; font-size: 13px; }
+        .upload-area {
+            border: 2px dashed #ccc; border-radius: 10px; padding: 32px; text-align: center;
+            cursor: pointer; transition: all 0.2s; margin-bottom: 16px; position: relative;
+        }
+        .upload-area:hover, .upload-area.dragover { border-color: #1a8a3a; background: rgba(26,138,58,0.04); }
+        .upload-icon { font-size: 40px; margin-bottom: 8px; }
+        .upload-hint { font-size: 12px; color: #999; margin-top: 4px; }
+        .upload-btn {
+            width: 100%; padding: 12px; border: none; border-radius: 8px;
+            background: #1a8a3a; color: #fff; font-size: 16px; font-weight: 600;
+            cursor: pointer; transition: background 0.2s;
+        }
+        .upload-btn:disabled { background: #ccc; cursor: not-allowed; }
+        .upload-btn:not(:disabled):hover { background: #15702e; }
+        .upload-progress { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .progress-spinner {
+            width: 36px; height: 36px; border: 3px solid #eee; border-top-color: #1a8a3a;
+            border-radius: 50%; animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .report-item {
+            display: flex; align-items: center; gap: 16px; padding: 16px; background: #fff;
+            border-radius: 8px; margin: 8px 0; cursor: pointer; transition: 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .report-item:hover { transform: translateX(4px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+        .report-date { font-weight: 600; color: #ff6b35; min-width: 50px; }
+        .report-content { flex: 1; }
+        .report-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+        .report-summary { font-size: 14px; color: #666; margin-bottom: 4px; }
+        .report-meta { font-size: 12px; color: #999; }
+        .report-delete {
+            padding: 6px 14px; border: 1px solid #ff6b35; color: #ff6b35;
+            background: #fff; border-radius: 6px; cursor: pointer; font-size: 13px;
+        }
+        .report-delete:hover { background: #ff6b35; color: #fff; }
+
+        .report-match-summary {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 12px; margin: 8px 0; padding: 10px 14px;
+            background: #f8f9fa; border-radius: 8px;
+        }
+        .summary-team { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+        .summary-team .team-name { font-weight: 600; font-size: 14px; color: #1a1a2e; }
+        .team-events { display: flex; gap: 6px; font-size: 12px; min-height: 18px; }
+        .summary-score { font-size: 22px; font-weight: 900; color: #1a8a3a; font-family: monospace; }
+        .ev-goal, .ev-yellow, .ev-red { display: inline-flex; align-items: center; gap: 1px; }
+
+        .match-events-detail {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+            margin-top: 8px; padding: 8px 12px; background: #fff; border-radius: 6px;
+            border: 1px solid #eee;
+        }
+        .events-col { display: flex; flex-direction: column; gap: 3px; }
+        .events-right { text-align: right; }
+        .ev-item { font-size: 12px; color: #333; line-height: 1.5; }
+        .ev-tag {
+            font-style: normal; font-size: 10px; color: #fff; background: #ff6b35;
+            padding: 0 4px; border-radius: 3px; margin: 0 1px;
+        }
+
+        .modal {
+            position: fixed; inset: 0; z-index: 1000; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .modal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+        .modal-content {
+            position: relative; background: #fff; border-radius: 12px; padding: 24px;
+            max-width: 800px; width: 90%; max-height: 80vh; overflow-y: auto;
+        }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+        .modal-close { background: none; border: none; font-size: 20px; cursor: pointer; color: #999; }
+        .modal-body { line-height: 1.6; }
+    </style>
+    <script>
+function exportReports() {
+    if (!allReports || !allReports.length) { alert('暂无可导出的战报数据'); return; }
+    const aoa = [['序号', '场次', '主队', '比分', '客队', '战报标题', '上传时间', '进球', '黄牌', '红牌']];
+    allReports.forEach(function (r, idx) {
+        const m = (allMatches || []).find(function (x) { return x.id === r.matchId; }) || {};
+        const ev = (allEvents && allEvents[r.matchId]) || { goals: [], cards: [] };
+        const goals = (ev.goals || []).filter(function (g) { return g.type !== 'own'; }).length;
+        const yellow = (ev.cards || []).filter(function (c) { return c.type === 'yellow'; }).length;
+        const red = (ev.cards || []).filter(function (c) { return c.type === 'red' || c.type === 'two_yellow'; }).length;
+        aoa.push([
+            idx + 1,
+            (m.matchNo ? '#' + m.matchNo : '') + (m.id || ''),
+            m.home || '',
+            (r.homeScore !== undefined ? r.homeScore : '') + ':' + (r.awayScore !== undefined ? r.awayScore : ''),
+            m.away || '',
+            r.title || '',
+            new Date(r.uploadedAt).toLocaleString('zh-CN'),
+            goals,
+            yellow,
+            red
+        ]);
+    });
+    WCExcel.exportAoa('2026新生杯-战报汇总.xlsx', '战报汇总', aoa, [6, 26, 24, 10, 24, 40, 20, 8, 8, 8]);
+}
+    </script>
+</body>
+</html>

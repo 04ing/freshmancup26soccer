@@ -1,0 +1,40 @@
+{
+  "goals": [
+    {
+      "team": "集成电路",
+      "player": "汤舰勋",
+      "number": "7",
+      "minute": "38"
+    },
+    {
+      "team": "数学与统计学院队",
+      "player": "王熙尧",
+      "number": "4",
+      "minute": "60"
+    }
+  ],
+  "cards": [
+    {
+      "team": "集成电路",
+      "player": "王煜轩",
+      "number": "1",
+      "type": "yellow",
+      "minute": "60"
+    },
+    {
+      "team": "数学与统计学院队",
+      "player": "王熙尧",
+      "number": "4",
+      "type": "yellow",
+      "minute": "60"
+    },
+    {
+      "role": "coach",
+      "team": "集成电路",
+      "player": "安文捷",
+      "number": "",
+      "type": "yellow",
+      "minute": ""
+    }
+  ]
+}

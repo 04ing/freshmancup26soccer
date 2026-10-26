@@ -1,0 +1,34 @@
+{
+  "goals": [
+    {
+      "team": "数学与统计学院队",
+      "player": "王熙尧",
+      "number": "4",
+      "type": "normal",
+      "minute": "23"
+    },
+    {
+      "team": "数学与统计学院队",
+      "player": "王翔宇",
+      "number": "9",
+      "type": "own",
+      "minute": "60"
+    }
+  ],
+  "cards": [
+    {
+      "team": "数学与统计学院队",
+      "player": "王熙尧",
+      "number": "4",
+      "type": "yellow",
+      "minute": "30"
+    },
+    {
+      "team": "弘毅学堂",
+      "player": "黄佳宇",
+      "number": "39",
+      "type": "red",
+      "minute": "38"
+    }
+  ]
+}

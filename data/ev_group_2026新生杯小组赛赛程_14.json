@@ -1,0 +1,55 @@
+{
+  "goals": [
+    {
+      "team": "电气学院",
+      "player": "赵博远",
+      "number": "10",
+      "type": "normal",
+      "minute": "28"
+    },
+    {
+      "team": "电气学院",
+      "player": "李帅",
+      "number": "19",
+      "type": "normal",
+      "minute": "44"
+    },
+    {
+      "team": "电气学院",
+      "player": "李帅",
+      "number": "19",
+      "type": "normal",
+      "minute": "59"
+    },
+    {
+      "team": "政法信化",
+      "player": "李振轩",
+      "number": "6",
+      "type": "normal",
+      "minute": "54"
+    },
+    {
+      "team": "政法信化",
+      "player": "张浩轩",
+      "number": "29",
+      "type": "normal",
+      "minute": "58"
+    }
+  ],
+  "cards": [
+    {
+      "team": "电气学院",
+      "player": "钱奕宸",
+      "number": "37",
+      "type": "yellow",
+      "minute": "59"
+    },
+    {
+      "team": "政法信化",
+      "player": "毛甲旺",
+      "number": "17",
+      "type": "yellow",
+      "minute": "21"
+    }
+  ]
+}

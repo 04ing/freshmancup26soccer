@@ -1,0 +1,42 @@
+{
+  "goals": [
+    {
+      "team": "医学联队",
+      "player": "马致远",
+      "number": "9",
+      "type": "normal",
+      "minute": "16"
+    },
+    {
+      "team": "人工智能学院",
+      "player": "吴明达",
+      "number": "6",
+      "type": "normal",
+      "minute": "21"
+    },
+    {
+      "team": "人工智能学院",
+      "player": "杨力诚",
+      "number": "77",
+      "type": "normal",
+      "minute": "25"
+    },
+    {
+      "team": "人工智能学院",
+      "player": "吴明达",
+      "number": "6",
+      "type": "normal",
+      "minute": "60"
+    }
+  ],
+  "cards": [
+    {
+      "role": "player",
+      "team": "医学联队",
+      "player": "温梓鑫",
+      "number": "47",
+      "type": "yellow",
+      "minute": "7"
+    }
+  ]
+}

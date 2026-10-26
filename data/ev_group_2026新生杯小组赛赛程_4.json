@@ -1,0 +1,66 @@
+{
+  "goals": [
+    {
+      "team": "土木建筑工程学院",
+      "player": "桑钦杰",
+      "number": "17",
+      "minute": "49"
+    },
+    {
+      "team": "土木建筑工程学院",
+      "player": "多吉扎巴",
+      "number": "19",
+      "minute": "27"
+    },
+    {
+      "team": "口腔医学院",
+      "player": "Murad（土耳其）",
+      "number": "15",
+      "minute": "32"
+    },
+    {
+      "team": "土木建筑工程学院",
+      "player": "王建辉",
+      "number": "2",
+      "type": "own",
+      "minute": "58"
+    }
+  ],
+  "cards": [
+    {
+      "team": "土木建筑工程学院",
+      "player": "侯博文",
+      "number": "6",
+      "type": "yellow",
+      "minute": "32"
+    },
+    {
+      "team": "土木建筑工程学院",
+      "player": "桑钦杰",
+      "number": "17",
+      "type": "yellow",
+      "minute": "25"
+    },
+    {
+      "team": "土木建筑工程学院",
+      "player": "邓凯隆",
+      "number": "78",
+      "type": "yellow",
+      "minute": "30"
+    },
+    {
+      "team": "口腔医学院",
+      "player": "Steven（尼日利亚）",
+      "number": "47",
+      "type": "yellow",
+      "minute": "15"
+    },
+    {
+      "team": "口腔医学院",
+      "player": "Henry（尼日利亚）",
+      "number": "66",
+      "type": "yellow",
+      "minute": "58"
+    }
+  ]
+}

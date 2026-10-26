@@ -1,0 +1,42 @@
+{
+  "goals": [
+    {
+      "team": "国家网络安全学院",
+      "player": "王梓仁",
+      "number": "12",
+      "type": "normal",
+      "minute": "16"
+    },
+    {
+      "team": "国家网络安全学院",
+      "player": "花成璋",
+      "number": "22",
+      "type": "normal",
+      "minute": "25"
+    },
+    {
+      "team": "国家网络安全学院",
+      "player": "花成璋",
+      "number": "22",
+      "type": "normal",
+      "minute": "49"
+    },
+    {
+      "team": "国家网络安全学院",
+      "player": "刘子骞",
+      "number": "20",
+      "type": "normal",
+      "minute": "33"
+    }
+  ],
+  "cards": [
+    {
+      "role": "player",
+      "team": "社马外史联队",
+      "player": "涂浩宇",
+      "number": "12",
+      "type": "yellow",
+      "minute": "52"
+    }
+  ]
+}

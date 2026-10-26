@@ -1,0 +1,52 @@
+{
+  "goals": [
+    {
+      "team": "城设新传联",
+      "player": "李柯汗",
+      "number": "10",
+      "minute": "6",
+      "type": "penalty"
+    },
+    {
+      "team": "城设新传联",
+      "player": "崔永涛",
+      "number": "11",
+      "minute": "40"
+    },
+    {
+      "team": "FC武大杜伦",
+      "player": "张泽恒",
+      "number": "9",
+      "minute": "33"
+    },
+    {
+      "team": "FC武大杜伦",
+      "player": "梁熙麟",
+      "number": "19",
+      "minute": "57"
+    },
+    {
+      "team": "FC武大杜伦",
+      "player": "唐梓渊",
+      "number": "69",
+      "minute": "11"
+    }
+  ],
+  "cards": [
+    {
+      "team": "城设新传联",
+      "player": "吴泰睿",
+      "number": "23",
+      "type": "yellow",
+      "minute": ""
+    },
+    {
+      "role": "coach",
+      "team": "城设新传联",
+      "player": "吴冠桥",
+      "number": "",
+      "type": "yellow",
+      "minute": ""
+    }
+  ]
+}

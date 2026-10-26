@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>射手榜 - 2026新生杯</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+/* 静态导出版：隐藏依赖服务器的录入/上传/AI 入口 */
+.entry-section, .upload-section, .ai-trigger, .ai-panel { display: none !important; }
+.team-edit { pointer-events: none; appearance: none; -webkit-appearance: none; border-color: transparent !important; background: transparent !important; }
+</style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo"><span class="logo-icon">⚽</span><span class="logo-text">2026新生杯</span></div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="schedule.html" class="nav-link">赛程</a>
+                <a href="standings.html" class="nav-link">积分榜</a>
+                <a href="scorers.html" class="nav-link active">射手榜</a>
+                <a href="cards.html" class="nav-link">红黄牌</a>
+                <a href="rosters.html" class="nav-link">大名单</a>
+                <a href="reports.html" class="nav-link">战报</a>
+                <a href="referees.html" class="nav-link">裁判</a>
+            </nav>
+            <button class="ai-trigger" id="aiTrigger"><span class="ai-icon">AI</span><span>助手</span></button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="index.html" class="nav-link">首页</a>
+        <a href="schedule.html" class="nav-link">赛程</a>
+        <a href="/matches" class="nav-link">比赛管理</a>
+        <a href="standings.html" class="nav-link">积分榜</a>
+        <a href="scorers.html" class="nav-link">射手榜</a>
+        <a href="cards.html" class="nav-link">红黄牌</a>
+        <a href="rosters.html" class="nav-link">大名单</a>
+        <a href="reports.html" class="nav-link">战报</a>
+        <a href="referees.html" class="nav-link">裁判</a>
+    </nav>
+
+    <main class="main-content">
+        <section class="page-header">
+            <h1 class="page-title">射手榜</h1>
+            <p class="page-desc">手动录入进球队员，自动统计射手榜</p>
+            <div class="page-actions"><button class="btn-export" onclick="exportScorers()">📊 导出 Excel</button></div>
+        </section>
+
+        <section class="scorers-page">
+            <!-- 录入区域 -->
+            <div class="entry-section">
+                <h2 class="section-title">录入进球队员</h2>
+                <div class="entry-controls">
+                    <label>选择比赛：</label>
+                    <select id="matchSelect" class="match-select"></select>
+                    <button id="loadMatchBtn" class="btn btn-secondary">加载已录入</button>
+                    <button id="saveMatchBtn" class="btn btn-primary">保存</button>
+                </div>
+                <div id="matchInfo" class="match-info" style="display:none;"></div>
+                <div id="goalEntryArea" class="goal-entry-area"></div>
+                <button id="addGoalBtn" class="btn btn-add" style="display:none;">+ 添加进球</button>
+            </div>
+
+            <!-- 射手榜统计 -->
+            <div class="standings-section">
+                <h2 class="section-title">射手榜统计</h2>
+                <div id="scorersList">
+                    <div class="loading"><div class="loading-spinner"></div><p>正在加载...</p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer"><div class="footer-inner"><p>2026武汉大学新生杯足球赛</p></div></footer>
+
+    <div class="ai-panel" id="aiPanel">
+        <div class="ai-panel-header"><span class="ai-panel-title">AI助手</span><button class="ai-close" id="aiClose">X</button></div>
+        <div class="ai-panel-body">
+            <div class="ai-messages" id="aiMessages"><div class="ai-message ai-system"><p>我是新生杯智能助手，可以回答射手榜相关问题！</p></div></div>
+            <div class="ai-input-area"><input type="text" class="ai-input" id="aiInput"><button class="ai-send" id="aiSend">发送</button></div>
+        </div>
+    </div>
+
+    <script src="static/js/vendor/xlsx.full.min.js"></script>
+    <script src="static/js/export.js"></script>
+    <script src="static/js/api-shim.js"></script>
+    <script src="static/js/main.js"></script>
+    <script>
+        let allMatches = [];
+        let allRosters = {};
+        let currentMatch = null;
+        let goals = []; // {team, player, number, minute}
+
+        document.addEventListener('DOMContentLoaded', async function() {
+            initAIAssistant();
+            await Promise.all([loadMatches(), loadScorers()]);
+        });
+
+        async function loadMatches() {
+            try {
+                const res = await fetch('/api/matches/all?_=' + Date.now(), { cache: 'no-cache' });
+                const data = await res.json();
+                allMatches = data.matches || data || [];
+                const rostersRes = await fetch('/api/rosters?_=' + Date.now(), { cache: 'no-cache' });
+                allRosters = await rostersRes.json();
+
+                const sel = document.getElementById('matchSelect');
+                sel.innerHTML = '<option value="">-- 选择比赛 --</option>' +
+                    allMatches.map(m => {
+                        const label = `${m.date || ''} ${m.home} vs ${m.away}${m.group ? ' (' + m.group + ')' : ''}`;
+                        return `<option value="${m.id}">${escapeHtml(label)}</option>`;
+                    }).join('');
+            } catch(e) { console.error('加载比赛失败:', e); }
+        }
+
+        function isKnownTeam(t) {
+            return !!t && Object.prototype.hasOwnProperty.call(allRosters, t);
+        }
+
+        function teamOptionsHtml(selected) {
+            return '<option value="">-- 选择球队 --</option>' +
+                Object.keys(allRosters).sort().map(t =>
+                    `<option value="${escapeHtml(t)}" ${t === selected ? 'selected' : ''}>${escapeHtml(t)}</option>`
+                ).join('');
+        }
+
+        function renderMatchInfo() {
+            const info = document.getElementById('matchInfo');
+            if (!currentMatch) { info.style.display = 'none'; return; }
+            info.style.display = 'block';
+            let html = `${escapeHtml(currentMatch.date || '')} ${escapeHtml(currentMatch.time || '')} ${escapeHtml(currentMatch.home)} vs ${escapeHtml(currentMatch.away)} ${escapeHtml(currentMatch.group || '')}`;
+            if (currentMatch.type === 'knockout') {
+                const hSel = isKnownTeam(currentMatch.home) ? currentMatch.home : '';
+                const aSel = isKnownTeam(currentMatch.away) ? currentMatch.away : '';
+                html += `<div class="team-setter">
+                    <span class="setter-label">填写实际球队：</span>
+                    <select class="setter-select" onchange="onTeamSet('home', this.value)">${teamOptionsHtml(hSel)}</select>
+                    <span class="setter-vs">vs</span>
+                    <select class="setter-select" onchange="onTeamSet('away', this.value)">${teamOptionsHtml(aSel)}</select>
+                </div>`;
+            }
+            info.innerHTML = html;
+        }
+
+        async function onTeamSet(side, value) {
+            if (!currentMatch) return;
+            let homeVal = isKnownTeam(currentMatch.home) ? currentMatch.home : '';
+            let awayVal = isKnownTeam(currentMatch.away) ? currentMatch.away : '';
+            if (side === 'home') homeVal = value; else awayVal = value;
+            try {
+                await apiFetch('/api/knockout-teams', {
+                    method: 'POST',
+                    body: JSON.stringify({ matchId: currentMatch.id, home: homeVal, away: awayVal })
+                });
+            } catch(e) { console.error('保存球队失败:', e); }
+            currentMatch.home = homeVal || currentMatch.defaultHome || '';
+            currentMatch.away = awayVal || currentMatch.defaultAway || '';
+            renderMatchInfo();
+            renderGoalEntries();
+        }
+
+        function onMatchSelect() {
+            const matchId = document.getElementById('matchSelect').value;
+            if (!matchId) {
+                document.getElementById('matchInfo').style.display = 'none';
+                document.getElementById('goalEntryArea').innerHTML = '';
+                document.getElementById('addGoalBtn').style.display = 'none';
+                return;
+            }
+            currentMatch = allMatches.find(m => m.id === matchId);
+            if (!currentMatch) return;
+
+            document.getElementById('addGoalBtn').style.display = 'inline-block';
+            renderMatchInfo();
+            goals = [];
+            renderGoalEntries();
+        }
+
+        async function loadMatchEvents() {
+            const matchId = document.getElementById('matchSelect').value;
+            if (!matchId) return;
+            try {
+                const res = await fetch(`/api/match-events/${matchId}?_=${Date.now()}`, { cache: 'no-cache' });
+                const data = await res.json();
+                goals = data.goals || [];
+                renderGoalEntries();
+            } catch(e) { console.error('加载比赛事件失败:', e); }
+        }
+
+        function renderGoalEntries() {
+            const area = document.getElementById('goalEntryArea');
+            if (goals.length === 0) {
+                area.innerHTML = '<p class="empty-hint">点击"+ 添加进球"录入进球信息</p>';
+                return;
+            }
+            area.innerHTML = goals.map((g, i) => {
+                const homeRoster = (allRosters[currentMatch.home]) || [];
+                const awayRoster = (allRosters[currentMatch.away]) || [];
+                const teamOptions = [currentMatch.home, currentMatch.away];
+                const roster = g.team === currentMatch.home ? homeRoster : awayRoster;
+                const playerOptions = roster.map(p => `<option value="${escapeHtml(p.name)}" ${g.player === p.name ? 'selected' : ''}>${escapeHtml(p.number || '')}号 ${escapeHtml(p.name)}</option>`).join('');
+
+                return `<div class="goal-row">
+                    <select class="goal-type" onchange="updateGoal(${i}, 'type', this.value)">
+                        <option value="normal" ${g.type === 'normal' ? 'selected' : ''}>普通</option>
+                        <option value="penalty" ${g.type === 'penalty' ? 'selected' : ''}>点球</option>
+                        <option value="own" ${g.type === 'own' ? 'selected' : ''}>乌龙</option>
+                    </select>
+                    <select class="goal-team" onchange="updateGoal(${i}, 'team', this.value)">
+                        ${teamOptions.map(t => `<option value="${escapeHtml(t)}" ${g.team === t ? 'selected' : ''}>${escapeHtml(t)}</option>`).join('')}
+                    </select>
+                    <select class="goal-player" onchange="onPlayerChange(${i}, this.value)">
+                        <option value="">-- 球员 --</option>
+                        ${playerOptions}
+                    </select>
+                    <input type="text" class="goal-minute" placeholder="分钟" value="${escapeHtml(g.minute || '')}" onchange="updateGoal(${i}, 'minute', this.value)">
+                    <button class="btn btn-remove" onclick="removeGoal(${i})">删除</button>
+                </div>`;
+            }).join('');
+        }
+
+        function addGoal() {
+            if (!currentMatch) return;
+            goals.push({ team: currentMatch.home, player: '', number: '', type: 'normal', minute: '' });
+            renderGoalEntries();
+        }
+
+        function updateGoal(idx, field, value) {
+            if (!goals[idx]) return;
+            goals[idx][field] = value;
+            if (field === 'team') {
+                // 切换球队时清空已选球员并重新渲染球员列表
+                goals[idx].player = '';
+                goals[idx].number = '';
+                renderGoalEntries();
+            }
+        }
+
+        function onPlayerChange(idx, playerName) {
+            if (!goals[idx]) return;
+            goals[idx].player = playerName;
+            const roster = (allRosters[goals[idx].team]) || [];
+            const p = roster.find(r => r.name === playerName);
+            if (p) goals[idx].number = p.number || '';
+        }
+
+        function removeGoal(idx) {
+            goals.splice(idx, 1);
+            renderGoalEntries();
+        }
+
+        async function saveMatchEvents() {
+            const matchId = document.getElementById('matchSelect').value;
+            if (!matchId) { alert('请先选择比赛'); return; }
+            const validGoals = goals.filter(g => g.player);
+            try {
+                // 先获取已有的红黄牌数据，避免覆盖
+                const existRes = await fetch(`/api/match-events/${matchId}?_=${Date.now()}`, { cache: 'no-cache' });
+                const existData = await existRes.json();
+                const existingCards = existData.cards || [];
+
+                const res = await apiFetch(`/api/match-events/${matchId}`, {
+                    method: 'POST',
+                    body: JSON.stringify({ goals: validGoals, cards: existingCards })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    alert('保存成功！射手榜和当前比赛列表已刷新');
+                    // 强制重新拉取，避免浏览器缓存
+                    await Promise.all([loadScorers(), loadMatchEvents()]);
+                } else { alert('保存失败'); }
+            } catch(e) { alert('保存失败: ' + e.message); }
+        }
+
+        async function loadScorers() {
+            const container = document.getElementById('scorersList');
+            try {
+                const res = await fetch('/api/scorers/live?_=' + Date.now(), { cache: 'no-cache' });
+                const data = await res.json();
+                const scorers = (data && data.scorers) ? data.scorers : [];
+                if (!scorers.length) {
+                    container.innerHTML = '<p class="empty-hint">暂无射手榜数据，录入进球后自动更新</p>';
+                    return;
+                }
+                container.innerHTML = `
+                    <table class="scorers-table">
+                        <thead><tr><th>排名</th><th>号码</th><th>球员</th><th>球队</th><th>组别</th><th>进球</th></tr></thead>
+                        <tbody>
+                            ${scorers.map((s, idx) => `
+                                <tr class="${idx < 3 ? 'top-scorer' : ''}">
+                                    <td><span class="scorer-rank ${idx === 0 ? 'gold' : idx === 1 ? 'silver' : idx === 2 ? 'bronze' : ''}">${idx + 1}</span></td>
+                                    <td class="number-cell">${escapeHtml(s.number || '')}</td>
+                                    <td class="player-cell">${escapeHtml(s.name || '')}</td>
+                                    <td class="team-cell">${escapeHtml(s.team || '')}</td>
+                                    <td>${escapeHtml(s.group || '')}</td>
+                                    <td class="goals-cell">${s.goals}${s.penalties ? '(' + s.penalties + ')' : ''}</td>
+                                </tr>`).join('')}
+                        </tbody>
+                    </table>`;
+            } catch(e) { container.innerHTML = '<p class="empty-hint">加载失败，请刷新页面</p>'; }
+        }
+
+        document.getElementById('matchSelect').addEventListener('change', onMatchSelect);
+        document.getElementById('loadMatchBtn').addEventListener('click', loadMatchEvents);
+        document.getElementById('saveMatchBtn').addEventListener('click', saveMatchEvents);
+        document.getElementById('addGoalBtn').addEventListener('click', addGoal);
+    </script>
+
+    <style>
+        .page-header { padding: 40px 24px; background: linear-gradient(135deg, #ff6b35 0%, #1a8a3a 100%); text-align: center; }
+        .page-title { font-size: 32px; color: #fff; margin-bottom: 8px; }
+        .page-desc { color: rgba(255,255,255,0.8); }
+        .scorers-page { max-width: 900px; margin: 0 auto; padding: 0 16px; }
+        .entry-section, .standings-section { background: #fff; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .section-title { font-size: 20px; color: #1a8a3a; margin-bottom: 16px; }
+        .entry-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+        .match-select { flex: 1; min-width: 200px; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 14px; }
+        .btn-primary { background: #1a8a3a; color: #fff; }
+        .btn-secondary { background: #f0f2f5; color: #4a4a5a; }
+        .btn-add { background: #ff6b35; color: #fff; margin-top: 8px; }
+        .btn-remove { background: #e74c3c; color: #fff; padding: 6px 12px; font-size: 12px; }
+        .match-info { padding: 12px; background: #f8f9fa; border-radius: 8px; margin-bottom: 12px; font-weight: 600; color: #1a8a3a; }
+        .team-setter { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #ddd; }
+        .team-setter .setter-label { font-size: 13px; color: #666; font-weight: 600; }
+        .team-setter .setter-vs { color: #999; font-size: 13px; }
+        .team-setter .setter-select { flex: 1; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; }
+        .goal-entry-area { display: flex; flex-direction: column; gap: 8px; }
+        .goal-row { display: flex; align-items: center; gap: 8px; }
+        .goal-row select, .goal-row input { padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; }
+        .goal-type { width: 70px; }
+        .goal-team { width: 140px; }
+        .goal-player { flex: 1; }
+        .goal-minute { width: 80px; }
+        .empty-hint { text-align: center; color: #4a4a5a; padding: 24px; }
+        .scorers-table { width: 100%; border-collapse: collapse; }
+        .scorers-table th, .scorers-table td { padding: 12px 8px; text-align: center; }
+        .scorers-table th { background: #f0f2f5; color: #4a4a5a; font-weight: 600; }
+        .top-scorer { background: rgba(255,215,0,0.1); }
+        .scorer-rank { display: inline-flex; width: 30px; height: 30px; align-items: center; justify-content: center; border-radius: 50%; background: #4a4a5a; color: #fff; font-weight: 900; font-size: 13px; }
+        .scorer-rank.gold { background: #ffd700; }
+        .scorer-rank.silver { background: #c0c0c0; }
+        .scorer-rank.bronze { background: #cd7f32; }
+        .number-cell { font-family: monospace; color: #4a4a5a; }
+        .player-cell { font-weight: 600; }
+        .goals-cell { font-weight: 900; font-family: monospace; color: #ff6b35; font-size: 18px; }
+        .loading { text-align: center; padding: 40px; }
+    </style>
+    <script>
+function exportScorers() {
+    const table = document.querySelector('.scorers-table');
+    if (!table) { alert('暂无可导出的射手榜数据'); return; }
+    WCExcel.exportAoa('2026新生杯-射手榜.xlsx', '射手榜', WCExcel.tableToAoa(table), [8, 8, 20, 24, 10, 10]);
+}
+    </script>
+</body>
+</html>

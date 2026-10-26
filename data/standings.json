@@ -1,0 +1,285 @@
+{
+  "groups": {
+    "A组": [
+      {
+        "team": "动机联队",
+        "played": 2,
+        "won": 2,
+        "drawn": 0,
+        "lost": 0,
+        "gf": 6,
+        "ga": 2,
+        "gd": 4,
+        "points": 6
+      },
+      {
+        "team": "人工智能学院",
+        "played": 2,
+        "won": 1,
+        "drawn": 0,
+        "lost": 1,
+        "gf": 5,
+        "ga": 4,
+        "gd": 1,
+        "points": 3
+      },
+      {
+        "team": "测绘学院",
+        "played": 2,
+        "won": 0,
+        "drawn": 0,
+        "lost": 2,
+        "gf": 1,
+        "ga": 6,
+        "gd": -5,
+        "points": 0
+      }
+    ],
+    "B组": [
+      {
+        "team": "医学联队",
+        "played": 2,
+        "won": 2,
+        "drawn": 0,
+        "lost": 0,
+        "gf": 21,
+        "ga": 1,
+        "gd": 20,
+        "points": 6
+      },
+      {
+        "team": "地空生科联队",
+        "played": 2,
+        "won": 1,
+        "drawn": 0,
+        "lost": 1,
+        "gf": 8,
+        "ga": 3,
+        "gd": 5,
+        "points": 3
+      },
+      {
+        "team": "艺术学院",
+        "played": 2,
+        "won": 0,
+        "drawn": 0,
+        "lost": 2,
+        "gf": 1,
+        "ga": 26,
+        "gd": -25,
+        "points": 0
+      }
+    ],
+    "C组": [
+      {
+        "team": "经管新生队",
+        "played": 2,
+        "won": 1,
+        "drawn": 1,
+        "lost": 0,
+        "gf": 4,
+        "ga": 2,
+        "gd": 2,
+        "points": 4
+      },
+      {
+        "team": "电子信息队",
+        "played": 2,
+        "won": 1,
+        "drawn": 0,
+        "lost": 1,
+        "gf": 4,
+        "ga": 4,
+        "gd": 0,
+        "points": 3
+      },
+      {
+        "team": "遥感后浪",
+        "played": 2,
+        "won": 0,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 2,
+        "ga": 4,
+        "gd": -2,
+        "points": 1
+      }
+    ],
+    "D组": [
+      {
+        "team": "水利水电学院",
+        "played": 2,
+        "won": 2,
+        "drawn": 0,
+        "lost": 0,
+        "gf": 10,
+        "ga": 4,
+        "gd": 6,
+        "points": 6
+      },
+      {
+        "team": "土木建筑工程学院",
+        "played": 2,
+        "won": 0,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 3,
+        "ga": 5,
+        "gd": -2,
+        "points": 1
+      },
+      {
+        "team": "口腔医学院",
+        "played": 2,
+        "won": 0,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 5,
+        "ga": 9,
+        "gd": -4,
+        "points": 1
+      }
+    ],
+    "E组": [
+      {
+        "team": "FC武大杜伦",
+        "played": 2,
+        "won": 2,
+        "drawn": 0,
+        "lost": 0,
+        "gf": 4,
+        "ga": 2,
+        "gd": 2,
+        "points": 6
+      },
+      {
+        "team": "物理学院",
+        "played": 2,
+        "won": 1,
+        "drawn": 0,
+        "lost": 1,
+        "gf": 5,
+        "ga": 5,
+        "gd": 0,
+        "points": 3
+      },
+      {
+        "team": "城设新传联",
+        "played": 2,
+        "won": 0,
+        "drawn": 0,
+        "lost": 2,
+        "gf": 6,
+        "ga": 8,
+        "gd": -2,
+        "points": 0
+      }
+    ],
+    "F组": [
+      {
+        "team": "电气学院",
+        "played": 2,
+        "won": 1,
+        "drawn": 1,
+        "lost": 0,
+        "gf": 3,
+        "ga": 2,
+        "gd": 1,
+        "points": 4
+      },
+      {
+        "team": "政法信化",
+        "played": 2,
+        "won": 1,
+        "drawn": 0,
+        "lost": 1,
+        "gf": 3,
+        "ga": 3,
+        "gd": 0,
+        "points": 3
+      },
+      {
+        "team": "资源与环境科学学院",
+        "played": 2,
+        "won": 0,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 0,
+        "ga": 1,
+        "gd": -1,
+        "points": 1
+      }
+    ],
+    "G组": [
+      {
+        "team": "国家网络安全学院",
+        "played": 2,
+        "won": 1,
+        "drawn": 1,
+        "lost": 0,
+        "gf": 7,
+        "ga": 3,
+        "gd": 4,
+        "points": 4
+      },
+      {
+        "team": "社马外史联队",
+        "played": 2,
+        "won": 1,
+        "drawn": 0,
+        "lost": 1,
+        "gf": 2,
+        "ga": 4,
+        "gd": -2,
+        "points": 3
+      },
+      {
+        "team": "计科新生队",
+        "played": 2,
+        "won": 0,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 3,
+        "ga": 5,
+        "gd": -2,
+        "points": 1
+      }
+    ],
+    "H组": [
+      {
+        "team": "弘毅学堂",
+        "played": 2,
+        "won": 1,
+        "drawn": 1,
+        "lost": 0,
+        "gf": 3,
+        "ga": 1,
+        "gd": 2,
+        "points": 4
+      },
+      {
+        "team": "数学与统计学院队",
+        "played": 2,
+        "won": 0,
+        "drawn": 2,
+        "lost": 0,
+        "gf": 2,
+        "ga": 2,
+        "gd": 0,
+        "points": 2
+      },
+      {
+        "team": "集成电路",
+        "played": 2,
+        "won": 0,
+        "drawn": 1,
+        "lost": 1,
+        "gf": 1,
+        "ga": 3,
+        "gd": -2,
+        "points": 1
+      }
+    ]
+  },
+  "matchCount": 40
+}

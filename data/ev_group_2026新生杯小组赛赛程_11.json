@@ -1,0 +1,27 @@
+{
+  "goals": [
+    {
+      "team": "经管新生队",
+      "player": "林圣也",
+      "number": "10",
+      "type": "normal",
+      "minute": "6"
+    },
+    {
+      "team": "遥感后浪",
+      "player": "方玮辰",
+      "number": "7",
+      "type": "normal",
+      "minute": "12"
+    }
+  ],
+  "cards": [
+    {
+      "team": "经管新生队",
+      "player": "张世豪",
+      "number": "18",
+      "type": "yellow",
+      "minute": "54"
+    }
+  ]
+}

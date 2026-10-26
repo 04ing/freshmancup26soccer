@@ -1,0 +1,43 @@
+{
+  "goals": [
+    {
+      "team": "动机联队",
+      "player": "李明远",
+      "number": "9",
+      "type": "normal",
+      "minute": "14"
+    },
+    {
+      "team": "动机联队",
+      "player": "习昕泽",
+      "number": "10",
+      "type": "normal",
+      "minute": "40"
+    },
+    {
+      "team": "动机联队",
+      "player": "柏明扬",
+      "number": "20",
+      "type": "normal",
+      "minute": "48"
+    }
+  ],
+  "cards": [
+    {
+      "role": "player",
+      "team": "动机联队",
+      "player": "刘本昱",
+      "number": "29",
+      "type": "yellow",
+      "minute": "16"
+    },
+    {
+      "role": "player",
+      "team": "测绘学院",
+      "player": "杨传堽",
+      "number": "13",
+      "type": "yellow",
+      "minute": "11"
+    }
+  ]
+}

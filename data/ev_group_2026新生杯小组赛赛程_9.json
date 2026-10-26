@@ -1,0 +1,41 @@
+{
+  "goals": [
+    {
+      "team": "测绘学院",
+      "player": "王逸扬",
+      "number": "30",
+      "type": "normal",
+      "minute": "24"
+    },
+    {
+      "team": "人工智能学院",
+      "player": "吴明达",
+      "number": "6",
+      "type": "normal",
+      "minute": "49"
+    },
+    {
+      "team": "人工智能学院",
+      "player": "吴明达",
+      "number": "6",
+      "type": "normal",
+      "minute": "26"
+    },
+    {
+      "team": "人工智能学院",
+      "player": "成梓和",
+      "number": "88",
+      "type": "normal",
+      "minute": "3"
+    }
+  ],
+  "cards": [
+    {
+      "team": "测绘学院",
+      "player": "瞿子皓",
+      "number": "24",
+      "type": "yellow",
+      "minute": "54"
+    }
+  ]
+}
